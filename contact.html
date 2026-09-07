@@ -4,22 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Solvo | Start a Project</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Crect x='15' y='15' width='230' height='230' rx='48' fill='%2307090e' stroke='%236366f1' stroke-width='8'/%3E%3Cpath d='M 68 85 L 36 130 L 68 175' stroke='%2338bdf8' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M 192 85 L 224 130 L 192 175' stroke='%2310b981' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='36' cy='130' r='12' fill='%2338bdf8'/%3E%3Ccircle cx='224' cy='130' r='12' fill='%2310b981'/%3E%3Ccircle cx='130' cy='42' r='12' fill='%23818cf8'/%3E%3Ccircle cx='130' cy='218' r='12' fill='%2310b981'/%3E%3Crect x='55' y='102' width='150' height='56' rx='16' fill='%230c1017' stroke='%236366f1' stroke-width='4'/%3E%3Ctext x='130' y='138' font-family='system-ui,sans-serif' font-weight='900' font-size='24' letter-spacing='4' fill='%23ffffff' text-anchor='middle'%3ESOLVO%3C/text%3E%3C/svg%3E">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
           colors: { brand: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' } }
         }
       }
     }
   </script>
   <style>
-    #bubble-canvas {
+    #constellation-canvas {
       position: fixed;
       top: 0;
       left: 0;
@@ -30,22 +36,20 @@
     }
   </style>
 </head>
-<body class="bg-[#07090e] text-slate-200 antialiased font-sans selection:bg-brand-500 selection:text-white relative">
+<body class="bg-[#05070c] text-slate-200 antialiased font-sans selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
-  <canvas id="bubble-canvas"></canvas>
+  <canvas id="constellation-canvas"></canvas>
 
   <div class="relative z-10">
-    <!-- Navbar with Embedded AI & Web Logo -->
-    <nav class="fixed top-0 left-0 right-0 z-40 backdrop-blur-xl bg-[#07090e]/80 border-b border-white/[0.06]">
+    <nav class="fixed top-0 left-0 right-0 z-40 backdrop-blur-2xl bg-[#05070c]/85 border-b border-white/[0.07]">
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
-        <!-- Logo In The Header -->
         <a href="index.html" class="flex items-center gap-3.5 group">
           <div class="relative flex items-center justify-center">
-            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-500 to-emerald-500 opacity-20 blur group-hover:opacity-40 transition duration-300"></div>
+            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-500 to-emerald-500 opacity-25 blur-sm group-hover:opacity-60 transition duration-300"></div>
             <svg class="w-11 h-11 relative" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="headerAiWebGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="headerAiGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#818cf8" />
                   <stop offset="50%" stop-color="#4f46e5" />
                   <stop offset="100%" stop-color="#10b981" />
@@ -55,8 +59,8 @@
                   <stop offset="100%" stop-color="#6366f1" />
                 </linearGradient>
               </defs>
-              <rect x="15" y="15" width="230" height="230" rx="46" fill="#07090e" stroke="rgba(255,255,255,0.14)" stroke-width="4"/>
-              <circle cx="130" cy="130" r="86" stroke="url(#headerAiWebGrad3)" stroke-width="4" stroke-dasharray="8 10" opacity="0.65"/>
+              <rect x="15" y="15" width="230" height="230" rx="48" fill="#07090e" stroke="rgba(255,255,255,0.15)" stroke-width="4"/>
+              <circle cx="130" cy="130" r="86" stroke="url(#headerAiGrad3)" stroke-width="4" stroke-dasharray="8 10" opacity="0.65"/>
               <path d="M 68 85 L 36 130 L 68 175" stroke="url(#headerBracketGrad3)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
               <circle cx="36" cy="130" r="8.5" fill="#38bdf8"/>
               <path d="M 192 85 L 224 130 L 192 175" stroke="#10b981" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
@@ -66,26 +70,25 @@
               <circle cx="130" cy="42" r="8" fill="#818cf8"/>
               <circle cx="130" cy="218" r="8" fill="#10b981"/>
               <g transform="translate(60, 102)">
-                <rect width="140" height="56" rx="16" fill="#0c1017" stroke="url(#headerAiWebGrad3)" stroke-width="3" />
+                <rect width="140" height="56" rx="16" fill="#0c1017" stroke="url(#headerAiGrad3)" stroke-width="3" />
                 <text x="70" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="22" letter-spacing="4" fill="#ffffff" text-anchor="middle">SOLVO</text>
               </g>
             </svg>
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-extrabold tracking-wider text-white leading-tight">SOLVO<span class="text-brand-500">.</span></span>
+            <span class="text-xl font-black tracking-wider text-white leading-tight">SOLVO<span class="text-brand-500">.</span></span>
             <span class="text-[10px] font-semibold tracking-[0.2em] text-slate-400 uppercase hidden sm:inline-block">AI &amp; Web Systems</span>
           </div>
         </a>
 
-        <!-- Links -->
         <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
           <a href="index.html" class="hover:text-white transition">Home</a>
           <a href="services.html" class="hover:text-white transition">Services</a>
-          <a href="index.html#projects" class="hover:text-white transition">Case Studies</a>
+          <a href="index.html#projects" class="hover:text-white transition">Client Work</a>
           <a href="contact.html" class="text-white hover:text-brand-400 transition">Contact</a>
         </div>
 
-        <a href="https://wa.me/919344285549" target="_blank" class="px-4 py-2 text-xs font-semibold rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition">
+        <a href="https://wa.me/919344285549" target="_blank" class="px-4 py-2.5 text-xs font-semibold rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 hover:bg-emerald-500/20 transition">
           Chat on WhatsApp
         </a>
       </div>
@@ -93,10 +96,9 @@
 
     <main class="pt-36 pb-24 px-6 max-w-6xl mx-auto">
       <div class="grid lg:grid-cols-12 gap-12">
-        <!-- Contact Information Details -->
         <div class="lg:col-span-5 space-y-8">
           <div>
-            <span class="text-xs uppercase font-semibold text-brand-400 tracking-wider">Let's Connect</span>
+            <span class="text-xs uppercase font-semibold text-brand-400 tracking-wider">Direct Desk</span>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Start a conversation with Solvo.</h1>
             <p class="text-slate-400 text-sm mt-3 leading-relaxed">
               Whether you need a commercial web presence, a custom RAG solution on private documents, or an end-to-end ML API, we are ready to build.
@@ -104,8 +106,7 @@
           </div>
 
           <div class="space-y-4">
-            <!-- WhatsApp Card -->
-            <a href="https://wa.me/919344285549?text=Hello%20Solvo,%20I'd%20like%20to%20discuss%20a%20project" target="_blank" class="p-5 rounded-2xl bg-white/[0.02] backdrop-blur-md border border-white/[0.08] hover:border-emerald-500/40 transition flex items-center gap-4 group">
+            <a href="https://wa.me/919344285549?text=Hello%20Solvo,%20I'd%20like%20to%20discuss%20a%20project" target="_blank" class="p-5 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] hover:border-emerald-500/40 transition flex items-center gap-4 group">
               <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition">
                 <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
               </div>
@@ -115,8 +116,7 @@
               </div>
             </a>
 
-            <!-- Phone Card -->
-            <a href="tel:+919344285549" class="p-5 rounded-2xl bg-white/[0.02] backdrop-blur-md border border-white/[0.08] hover:border-brand-500/40 transition flex items-center gap-4 group">
+            <a href="tel:+919344285549" class="p-5 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] hover:border-brand-500/40 transition flex items-center gap-4 group">
               <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 group-hover:scale-105 transition">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
               </div>
@@ -126,8 +126,7 @@
               </div>
             </a>
 
-            <!-- Email Card -->
-            <a href="mailto:ragulrao2004@gmail.com" class="p-5 rounded-2xl bg-white/[0.02] backdrop-blur-md border border-white/[0.08] hover:border-indigo-500/40 transition flex items-center gap-4 group">
+            <a href="mailto:ragulrao2004@gmail.com" class="p-5 rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] hover:border-indigo-500/40 transition flex items-center gap-4 group">
               <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-105 transition">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
               </div>
@@ -139,38 +138,37 @@
           </div>
         </div>
 
-        <!-- Contact Form -->
         <div class="lg:col-span-7">
-          <form name="solvo-contact-detailed" method="POST" data-netlify="true" class="p-8 sm:p-10 rounded-3xl bg-white/[0.02] backdrop-blur-md border border-white/[0.08] space-y-6">
+          <form name="solvo-contact-detailed" method="POST" data-netlify="true" class="p-8 sm:p-10 rounded-3xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] space-y-6">
             <input type="hidden" name="form-name" value="solvo-contact-detailed" />
             
             <div class="grid sm:grid-cols-2 gap-6">
               <div>
                 <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Name</label>
-                <input type="text" name="name" required placeholder="Your Name" class="w-full px-4 py-3 rounded-xl bg-[#0b0e14]/90 border border-white/[0.08] text-slate-200 text-sm focus:border-brand-500 focus:outline-none transition">
+                <input type="text" name="name" required placeholder="Your Name" class="w-full px-4 py-3 rounded-xl bg-[#080b11]/90 border border-white/[0.08] text-slate-200 text-sm focus:border-brand-500 focus:outline-none transition">
               </div>
               <div>
                 <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Email Address</label>
-                <input type="email" name="email" required placeholder="name@company.com" class="w-full px-4 py-3 rounded-xl bg-[#0b0e14]/90 border border-white/[0.08] text-slate-200 text-sm focus:border-brand-500 focus:outline-none transition">
+                <input type="email" name="email" required placeholder="name@company.com" class="w-full px-4 py-3 rounded-xl bg-[#080b11]/90 border border-white/[0.08] text-slate-200 text-sm focus:border-brand-500 focus:outline-none transition">
               </div>
             </div>
 
             <div>
               <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Primary Area of Interest</label>
-              <select name="service" class="w-full px-4 py-3 rounded-xl bg-[#0b0e14]/90 border border-white/[0.08] text-slate-300 text-sm focus:border-brand-500 focus:outline-none transition">
+              <select name="service" class="w-full px-4 py-3 rounded-xl bg-[#080b11]/90 border border-white/[0.08] text-slate-300 text-sm focus:border-brand-500 focus:outline-none transition">
                 <option value="web-development">Commercial Web Development</option>
                 <option value="llm-rag">LLM / RAG Document Architecture</option>
-                <option value="mlops-api">MLOps & Production ML API</option>
-                <option value="other">General Inquiry</option>
+                <option value="mlops-api">MLOps &amp; Production ML API</option>
+                <option value="other">General Consultation</option>
               </select>
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Project Scope & Details</label>
-              <textarea name="message" rows="5" required placeholder="Share details about your project..." class="w-full px-4 py-3 rounded-xl bg-[#0b0e14]/90 border border-white/[0.08] text-slate-200 text-sm focus:border-brand-500 focus:outline-none transition"></textarea>
+              <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Project Scope &amp; Details</label>
+              <textarea name="message" rows="5" required placeholder="Share details about your requirements, project timelines, and goals..." class="w-full px-4 py-3 rounded-xl bg-[#080b11]/90 border border-white/[0.08] text-slate-200 text-sm focus:border-brand-500 focus:outline-none transition"></textarea>
             </div>
 
-            <button type="submit" class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-xl shadow-brand-600/30 transition">
+            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-xl shadow-brand-600/30 transition">
               Send Inquiry to Solvo
             </button>
           </form>
@@ -183,154 +181,64 @@
     </footer>
   </div>
 
-  <!-- Chatbot Widget -->
-  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-    <div id="chat-window" class="hidden w-80 sm:w-96 h-[460px] bg-[#0b0e14]/95 backdrop-blur-xl border border-white/[0.1] rounded-2xl shadow-2xl flex flex-col overflow-hidden mb-3">
-      <div class="bg-white/[0.02] px-4 py-3 border-b border-white/[0.06] flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></span>
-          <span class="text-xs font-bold text-white uppercase tracking-wider">Solvo Architecture Bot</span>
-        </div>
-        <button onclick="toggleChat()" class="text-slate-400 hover:text-white text-lg leading-none">&times;</button>
-      </div>
-      <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
-        <div class="bg-white/[0.04] text-slate-300 p-3 rounded-xl rounded-tl-none border border-white/[0.06]">
-          Hello! Ask me anything about our services, projects, or reaching out to us.
-        </div>
-      </div>
-      <div class="px-3 py-2 bg-white/[0.02] border-t border-white/[0.06] flex gap-2 overflow-x-auto text-[11px] whitespace-nowrap">
-        <button onclick="sendQuickPrompt('Contact Phone')" class="px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.06]">Phone</button>
-        <button onclick="sendQuickPrompt('WhatsApp link')" class="px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.06]">WhatsApp</button>
-        <button onclick="sendQuickPrompt('Email address')" class="px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.06]">Email</button>
-      </div>
-      <form onsubmit="handleChatSubmit(event)" class="p-2.5 bg-black/40 border-t border-white/[0.06] flex gap-2">
-        <input type="text" id="chat-input" placeholder="Ask a question..." class="flex-1 px-3 py-2 bg-white/[0.04] border border-white/[0.08] text-slate-200 text-xs rounded-lg focus:outline-none focus:border-brand-500">
-        <button type="submit" class="px-3 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-xs font-semibold">Send</button>
-      </form>
-    </div>
-    <button onclick="toggleChat()" class="p-3.5 bg-brand-600 hover:bg-brand-500 text-white rounded-full shadow-2xl shadow-brand-500/40 transition">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-    </button>
-  </div>
-
   <script>
-    const canvas = document.getElementById('bubble-canvas');
+    const canvas = document.getElementById('constellation-canvas');
     const ctx = canvas.getContext('2d');
-    let width, height, bubbles;
+    let width, height, particles;
 
     function initCanvas() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      bubbles = [];
-      const count = Math.floor(width / 35);
+      particles = [];
+      const count = Math.min(Math.floor(width / 18), 75);
       for (let i = 0; i < count; i++) {
-        bubbles.push({
+        particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * 28 + 8,
-          speedY: Math.random() * 0.45 + 0.15,
-          speedX: (Math.random() - 0.5) * 0.25,
-          alpha: Math.random() * 0.22 + 0.05,
-          color: Math.random() > 0.4 ? '99, 102, 241' : '16, 185, 129'
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          radius: Math.random() * 2 + 1.2
         });
       }
     }
 
-    function animateBubbles() {
+    function renderConstellation() {
       ctx.clearRect(0, 0, width, height);
-      for (let b of bubbles) {
-        b.y -= b.speedY;
-        b.x += b.speedX;
-        if (b.y < -b.radius) { b.y = height + b.radius; b.x = Math.random() * width; }
-        if (b.x < -b.radius) b.x = width + b.radius;
-        if (b.x > width + b.radius) b.x = -b.radius;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-        const gradient = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.radius);
-        gradient.addColorStop(0, `rgba(${b.color}, ${b.alpha * 1.5})`);
-        gradient.addColorStop(0.7, `rgba(${b.color}, ${b.alpha * 0.6})`);
-        gradient.addColorStop(1, `rgba(${b.color}, 0)`);
-        ctx.fillStyle = gradient;
+          if (dist < 120) {
+            ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.fillStyle = 'rgba(129, 140, 248, 0.4)';
         ctx.beginPath();
-        ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
       }
-      requestAnimationFrame(animateBubbles);
+      requestAnimationFrame(renderConstellation);
     }
 
     window.addEventListener('resize', initCanvas);
     initCanvas();
-    animateBubbles();
-
-    function toggleChat() {
-      const win = document.getElementById('chat-window');
-      win.classList.toggle('hidden');
-      if (!win.classList.contains('hidden')) document.getElementById('chat-input').focus();
-    }
-
-    function sendQuickPrompt(t) {
-      document.getElementById('chat-input').value = t;
-      processChatMessage(t);
-    }
-
-    function handleChatSubmit(e) {
-      e.preventDefault();
-      const inp = document.getElementById('chat-input');
-      const text = inp.value.trim();
-      if (!text) return;
-      processChatMessage(text);
-      inp.value = '';
-    }
-
-    function processChatMessage(userText) {
-      const box = document.getElementById('chat-messages');
-      const u = document.createElement('div');
-      u.className = 'flex justify-end';
-      u.innerHTML = `<div class="bg-brand-600 text-white p-3 rounded-xl rounded-tr-none max-w-[85%]">${userText}</div>`;
-      box.appendChild(u);
-      box.scrollTop = box.scrollHeight;
-
-      setTimeout(() => {
-        const q = userText.toLowerCase().trim();
-        let reply = "";
-
-        if (q.match(/\b(hi|hello|hey|greetings|who are you|what is solvo)\b/)) {
-          reply = "Hello! I am the Solvo Architecture Assistant. Solvo engineers modern commercial websites, custom LLM/RAG search tools, and production MLOps workflows. What system are you looking to build?";
-        }
-        else if (q.includes('rag') || q.includes('llm') || q.includes('retrieval') || q.includes('vector') || q.includes('hallucinat') || q.includes('document')) {
-          reply = "For LLMs, we engineer Retrieval-Augmented Generation (RAG) pipelines. We parse your private documents, generate vector embeddings, store them in databases like ChromaDB or Pinecone, and apply reranking to deliver verifiable, hallucination-free answers.";
-        }
-        else if (q.includes('mlops') || q.includes('pipeline') || q.includes('docker') || q.includes('deploy') || q.includes('serving') || q.includes('train')) {
-          reply = "Our MLOps architecture wraps ML models into asynchronous FastAPI microservices, containerizes environments via Docker to prevent dependency drift, and implements experiment tracking for reliable production deployment.";
-        }
-        else if (q.includes('website') || q.includes('web') || q.includes('frontend') || q.includes('landing page') || q.includes('design')) {
-          reply = "We design responsive, mobile-first commercial web platforms using HTML5, Tailwind CSS, and vanilla JavaScript. Everything is optimized for sub-second speeds, SEO visibility, and deployed on Netlify with automated CI/CD.";
-        }
-        else if (q.includes('vpr') || q.includes('earth mover')) {
-          reply = "VPR Earth Movers is a live commercial equipment platform built by Solvo. It features a responsive Tailwind CSS layout, clean customer acquisition funnels, and Git-driven Netlify hosting.";
-        }
-        else if (q.includes('real estate') || q.includes('valuation') || q.includes('calculator') || q.includes('predict')) {
-          reply = "The Real Estate Valuation Engine is an interactive data app combining multi-variable regression with a client-side interface. You can test the dynamic slider sandbox on our home page!";
-        }
-        else if (q.includes('tech') || q.includes('stack') || q.includes('python') || q.includes('fastapi') || q.includes('database') || q.includes('tailwind')) {
-          reply = "Our core production stack includes: Frontend (HTML5, Tailwind CSS, JavaScript), Backend (Python, FastAPI, REST APIs), Data & AI (Scikit-Learn, Vector Stores, PyTorch), and DevOps (Git, GitHub, Docker, Netlify).";
-        }
-        else if (q.includes('cost') || q.includes('price') || q.includes('charge') || q.includes('budget') || q.includes('rate') || q.includes('quote')) {
-          reply = "Every project has unique technical specifications. Standard commercial web platforms and production AI/RAG microservices are scoped on clear deliverables. Use the inquiry form or message directly on WhatsApp to get a formal project quote.";
-        }
-        else if (q.includes('contact') || q.includes('phone') || q.includes('whatsapp') || q.includes('call') || q.includes('email') || q.includes('mail') || q.includes('reach')) {
-          reply = "You can connect with us directly via Phone/WhatsApp at +91 93442 85549, or email ragulrao2004@gmail.com. Our engineering desk is available Monday through Saturday.";
-        }
-        else {
-          reply = `Regarding "${userText}": We specialize in commercial websites, custom RAG document architectures, and production MLOps. Feel free to ask specifically about our web tech, AI pipelines, or past case studies!`;
-        }
-
-        const b = document.createElement('div');
-        b.className = 'flex justify-start';
-        b.innerHTML = `<div class="bg-white/[0.04] text-slate-300 p-3 rounded-xl rounded-tl-none border border-white/[0.06] max-w-[85%]">${reply}</div>`;
-        box.appendChild(b);
-        box.scrollTop = box.scrollHeight;
-      }, 300);
-    }
+    renderConstellation();
   </script>
 </body>
 </html>

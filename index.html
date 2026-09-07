@@ -1,29 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solvo | Web Architecture & Applied AI Systems</title>
+  <title>Solvo | Modern Web Architecture & Applied AI Systems</title>
 
-  <!-- Favicon / Tab Logo -->
-  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Crect x='15' y='15' width='230' height='230' rx='48' fill='%2307090e' stroke='%236366f1' stroke-width='8'/%3E%3Cpath d='M 68 85 L 36 130 L 68 175' stroke='%2338bdf8' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M 192 85 L 224 130 L 192 175' stroke='%2310b981' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='36' cy='130' r='12' fill='%2338bdf8'/%3E%3Ccircle cx='224' cy='130' r='12' fill='%2310b981'/%3E%3Ccircle cx='130' cy='42' r='12' fill='%23818cf8'/%3E%3Ccircle cx='130' cy='218' r='12' fill='%2310b981'/%3E%3Crect x='55' y='102' width='150' height='56' rx='16' fill='%230c1017' stroke='%236366f1' stroke-width='4'/%3E%3Ctext x='130' y='138' font-family='system-ui,sans-serif' font-weight='900' font-size='24' letter-spacing='4' fill='%23ffffff' text-anchor='middle'%3ESOLVO%3C/text%3E%3C/svg%3E">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
           colors: {
-            brand: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' }
+            brand: {
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca'
+            }
           }
         }
       }
     }
   </script>
   <style>
-    #bubble-canvas {
+    #constellation-canvas {
       position: fixed;
       top: 0;
       left: 0;
@@ -32,24 +41,25 @@
       pointer-events: none;
       z-index: 0;
     }
+    .mesh-glow {
+      background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.18) 0%, rgba(16, 185, 129, 0.08) 35%, transparent 70%);
+    }
   </style>
 </head>
-<body class="bg-[#07090e] text-slate-200 antialiased font-sans selection:bg-brand-500 selection:text-white relative">
+<body class="bg-[#05070c] text-slate-200 antialiased font-sans selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
-  <canvas id="bubble-canvas"></canvas>
+  <canvas id="constellation-canvas"></canvas>
 
   <div class="relative z-10">
-    <!-- Navbar with Embedded AI & Web Logo -->
-    <nav class="fixed top-0 left-0 right-0 z-40 backdrop-blur-xl bg-[#07090e]/80 border-b border-white/[0.06]">
+    <nav class="fixed top-0 left-0 right-0 z-40 backdrop-blur-2xl bg-[#05070c]/85 border-b border-white/[0.07] transition-all duration-300">
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
-        <!-- Logo In The Header -->
         <a href="index.html" class="flex items-center gap-3.5 group">
           <div class="relative flex items-center justify-center">
-            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-500 to-emerald-500 opacity-20 blur group-hover:opacity-40 transition duration-300"></div>
+            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-500 to-emerald-500 opacity-25 blur-sm group-hover:opacity-60 transition duration-300"></div>
             <svg class="w-11 h-11 relative" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="headerAiWebGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="headerAiGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#818cf8" />
                   <stop offset="50%" stop-color="#4f46e5" />
                   <stop offset="100%" stop-color="#10b981" />
@@ -59,8 +69,8 @@
                   <stop offset="100%" stop-color="#6366f1" />
                 </linearGradient>
               </defs>
-              <rect x="15" y="15" width="230" height="230" rx="46" fill="#07090e" stroke="rgba(255,255,255,0.14)" stroke-width="4"/>
-              <circle cx="130" cy="130" r="86" stroke="url(#headerAiWebGrad1)" stroke-width="4" stroke-dasharray="8 10" opacity="0.65"/>
+              <rect x="15" y="15" width="230" height="230" rx="48" fill="#07090e" stroke="rgba(255,255,255,0.15)" stroke-width="4"/>
+              <circle cx="130" cy="130" r="86" stroke="url(#headerAiGrad1)" stroke-width="4" stroke-dasharray="8 10" opacity="0.65"/>
               <path d="M 68 85 L 36 130 L 68 175" stroke="url(#headerBracketGrad1)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
               <circle cx="36" cy="130" r="8.5" fill="#38bdf8"/>
               <path d="M 192 85 L 224 130 L 192 175" stroke="#10b981" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
@@ -70,132 +80,156 @@
               <circle cx="130" cy="42" r="8" fill="#818cf8"/>
               <circle cx="130" cy="218" r="8" fill="#10b981"/>
               <g transform="translate(60, 102)">
-                <rect width="140" height="56" rx="16" fill="#0c1017" stroke="url(#headerAiWebGrad1)" stroke-width="3" />
+                <rect width="140" height="56" rx="16" fill="#0c1017" stroke="url(#headerAiGrad1)" stroke-width="3" />
                 <text x="70" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="22" letter-spacing="4" fill="#ffffff" text-anchor="middle">SOLVO</text>
               </g>
             </svg>
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-extrabold tracking-wider text-white leading-tight">SOLVO<span class="text-brand-500">.</span></span>
+            <span class="text-xl font-black tracking-wider text-white leading-tight">SOLVO<span class="text-brand-500">.</span></span>
             <span class="text-[10px] font-semibold tracking-[0.2em] text-slate-400 uppercase hidden sm:inline-block">AI &amp; Web Systems</span>
           </div>
         </a>
 
-        <!-- Links -->
         <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
           <a href="index.html" class="text-white hover:text-brand-400 transition">Home</a>
           <a href="services.html" class="hover:text-white transition">Services</a>
-          <a href="#projects" class="hover:text-white transition">Case Studies</a>
+          <a href="#projects" class="hover:text-white transition">Client Work</a>
           <a href="contact.html" class="hover:text-white transition">Contact</a>
         </div>
 
-        <!-- Action Items -->
         <div class="flex items-center gap-3">
-          <a href="https://wa.me/919344285549?text=Hi%20Solvo,%20I%20would%20like%20to%20discuss%20a%20project" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-            WhatsApp
+          <a href="https://wa.me/919344285549?text=Hi%20Solvo,%20I%20would%20like%20to%20discuss%20a%20project" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 hover:bg-emerald-500/20 transition group">
+            <svg class="w-4 h-4 fill-current group-hover:scale-110 transition-transform" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            <span>WhatsApp</span>
           </a>
-          <a href="contact.html" class="px-5 py-2 text-xs font-semibold rounded-lg bg-brand-600 hover:bg-brand-500 text-white shadow-lg shadow-brand-600/30 transition">
+          <a href="contact.html" class="px-5 py-2.5 text-xs font-semibold rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white shadow-xl shadow-brand-600/30 transition transform hover:-translate-y-0.5">
             Start a Project
           </a>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative pt-44 pb-28 px-6 max-w-7xl mx-auto text-center space-y-6">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-medium text-slate-300">
-        <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
-        High-Performance Web Architecture & Production AI
+    <header class="relative pt-44 pb-32 px-6 max-w-7xl mx-auto text-center space-y-8 mesh-glow">
+      <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.1] backdrop-blur-xl text-xs font-medium text-slate-300 shadow-2xl">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        High-Performance Web Architecture • RAG Pipelines • Production MLOps
       </div>
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] max-w-4xl mx-auto">
-        Engineering scalable web platforms and <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-indigo-300 to-emerald-400">intelligent AI systems.</span>
+
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12] max-w-5xl mx-auto">
+        We build modern websites and <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-indigo-200 to-emerald-400">intelligent AI software.</span>
       </h1>
+
       <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
-        Solvo delivers commercial-grade websites, custom Python APIs, Retrieval-Augmented Generation (RAG) pipelines, and end-to-end MLOps lifecycles.
+        Solvo delivers commercial-grade digital platforms, custom Python backend microservices, document-grounded RAG architectures, and end-to-end MLOps deployments.
       </p>
+
       <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
-        <a href="services.html" class="px-7 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-xl shadow-brand-600/25 transition">
-          Explore Services ↗
+        <a href="services.html" class="px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-2xl shadow-brand-600/35 transition flex items-center gap-2 group">
+          <span>Explore All Capabilities</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
         </a>
-        <a href="contact.html" class="px-7 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-slate-300 font-medium text-sm transition">
-          Contact Desk
+        <a href="#projects" class="px-8 py-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-slate-300 font-medium text-sm backdrop-blur-xl transition">
+          View Client Projects
         </a>
       </div>
     </header>
 
-    <!-- Core Pillars -->
-    <section class="py-12 px-6 max-w-7xl mx-auto border-t border-white/[0.06]">
+    <section class="py-16 px-6 max-w-7xl mx-auto border-t border-white/[0.06]">
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-8 rounded-2xl bg-white/[0.02] backdrop-blur-md border border-white/[0.06] hover:border-brand-500/30 transition group">
-          <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-6 group-hover:scale-105 transition">
+        
+        <div class="p-8 rounded-3xl bg-gradient-to-b from-white/[0.03] to-transparent border border-white/[0.07] hover:border-brand-500/40 backdrop-blur-xl transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-2xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-6 group-hover:scale-110 transition">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           </div>
           <h3 class="text-xl font-bold text-white mb-2">Modern Web Development</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">Lightning-fast commercial landing pages, single-page applications, and high-conversion platforms built with HTML5 & Tailwind CSS.</p>
-          <a href="services.html#web" class="inline-flex items-center gap-1 text-xs text-brand-400 font-semibold mt-4 hover:text-brand-300">Learn more →</a>
+          <p class="text-sm text-slate-400 leading-relaxed">Lightning-fast commercial landing pages, single-page applications, and high-conversion platforms built with clean HTML5 & Tailwind CSS.</p>
+          <a href="services.html#web" class="inline-flex items-center gap-1.5 text-xs text-brand-400 font-semibold mt-4 hover:text-brand-300">Detailed web specs →</a>
         </div>
 
-        <div class="p-8 rounded-2xl bg-white/[0.02] backdrop-blur-md border border-white/[0.06] hover:border-emerald-500/30 transition group">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-105 transition">
+        <div class="p-8 rounded-3xl bg-gradient-to-b from-white/[0.03] to-transparent border border-white/[0.07] hover:border-emerald-500/40 backdrop-blur-xl transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
-          <h3 class="text-xl font-bold text-white mb-2">LLM & RAG Architectures</h3>
+          <h3 class="text-xl font-bold text-white mb-2">LLM &amp; RAG Architectures</h3>
           <p class="text-sm text-slate-400 leading-relaxed">Custom document search, semantic knowledge retrieval, vector database integration, and hallucination-free conversational engines.</p>
-          <a href="services.html#llm" class="inline-flex items-center gap-1 text-xs text-emerald-400 font-semibold mt-4 hover:text-emerald-300">Learn more →</a>
+          <a href="services.html#llm" class="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-semibold mt-4 hover:text-emerald-300">RAG pipeline workflow →</a>
         </div>
 
-        <div class="p-8 rounded-2xl bg-white/[0.02] backdrop-blur-md border border-white/[0.06] hover:border-indigo-500/30 transition group">
-          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-105 transition">
+        <div class="p-8 rounded-3xl bg-gradient-to-b from-white/[0.03] to-transparent border border-white/[0.07] hover:border-indigo-500/40 backdrop-blur-xl transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
           </div>
-          <h3 class="text-xl font-bold text-white mb-2">MLOps & Pipelines</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">Production ML deployment, FastAPI microservices, containerization with Docker, model tracking, and continuous endpoint serving.</p>
-          <a href="services.html#mlops" class="inline-flex items-center gap-1 text-xs text-indigo-400 font-semibold mt-4 hover:text-indigo-300">Learn more →</a>
+          <h3 class="text-xl font-bold text-white mb-2">MLOps &amp; Infrastructure</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Production ML deployment, FastAPI microservices, containerization with Docker, model tracking, and API serving.</p>
+          <a href="services.html#mlops" class="inline-flex items-center gap-1.5 text-xs text-indigo-400 font-semibold mt-4 hover:text-indigo-300">Serving infrastructure →</a>
         </div>
       </div>
     </section>
 
-    <!-- Case Studies -->
-    <section id="projects" class="py-20 px-6 max-w-7xl mx-auto border-t border-white/[0.06]">
+    <section id="projects" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.06]">
       <div class="mb-14">
-        <span class="text-xs uppercase font-semibold text-brand-400 tracking-wider">Production Deployments</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Selected Case Studies</h2>
+        <span class="text-xs uppercase font-semibold text-brand-400 tracking-wider">Commercial Deliveries &amp; Prototypes</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Selected Client Work</h2>
       </div>
 
       <div class="space-y-12">
-        <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-md border border-white/[0.08] grid lg:grid-cols-3 gap-8 items-center">
+        <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-xl border border-white/[0.08] hover:border-white/[0.15] transition grid lg:grid-cols-3 gap-8 items-center">
           <div class="lg:col-span-2 space-y-4">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold">
-              Live Commercial Work
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Commercial Client • Live
+              </span>
+              <span class="text-xs text-slate-500">Regional Machinery Logistics</span>
             </div>
-            <h3 class="text-2xl sm:text-3xl font-bold text-white">VPR Earth Movers</h3>
+
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-bold text-white">VPR Earth Movers</h3>
+              <p class="text-xs text-brand-400 font-medium mt-1">Earthmoving Machinery Hiring &amp; Construction Logistics</p>
+            </div>
+
+            <div class="flex flex-wrap gap-x-6 gap-y-1 text-xs text-slate-400 pt-1 border-y border-white/[0.04] py-2.5">
+              <div><span class="text-slate-500 font-medium">Client:</span> VPR Earth Movers</div>
+              <div><span class="text-slate-500 font-medium">Scope:</span> Commercial Landing Page &amp; Inquiries</div>
+              <div><span class="text-slate-500 font-medium">Deployment:</span> Netlify Edge CDN</div>
+            </div>
+
             <p class="text-slate-400 text-sm leading-relaxed">
-              A production commercial website engineered for a heavy machinery hiring business. Features a responsive mobile-first UI with Tailwind CSS, Git-backed versioning, and instant asset delivery via Netlify.
+              Engineered a high-performance commercial web portal for a regional equipment hiring enterprise. Built with a clean, mobile-first responsive layout utilizing Tailwind CSS, ensuring lightning-fast mobile rendering and direct client inquiry captures.
             </p>
+
             <div class="flex flex-wrap gap-2 pt-2 text-xs">
               <span class="px-3 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/[0.06]">HTML5</span>
               <span class="px-3 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/[0.06]">Tailwind CSS</span>
               <span class="px-3 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/[0.06]">Git Versioning</span>
-              <span class="px-3 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/[0.06]">Netlify Deploy</span>
+              <span class="px-3 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/[0.06]">Netlify Hosting</span>
             </div>
           </div>
+
           <div class="flex flex-col gap-3 justify-center lg:border-l lg:border-white/[0.08] lg:pl-8">
-            <a href="contact.html" class="w-full text-center py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-lg shadow-brand-600/25 transition">
-              Build Similar Website
+            <a href="https://vpreartmovers.netlify.app" target="_blank" rel="noopener noreferrer" class="w-full text-center py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xl shadow-brand-600/30 transition flex items-center justify-center gap-1.5 group">
+              <span>View Live Website</span>
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="contact.html" class="w-full text-center py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 text-xs font-medium border border-white/[0.08] transition">
+              Request Similar Build
             </a>
           </div>
         </div>
 
-        <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-md border border-white/[0.08]">
+        <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-xl border border-white/[0.08]">
           <div class="grid lg:grid-cols-2 gap-10 items-center">
             <div class="space-y-4">
               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-brand-500/10 text-brand-400 border border-brand-500/20 text-xs font-semibold">
-                Applied AI / ML Tool
+                Applied AI / ML Tool Prototype
               </div>
               <h3 class="text-2xl sm:text-3xl font-bold text-white">Real Estate Valuation Engine</h3>
               <p class="text-slate-400 text-sm leading-relaxed">
-                An intelligent valuation service implementing multi-variable regression modeling to compute real-time property estimates. Preprocessed housing parameters and exposed predictions through high-throughput endpoints.
+                An intelligent valuation service implementing multi-variable regression modeling to compute real-time property estimates. Preprocesses housing parameters and exposes predictions through lightweight inference endpoints.
               </p>
               <div class="flex flex-wrap gap-2 text-xs">
                 <span class="px-3 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/[0.06]">Python</span>
@@ -205,29 +239,28 @@
               </div>
             </div>
 
-            <!-- Live Estimator Sandbox -->
-            <div class="p-6 rounded-2xl bg-[#0b0e14]/90 border border-white/[0.08] space-y-5">
+            <div class="p-6 rounded-2xl bg-[#080b11]/90 border border-white/[0.08] space-y-5 shadow-2xl">
               <div class="flex justify-between items-center border-b border-white/[0.06] pb-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Live Inference Sandbox</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">Inference Sandbox</span>
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
               </div>
               <div>
                 <div class="flex justify-between text-xs text-slate-300 mb-2">
                   <span>Built-up Area</span>
-                  <span id="sqft-val" class="font-bold text-brand-400">1,450 sq.ft</span>
+                  <span id="sqft-val" class="font-bold text-brand-400 font-mono">1,450 sq.ft</span>
                 </div>
                 <input type="range" id="sqft" min="500" max="4000" step="50" value="1450" class="w-full accent-brand-500 bg-slate-800 cursor-pointer" oninput="calculateEstimate()">
               </div>
               <div>
                 <div class="flex justify-between text-xs text-slate-300 mb-2">
                   <span>Configuration</span>
-                  <span id="beds-val" class="font-bold text-brand-400">3 BHK</span>
+                  <span id="beds-val" class="font-bold text-brand-400 font-mono">3 BHK</span>
                 </div>
                 <input type="range" id="beds" min="1" max="5" step="1" value="3" class="w-full accent-brand-500 bg-slate-800 cursor-pointer" oninput="calculateEstimate()">
               </div>
               <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between">
-                <span class="text-xs text-slate-400 font-medium">Estimated Market Value:</span>
-                <span id="output-price" class="text-2xl font-extrabold text-emerald-400">₹ 57.5 Lakhs</span>
+                <span class="text-xs text-slate-400 font-medium">Estimated Valuation:</span>
+                <span id="output-price" class="text-2xl font-extrabold text-emerald-400 font-mono">₹ 57.5 Lakhs</span>
               </div>
             </div>
           </div>
@@ -235,22 +268,20 @@
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 border-t border-white/[0.06] px-6 max-w-7xl mx-auto">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
         <p>© 2026 Solvo. Built for performance and applied intelligence.</p>
         <div class="flex items-center gap-6">
-          <a href="tel:+919344285549" class="hover:text-slate-300">+91 93442 85549</a>
-          <a href="mailto:ragulrao2004@gmail.com" class="hover:text-slate-300">ragulrao2004@gmail.com</a>
-          <a href="https://wa.me/919344285549" target="_blank" class="text-emerald-400 hover:text-emerald-300">WhatsApp ↗</a>
+          <a href="tel:+919344285549" class="hover:text-slate-300 transition">+91 93442 85549</a>
+          <a href="mailto:ragulrao2004@gmail.com" class="hover:text-slate-300 transition">ragulrao2004@gmail.com</a>
+          <a href="https://wa.me/919344285549" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition">WhatsApp ↗</a>
         </div>
       </div>
     </footer>
   </div>
 
-  <!-- Chatbot Widget -->
   <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-    <div id="chat-window" class="hidden w-80 sm:w-96 h-[460px] bg-[#0b0e14]/95 backdrop-blur-xl border border-white/[0.1] rounded-2xl shadow-2xl flex flex-col overflow-hidden mb-3">
+    <div id="chat-window" class="hidden w-80 sm:w-96 h-[470px] bg-[#080b11]/95 backdrop-blur-2xl border border-white/[0.1] rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-3">
       <div class="bg-white/[0.02] px-4 py-3 border-b border-white/[0.06] flex items-center justify-between">
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></span>
@@ -258,76 +289,96 @@
         </div>
         <button onclick="toggleChat()" class="text-slate-400 hover:text-white text-lg leading-none">&times;</button>
       </div>
+
       <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
-        <div class="bg-white/[0.04] text-slate-300 p-3 rounded-xl rounded-tl-none border border-white/[0.06]">
-          Hello! I am the Solvo assistant. Ask me anything about modern websites, LLM/RAG setups, or MLOps pipelines.
+        <div class="bg-white/[0.04] text-slate-300 p-3.5 rounded-2xl rounded-tl-none border border-white/[0.06]">
+          Hello! I am the Solvo assistant. Ask me about our commercial client work, RAG pipelines, or full-stack Python stack.
         </div>
       </div>
+
       <div class="px-3 py-2 bg-white/[0.02] border-t border-white/[0.06] flex gap-2 overflow-x-auto text-[11px] whitespace-nowrap">
-        <button onclick="sendQuickPrompt('Tell me about RAG')" class="px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.06]">RAG Solutions</button>
-        <button onclick="sendQuickPrompt('MLOps Pipelines')" class="px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.06]">MLOps</button>
-        <button onclick="sendQuickPrompt('Contact Details')" class="px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.06]">Contact</button>
+        <button onclick="sendQuickPrompt('Tell me about VPR Earth Movers')" class="px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.06]">VPR Earth Movers</button>
+        <button onclick="sendQuickPrompt('Explain RAG architecture')" class="px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.06]">RAG Pipeline</button>
+        <button onclick="sendQuickPrompt('What is your tech stack?')" class="px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/[0.06]">Tech Stack</button>
       </div>
+
       <form onsubmit="handleChatSubmit(event)" class="p-2.5 bg-black/40 border-t border-white/[0.06] flex gap-2">
-        <input type="text" id="chat-input" placeholder="Ask a question..." class="flex-1 px-3 py-2 bg-white/[0.04] border border-white/[0.08] text-slate-200 text-xs rounded-lg focus:outline-none focus:border-brand-500">
-        <button type="submit" class="px-3 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-xs font-semibold">Send</button>
+        <input type="text" id="chat-input" placeholder="Ask a question..." class="flex-1 px-3.5 py-2.5 bg-white/[0.04] border border-white/[0.08] text-slate-200 text-xs rounded-xl focus:outline-none focus:border-brand-500">
+        <button type="submit" class="px-3.5 py-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-semibold transition">Send</button>
       </form>
     </div>
-    <button onclick="toggleChat()" class="p-3.5 bg-brand-600 hover:bg-brand-500 text-white rounded-full shadow-2xl shadow-brand-500/40 transition">
+
+    <button onclick="toggleChat()" class="p-4 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white rounded-full shadow-2xl shadow-brand-500/40 transition-transform transform hover:scale-105">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
     </button>
   </div>
 
   <script>
-    // Canvas Bubbles
-    const canvas = document.getElementById('bubble-canvas');
+    // 1. Constellation Network Canvas Engine
+    const canvas = document.getElementById('constellation-canvas');
     const ctx = canvas.getContext('2d');
-    let width, height, bubbles;
+    let width, height, particles;
 
     function initCanvas() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      bubbles = [];
-      const count = Math.floor(width / 35);
+      particles = [];
+      const count = Math.min(Math.floor(width / 18), 75);
       for (let i = 0; i < count; i++) {
-        bubbles.push({
+        particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * 28 + 8,
-          speedY: Math.random() * 0.45 + 0.15,
-          speedX: (Math.random() - 0.5) * 0.25,
-          alpha: Math.random() * 0.22 + 0.05,
-          color: Math.random() > 0.4 ? '99, 102, 241' : '16, 185, 129'
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          radius: Math.random() * 2 + 1.2
         });
       }
     }
 
-    function animateBubbles() {
+    function renderConstellation() {
       ctx.clearRect(0, 0, width, height);
-      for (let b of bubbles) {
-        b.y -= b.speedY;
-        b.x += b.speedX;
-        if (b.y < -b.radius) { b.y = height + b.radius; b.x = Math.random() * width; }
-        if (b.x < -b.radius) b.x = width + b.radius;
-        if (b.x > width + b.radius) b.x = -b.radius;
 
-        const gradient = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.radius);
-        gradient.addColorStop(0, `rgba(${b.color}, ${b.alpha * 1.5})`);
-        gradient.addColorStop(0.7, `rgba(${b.color}, ${b.alpha * 0.6})`);
-        gradient.addColorStop(1, `rgba(${b.color}, 0)`);
-        ctx.fillStyle = gradient;
+      // Draw Connection Lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 120) {
+            ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw Nodes
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.fillStyle = 'rgba(129, 140, 248, 0.4)';
         ctx.beginPath();
-        ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
       }
-      requestAnimationFrame(animateBubbles);
+      requestAnimationFrame(renderConstellation);
     }
 
     window.addEventListener('resize', initCanvas);
     initCanvas();
-    animateBubbles();
+    renderConstellation();
 
-    // Estimator Formula
+    // 2. Real Estate Estimator
     function calculateEstimate() {
       const sqft = document.getElementById('sqft').value;
       const beds = document.getElementById('beds').value;
@@ -337,7 +388,7 @@
       document.getElementById('output-price').innerText = '₹ ' + estimate.toFixed(1) + ' Lakhs';
     }
 
-    // Chatbot Engine
+    // 3. Bot Script
     function toggleChat() {
       const win = document.getElementById('chat-window');
       win.classList.toggle('hidden');
@@ -362,7 +413,7 @@
       const box = document.getElementById('chat-messages');
       const u = document.createElement('div');
       u.className = 'flex justify-end';
-      u.innerHTML = `<div class="bg-brand-600 text-white p-3 rounded-xl rounded-tr-none max-w-[85%]">${userText}</div>`;
+      u.innerHTML = `<div class="bg-brand-600 text-white p-3.5 rounded-2xl rounded-tr-none max-w-[85%]">${userText}</div>`;
       box.appendChild(u);
       box.scrollTop = box.scrollHeight;
 
@@ -370,43 +421,37 @@
         const q = userText.toLowerCase().trim();
         let reply = "";
 
-        if (q.match(/\b(hi|hello|hey|greetings|who are you|what is solvo)\b/)) {
-          reply = "Hello! I am the Solvo Architecture Assistant. Solvo engineers modern commercial websites, custom LLM/RAG search tools, and production MLOps workflows. What system are you looking to build?";
+        if (q.includes('vpr') || q.includes('earth mover') || q.includes('earthmover')) {
+          reply = "VPR Earth Movers is a commercial client website built by Solvo using HTML, Tailwind CSS, and Git. You can inspect the live production website here: https://vpreartmovers.netlify.app";
         }
-        else if (q.includes('rag') || q.includes('llm') || q.includes('retrieval') || q.includes('vector') || q.includes('hallucinat') || q.includes('document')) {
-          reply = "For LLMs, we engineer Retrieval-Augmented Generation (RAG) pipelines. We parse your private documents, generate vector embeddings, store them in databases like ChromaDB or Pinecone, and apply reranking to deliver verifiable, hallucination-free answers.";
+        else if (q.includes('rag') || q.includes('llm') || q.includes('retrieval') || q.includes('vector') || q.includes('document')) {
+          reply = "For LLMs, we engineer Retrieval-Augmented Generation (RAG) pipelines. We parse your private documents, generate vector embeddings, store them in ChromaDB or Pinecone, and apply reranking to deliver verifiable, hallucination-free answers.";
         }
-        else if (q.includes('mlops') || q.includes('pipeline') || q.includes('docker') || q.includes('deploy') || q.includes('serving') || q.includes('train')) {
+        else if (q.includes('mlops') || q.includes('pipeline') || q.includes('docker') || q.includes('deploy') || q.includes('serving')) {
           reply = "Our MLOps architecture wraps ML models into asynchronous FastAPI microservices, containerizes environments via Docker to prevent dependency drift, and implements experiment tracking for reliable production deployment.";
         }
-        else if (q.includes('website') || q.includes('web') || q.includes('frontend') || q.includes('landing page') || q.includes('design')) {
+        else if (q.includes('website') || q.includes('web') || q.includes('frontend') || q.includes('landing page')) {
           reply = "We design responsive, mobile-first commercial web platforms using HTML5, Tailwind CSS, and vanilla JavaScript. Everything is optimized for sub-second speeds, SEO visibility, and deployed on Netlify with automated CI/CD.";
-        }
-        else if (q.includes('vpr') || q.includes('earth mover')) {
-          reply = "VPR Earth Movers is a live commercial equipment platform built by Solvo. It features a responsive Tailwind CSS layout, clean customer acquisition funnels, and Git-driven Netlify hosting.";
         }
         else if (q.includes('real estate') || q.includes('valuation') || q.includes('calculator') || q.includes('predict')) {
           reply = "The Real Estate Valuation Engine is an interactive data app combining multi-variable regression with a client-side interface. You can test the dynamic slider sandbox on our home page!";
         }
-        else if (q.includes('tech') || q.includes('stack') || q.includes('python') || q.includes('fastapi') || q.includes('database') || q.includes('tailwind')) {
+        else if (q.includes('tech') || q.includes('stack') || q.includes('python') || q.includes('fastapi')) {
           reply = "Our core production stack includes: Frontend (HTML5, Tailwind CSS, JavaScript), Backend (Python, FastAPI, REST APIs), Data & AI (Scikit-Learn, Vector Stores, PyTorch), and DevOps (Git, GitHub, Docker, Netlify).";
         }
-        else if (q.includes('cost') || q.includes('price') || q.includes('charge') || q.includes('budget') || q.includes('rate') || q.includes('quote')) {
-          reply = "Every project has unique technical specifications. Standard commercial web platforms and production AI/RAG microservices are scoped on clear deliverables. Use the inquiry form or message directly on WhatsApp to get a formal project quote.";
-        }
-        else if (q.includes('contact') || q.includes('phone') || q.includes('whatsapp') || q.includes('call') || q.includes('email') || q.includes('mail') || q.includes('reach')) {
-          reply = "You can connect with us directly via Phone/WhatsApp at +91 93442 85549, or email ragulrao2004@gmail.com. Our engineering desk is available Monday through Saturday.";
+        else if (q.includes('contact') || q.includes('phone') || q.includes('whatsapp') || q.includes('email') || q.includes('reach')) {
+          reply = "You can connect with Solvo directly via Phone/WhatsApp at +91 93442 85549, or email ragulrao2004@gmail.com.";
         }
         else {
-          reply = `Regarding "${userText}": We specialize in commercial websites, custom RAG document architectures, and production MLOps. Feel free to ask specifically about our web tech, AI pipelines, or past case studies!`;
+          reply = `Regarding "${userText}": Solvo specializes in commercial web development, custom RAG document architectures, and production MLOps. Feel free to ask about our web stack, AI pipelines, or past client work!`;
         }
 
         const b = document.createElement('div');
         b.className = 'flex justify-start';
-        b.innerHTML = `<div class="bg-white/[0.04] text-slate-300 p-3 rounded-xl rounded-tl-none border border-white/[0.06] max-w-[85%]">${reply}</div>`;
+        b.innerHTML = `<div class="bg-white/[0.04] text-slate-300 p-3.5 rounded-2xl rounded-tl-none border border-white/[0.06] max-w-[85%]">${reply}</div>`;
         box.appendChild(b);
         box.scrollTop = box.scrollHeight;
-      }, 300);
+      }, 280);
     }
   </script>
 </body>
