@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" width="100%" height="100%">
+  <defs>
+    <!-- Core Gradients -->
+    <linearGradient id="aiWebGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8" />
+      <stop offset="50%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    
+    <linearGradient id="bracketGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+
+    <!-- Node Glow Filter -->
+    <filter id="nodeGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Dark Base Shield Container -->
+  <rect x="15" y="15" width="230" height="230" rx="44" fill="#07090e" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+
+  <!-- AI Neural Pathways / Circuit Ring -->
+  <circle cx="130" cy="130" r="88" fill="none" stroke="url(#aiWebGrad)" stroke-width="2.5" stroke-dasharray="6 8" opacity="0.6"/>
+
+  <!-- Left Web Code Bracket '<' with Neural Nodes -->
+  <path d="M 68 85 L 36 130 L 68 175" fill="none" stroke="url(#bracketGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="36" cy="130" r="5" fill="#38bdf8" filter="url(#nodeGlow)"/>
+
+  <!-- Right Web Code Bracket '>' with Neural Nodes -->
+  <path d="M 192 85 L 224 130 L 192 175" fill="none" stroke="#10b981" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="224" cy="130" r="5" fill="#10b981" filter="url(#nodeGlow)"/>
+
+  <!-- Neural Mesh Data Interconnects -->
+  <line x1="36" y1="130" x2="75" y2="130" stroke="#818cf8" stroke-width="2" stroke-dasharray="3 3"/>
+  <line x1="224" y1="130" x2="185" y2="130" stroke="#10b981" stroke-width="2" stroke-dasharray="3 3"/>
+  
+  <line x1="130" y1="42" x2="130" y2="92" stroke="#6366f1" stroke-width="2"/>
+  <line x1="130" y1="168" x2="130" y2="218" stroke="#10b981" stroke-width="2"/>
+
+  <!-- Apex Nodes -->
+  <circle cx="130" cy="42" r="5" fill="#818cf8" filter="url(#nodeGlow)"/>
+  <circle cx="130" cy="218" r="5" fill="#10b981" filter="url(#nodeGlow)"/>
+
+  <!-- Center Core Island with SOLVO Embedded Inside -->
+  <g transform="translate(65, 106)">
+    <rect width="130" height="48" rx="14" fill="#0c1017" stroke="url(#aiWebGrad)" stroke-width="2" />
+    <text x="65" y="32" 
+          font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" 
+          font-weight="900" 
+          font-size="20" 
+          letter-spacing="5" 
+          fill="#ffffff" 
+          text-anchor="middle">
+      SOLVO
+    </text>
+  </g>
+</svg>
