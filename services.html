@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services & Solutions | Solvo</title>
+  <title>CAPABILITIES // Solvo Cyber Systems</title>
 
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Crect x='15' y='15' width='230' height='230' rx='48' fill='%2307090e' stroke='%236366f1' stroke-width='8'/%3E%3Cpath d='M 68 85 L 36 130 L 68 175' stroke='%2338bdf8' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M 192 85 L 224 130 L 192 175' stroke='%2310b981' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='36' cy='130' r='12' fill='%2338bdf8'/%3E%3Ccircle cx='224' cy='130' r='12' fill='%2310b981'/%3E%3Ccircle cx='130' cy='42' r='12' fill='%23818cf8'/%3E%3Ccircle cx='130' cy='218' r='12' fill='%2310b981'/%3E%3Crect x='55' y='102' width='150' height='56' rx='16' fill='%230c1017' stroke='%236366f1' stroke-width='4'/%3E%3Ctext x='130' y='138' font-family='system-ui,sans-serif' font-weight='900' font-size='24' letter-spacing='4' fill='%23ffffff' text-anchor='middle'%3ESOLVO%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Crect x='15' y='15' width='230' height='230' rx='48' fill='%23050811' stroke='%238b5cf6' stroke-width='8'/%3E%3Cpath d='M 68 85 L 36 130 L 68 175' stroke='%2306b6d4' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M 192 85 L 224 130 L 192 175' stroke='%2310b981' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='36' cy='130' r='12' fill='%2306b6d4'/%3E%3Ccircle cx='224' cy='130' r='12' fill='%2310b981'/%3E%3Ccircle cx='130' cy='42' r='12' fill='%238b5cf6'/%3E%3Ccircle cx='130' cy='218' r='12' fill='%2310b981'/%3E%3Crect x='55' y='102' width='150' height='56' rx='16' fill='%23090e1a' stroke='%238b5cf6' stroke-width='4'/%3E%3Ctext x='130' y='138' font-family='system-ui,sans-serif' font-weight='900' font-size='24' letter-spacing='4' fill='%23ffffff' text-anchor='middle'%3ESOLVO%3C/text%3E%3C/svg%3E">
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -19,13 +21,13 @@
             sans: ['Plus Jakarta Sans', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace']
           },
-          colors: { brand: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' } }
+          colors: { brand: { 400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed' }, cyanic: { 400: '#22d3ee', 500: '#06b6d4' } }
         }
       }
     }
   </script>
   <style>
-    #constellation-canvas {
+    #webgl-canvas {
       position: fixed;
       top: 0;
       left: 0;
@@ -34,222 +36,194 @@
       pointer-events: none;
       z-index: 0;
     }
+    .cyber-panel {
+      background: rgba(9, 13, 24, 0.88);
+      border: 1px solid rgba(139, 92, 246, 0.22);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cyber-panel:hover {
+      border-color: rgba(34, 211, 238, 0.6);
+      transform: translateY(-3px);
+    }
   </style>
 </head>
-<body class="bg-[#05070c] text-slate-200 antialiased font-sans selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
+<body class="bg-[#030508] text-slate-100 antialiased font-sans selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
-  <canvas id="constellation-canvas"></canvas>
+  <div id="webgl-canvas"></div>
 
   <div class="relative z-10">
-    <nav class="fixed top-0 left-0 right-0 z-40 backdrop-blur-2xl bg-[#05070c]/85 border-b border-white/[0.07]">
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-[#04060b]/90 border-b border-brand-500/20 backdrop-blur-md">
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
-        <a href="index.html" class="flex items-center gap-3.5 group">
+        <a href="index.html" class="flex items-center gap-3 group">
           <div class="relative flex items-center justify-center">
-            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-500 to-emerald-500 opacity-25 blur-sm group-hover:opacity-60 transition duration-300"></div>
-            <svg class="w-11 h-11 relative" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="headerAiGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#818cf8" />
-                  <stop offset="50%" stop-color="#4f46e5" />
-                  <stop offset="100%" stop-color="#10b981" />
-                </linearGradient>
-                <linearGradient id="headerBracketGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#38bdf8" />
-                  <stop offset="100%" stop-color="#6366f1" />
-                </linearGradient>
-              </defs>
-              <rect x="15" y="15" width="230" height="230" rx="48" fill="#07090e" stroke="rgba(255,255,255,0.15)" stroke-width="4"/>
-              <circle cx="130" cy="130" r="86" stroke="url(#headerAiGrad2)" stroke-width="4" stroke-dasharray="8 10" opacity="0.65"/>
-              <path d="M 68 85 L 36 130 L 68 175" stroke="url(#headerBracketGrad2)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="36" cy="130" r="8.5" fill="#38bdf8"/>
+            <div class="absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-brand-500 via-cyanic-500 to-emerald-500 opacity-30 blur group-hover:opacity-75 transition duration-300"></div>
+            <svg class="w-11 h-11 relative" viewBox="0 0 260 260" fill="none">
+              <rect x="15" y="15" width="230" height="230" rx="48" fill="#060913" stroke="rgba(139,92,246,0.4)" stroke-width="4"/>
+              <path d="M 68 85 L 36 130 L 68 175" stroke="#22d3ee" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M 192 85 L 224 130 L 192 175" stroke="#10b981" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="224" cy="130" r="8.5" fill="#10b981"/>
-              <line x1="130" y1="42" x2="130" y2="92" stroke="#6366f1" stroke-width="4.5"/>
-              <line x1="130" y1="168" x2="130" y2="218" stroke="#10b981" stroke-width="4.5"/>
-              <circle cx="130" cy="42" r="8" fill="#818cf8"/>
-              <circle cx="130" cy="218" r="8" fill="#10b981"/>
               <g transform="translate(60, 102)">
-                <rect width="140" height="56" rx="16" fill="#0c1017" stroke="url(#headerAiGrad2)" stroke-width="3" />
-                <text x="70" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="22" letter-spacing="4" fill="#ffffff" text-anchor="middle">SOLVO</text>
+                <rect width="140" height="56" rx="16" fill="#0a0f1d" stroke="#8b5cf6" stroke-width="3" />
+                <text x="70" y="38" font-family="'JetBrains Mono', monospace" font-weight="900" font-size="21" letter-spacing="4" fill="#ffffff" text-anchor="middle">SOLVO</text>
               </g>
             </svg>
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-black tracking-wider text-white leading-tight">SOLVO<span class="text-brand-500">.</span></span>
-            <span class="text-[10px] font-semibold tracking-[0.2em] text-slate-400 uppercase hidden sm:inline-block">AI &amp; Web Systems</span>
+            <span class="text-xl font-black tracking-wider text-white leading-tight font-mono">SOLVO<span class="text-cyanic-400">_</span></span>
+            <span class="text-[9px] font-mono tracking-[0.25em] text-brand-300 uppercase">SYS_AUTONOMOUS</span>
           </div>
         </a>
 
-        <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
-          <a href="index.html" class="hover:text-white transition">Home</a>
-          <a href="services.html" class="text-white hover:text-brand-400 transition">Services</a>
-          <a href="index.html#projects" class="hover:text-white transition">Client Work</a>
-          <a href="contact.html" class="hover:text-white transition">Contact</a>
+        <div class="hidden md:flex items-center space-x-8 text-xs font-mono tracking-wider text-slate-300">
+          <a href="index.html" class="hover:text-cyanic-400 transition">01// HOME</a>
+          <a href="services.html" class="text-cyanic-400 font-bold">02// SERVICES</a>
+          <a href="index.html#projects" class="hover:text-cyanic-400 transition">03// CLIENTS</a>
+          <a href="contact.html" class="hover:text-cyanic-400 transition">04// CONTACT</a>
         </div>
 
-        <a href="contact.html" class="px-5 py-2.5 text-xs font-semibold rounded-xl bg-brand-600 hover:bg-brand-500 text-white shadow-xl shadow-brand-600/30 transition">
-          Inquire Now
+        <a href="contact.html" class="px-5 py-2.5 text-xs font-mono font-bold rounded-xl bg-gradient-to-r from-brand-600 to-cyanic-500 text-white shadow-xl shadow-brand-500/30 transition">
+          INIT_PROJECT →
         </a>
       </div>
     </nav>
 
-    <main class="pt-36 pb-24 px-6 max-w-7xl mx-auto space-y-24">
+    <main class="pt-36 pb-24 px-6 max-w-7xl mx-auto space-y-20">
       <div class="text-center max-w-3xl mx-auto space-y-4">
-        <span class="text-xs uppercase font-semibold text-brand-400 tracking-wider">Capabilities &amp; Architecture</span>
-        <h1 class="text-4xl sm:text-5xl font-extrabold text-white">Engineering Disciplines</h1>
-        <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+        <span class="text-xs uppercase font-semibold text-cyanic-400 tracking-wider font-mono">// CORE DISCIPLINES</span>
+        <h1 class="text-4xl sm:text-5xl font-black text-white font-mono">System Architecture</h1>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
           From high-performance digital storefronts to state-of-the-art vector retrieval pipelines and automated machine learning infrastructure.
         </p>
       </div>
 
-      <section id="web" class="p-8 sm:p-12 rounded-3xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] space-y-8">
-        <div class="flex items-center gap-3">
-          <div class="p-3 rounded-2xl bg-brand-500/10 text-brand-400 border border-brand-500/20 font-bold font-mono">01</div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white">Commercial Web Engineering &amp; Frontend</h2>
-        </div>
-        <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-4xl">
-          We architect web assets focused on sub-second load times, mobile rendering perfection, and intuitive user experiences that turn visitors into clients.
-        </p>
-        <div class="grid md:grid-cols-3 gap-6 pt-2">
-          <div class="p-6 rounded-2xl bg-[#080b11]/80 border border-white/[0.06] space-y-2">
-            <h4 class="text-base font-bold text-white">High-Speed Landing Pages</h4>
-            <p class="text-xs text-slate-400 leading-relaxed">Tailwind CSS &amp; vanilla JavaScript architectures for businesses needing instant loading without heavy runtime frameworks.</p>
+      <!-- Web Engineering -->
+      <section id="web" class="cyber-panel p-8 sm:p-12 rounded-3xl space-y-8">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-2xl bg-cyanic-500/10 text-cyanic-400 border border-cyanic-500/30 font-bold font-mono">01</div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono">Commercial Web Engineering &amp; Frontend</h2>
           </div>
-          <div class="p-6 rounded-2xl bg-[#080b11]/80 border border-white/[0.06] space-y-2">
-            <h4 class="text-base font-bold text-white">Custom Web Applications</h4>
-            <p class="text-xs text-slate-400 leading-relaxed">Dynamic dashboards, client data portals, and internal calculators engineered with responsive layouts.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-[#080b11]/80 border border-white/[0.06] space-y-2">
-            <h4 class="text-base font-bold text-white">Deployments &amp; CI/CD</h4>
-            <p class="text-xs text-slate-400 leading-relaxed">Continuous deployment workflows via Git, GitHub, and Netlify with automatic branch previews and zero downtime.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="llm" class="p-8 sm:p-12 rounded-3xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] space-y-8">
-        <div class="flex items-center gap-3">
-          <div class="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold font-mono">02</div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white">Large Language Models (LLM) &amp; RAG Pipelines</h2>
-        </div>
-        <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-4xl">
-          Generic chatbots hallucinate. Solvo builds Retrieval-Augmented Generation (RAG) pipelines that anchor language models into your private documents, APIs, and company knowledge base.
-        </p>
-        <div class="grid md:grid-cols-3 gap-6 pt-2">
-          <div class="p-6 rounded-2xl bg-[#080b11]/80 border border-white/[0.06] space-y-2">
-            <h4 class="text-base font-bold text-white">Document Ingestion &amp; Chunking</h4>
-            <p class="text-xs text-slate-400 leading-relaxed">Semantic parsing of PDFs, manuals, and databases with token-aware chunking and metadata enrichment.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-[#080b11]/80 border border-white/[0.06] space-y-2">
-            <h4 class="text-base font-bold text-white">Vector Storage &amp; Embeddings</h4>
-            <p class="text-xs text-slate-400 leading-relaxed">Embedding generation stored in vector databases (ChromaDB, Pinecone, pgvector) for millisecond cosine retrieval.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-[#080b11]/80 border border-white/[0.06] space-y-2">
-            <h4 class="text-base font-bold text-white">Context Grounding &amp; Guardrails</h4>
-            <p class="text-xs text-slate-400 leading-relaxed">Prompt engineering, reranking, and safety guardrails to ensure exact factual accuracy without fabrication.</p>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-4xl">
+            We architect web assets focused on sub-second load times, mobile rendering perfection, and intuitive user experiences that turn visitors into clients.
+          </p>
+          <div class="grid md:grid-cols-3 gap-6 pt-2 font-mono text-xs">
+            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
+              <h4 class="text-base font-bold text-white">High-Speed Landing Pages</h4>
+              <p class="text-slate-400 font-sans leading-relaxed">Tailwind CSS &amp; vanilla JavaScript architectures for businesses needing instant loading without heavy runtime frameworks.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
+              <h4 class="text-base font-bold text-white">Custom Web Applications</h4>
+              <p class="text-slate-400 font-sans leading-relaxed">Dynamic dashboards, client data portals, and internal calculators engineered with responsive layouts.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
+              <h4 class="text-base font-bold text-white">Deployments &amp; CI/CD</h4>
+              <p class="text-slate-400 font-sans leading-relaxed">Continuous deployment workflows via Git, GitHub, and Netlify with automatic branch previews and zero downtime.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="mlops" class="p-8 sm:p-12 rounded-3xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] space-y-8">
-        <div class="flex items-center gap-3">
-          <div class="p-3 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-bold font-mono">03</div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white">MLOps &amp; Operational AI Infrastructure</h2>
-        </div>
-        <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-4xl">
-          Bridging machine learning experimentation with enterprise production stability. We structure end-to-end ML lifecycles with continuous monitoring and automated serving.
-        </p>
-        <div class="grid md:grid-cols-3 gap-6 pt-2">
-          <div class="p-6 rounded-2xl bg-[#080b11]/80 border border-white/[0.06] space-y-2">
-            <h4 class="text-base font-bold text-white">FastAPI Serving Microservices</h4>
-            <p class="text-xs text-slate-400 leading-relaxed">Wrapping ML regression, classification, and neural models into asynchronous REST endpoints with schema validation.</p>
+      <!-- LLM & RAG Systems -->
+      <section id="llm" class="cyber-panel p-8 sm:p-12 rounded-3xl space-y-8">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-2xl bg-brand-500/10 text-brand-400 border border-brand-500/30 font-bold font-mono">02</div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono">Large Language Models (LLM) &amp; RAG Pipelines</h2>
           </div>
-          <div class="p-6 rounded-2xl bg-[#080b11]/80 border border-white/[0.06] space-y-2">
-            <h4 class="text-base font-bold text-white">Containerization &amp; Orchestration</h4>
-            <p class="text-xs text-slate-400 leading-relaxed">Docker containerization for reproducible development and cloud runtimes, eliminating environment drift.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-[#080b11]/80 border border-white/[0.06] space-y-2">
-            <h4 class="text-base font-bold text-white">Model Experiment Tracking</h4>
-            <p class="text-xs text-slate-400 leading-relaxed">Version control for datasets, hyperparameters, and model weights to guarantee reproducible deployments.</p>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-4xl">
+            Generic chatbots hallucinate. Solvo builds Retrieval-Augmented Generation (RAG) pipelines that anchor language models into your private documents, APIs, and company knowledge base.
+          </p>
+          <div class="grid md:grid-cols-3 gap-6 pt-2 font-mono text-xs">
+            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
+              <h4 class="text-base font-bold text-white">Document Ingestion &amp; Chunking</h4>
+              <p class="text-slate-400 font-sans leading-relaxed">Semantic parsing of PDFs, manuals, and databases with token-aware chunking and metadata enrichment.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
+              <h4 class="text-base font-bold text-white">Vector Storage &amp; Embeddings</h4>
+              <p class="text-slate-400 font-sans leading-relaxed">Embedding generation stored in vector databases (ChromaDB, Pinecone, pgvector) for millisecond cosine retrieval.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
+              <h4 class="text-base font-bold text-white">Context Grounding &amp; Guardrails</h4>
+              <p class="text-slate-400 font-sans leading-relaxed">Prompt engineering, reranking, and safety guardrails to ensure exact factual accuracy without fabrication.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <div class="p-10 rounded-3xl bg-gradient-to-r from-brand-600/30 via-indigo-600/20 to-transparent border border-brand-500/30 flex flex-col md:flex-row items-center justify-between gap-6 backdrop-blur-xl">
+      <!-- MLOps -->
+      <section id="mlops" class="cyber-panel p-8 sm:p-12 rounded-3xl space-y-8">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold font-mono">03</div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono">MLOps &amp; Operational AI Infrastructure</h2>
+          </div>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-4xl">
+            Bridging machine learning experimentation with enterprise production stability. We structure end-to-end ML lifecycles with continuous monitoring and automated serving.
+          </p>
+          <div class="grid md:grid-cols-3 gap-6 pt-2 font-mono text-xs">
+            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
+              <h4 class="text-base font-bold text-white">FastAPI Serving Microservices</h4>
+              <p class="text-slate-400 font-sans leading-relaxed">Wrapping ML regression, classification, and neural models into asynchronous REST endpoints with schema validation.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
+              <h4 class="text-base font-bold text-white">Containerization &amp; Orchestration</h4>
+              <p class="text-slate-400 font-sans leading-relaxed">Docker containerization for reproducible development and cloud runtimes, eliminating environment drift.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
+              <h4 class="text-base font-bold text-white">Model Experiment Tracking</h4>
+              <p class="text-slate-400 font-sans leading-relaxed">Version control for datasets, hyperparameters, and model weights to guarantee reproducible deployments.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Banner -->
+      <div class="cyber-panel p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <h3 class="text-2xl font-bold text-white">Need a customized AI or Web solution?</h3>
+          <h3 class="text-2xl font-bold text-white font-mono">Need a customized AI or Web solution?</h3>
           <p class="text-sm text-slate-300 mt-1">Connect directly with the Solvo engineering desk.</p>
         </div>
-        <div class="flex items-center gap-4">
-          <a href="https://wa.me/919344285549" target="_blank" class="px-5 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-semibold text-xs transition">WhatsApp Direct</a>
-          <a href="contact.html" class="px-5 py-3.5 rounded-xl bg-white text-slate-950 font-semibold text-xs hover:bg-slate-200 transition">Contact Page</a>
+        <div class="flex items-center gap-4 font-mono text-xs">
+          <a href="https://wa.me/919344285549" target="_blank" class="px-5 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold transition">WHATSAPP DIRECT</a>
+          <a href="contact.html" class="px-5 py-3.5 rounded-xl bg-white text-slate-950 font-bold hover:bg-slate-200 transition">CONTACT DESK</a>
         </div>
       </div>
     </main>
 
-    <footer class="py-8 border-t border-white/[0.06] text-center text-xs text-slate-500">
-      <p>© 2026 Solvo. All rights reserved.</p>
+    <footer class="py-8 border-t border-brand-500/20 text-center text-xs font-mono text-slate-400">
+      <p>© 2026 SOLVO. ALL SYSTEMS FUNCTIONAL.</p>
     </footer>
   </div>
 
   <script>
-    const canvas = document.getElementById('constellation-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, particles;
+    const container = document.getElementById('webgl-canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 40;
 
-    function initCanvas() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      particles = [];
-      const count = Math.min(Math.floor(width / 18), 75);
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          radius: Math.random() * 2 + 1.2
-        });
-      }
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    const geo = new THREE.TorusKnotGeometry(12, 2.2, 100, 16);
+    const mat = new THREE.MeshBasicMaterial({ color: 0x8b5cf6, wireframe: true, transparent: true, opacity: 0.25 });
+    const mesh = new THREE.Mesh(geo, mat);
+    scene.add(mesh);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      mesh.rotation.x += 0.003;
+      mesh.rotation.y += 0.004;
+      renderer.render(scene, camera);
     }
+    animate();
 
-    function renderConstellation() {
-      ctx.clearRect(0, 0, width, height);
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 120) {
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-      for (let p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        ctx.fillStyle = 'rgba(129, 140, 248, 0.4)';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      requestAnimationFrame(renderConstellation);
-    }
-
-    window.addEventListener('resize', initCanvas);
-    initCanvas();
-    renderConstellation();
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
   </script>
 </body>
 </html>
