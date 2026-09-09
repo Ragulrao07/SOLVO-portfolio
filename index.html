@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SOLVO // Autonomous Web Architecture & Applied AI Core</title>
+  <title>Syntrivo Technologies // Autonomous Web Architecture & Applied AI Core</title>
 
   <!-- Browser Tab Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Crect x='15' y='15' width='230' height='230' rx='48' fill='%23050811' stroke='%238b5cf6' stroke-width='8'/%3E%3Cpath d='M 68 85 L 36 130 L 68 175' stroke='%2306b6d4' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M 192 85 L 224 130 L 192 175' stroke='%2310b981' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='36' cy='130' r='12' fill='%2306b6d4'/%3E%3Ccircle cx='224' cy='130' r='12' fill='%2310b981'/%3E%3Ccircle cx='130' cy='42' r='12' fill='%238b5cf6'/%3E%3Ccircle cx='130' cy='218' r='12' fill='%2310b981'/%3E%3Crect x='55' y='102' width='150' height='56' rx='16' fill='%23090e1a' stroke='%238b5cf6' stroke-width='4'/%3E%3Ctext x='130' y='138' font-family='system-ui,sans-serif' font-weight='900' font-size='24' letter-spacing='4' fill='%23ffffff' text-anchor='middle'%3ESOLVO%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Crect x='15' y='15' width='230' height='230' rx='48' fill='%23050811' stroke='%238b5cf6' stroke-width='8'/%3E%3Cpath d='M 68 85 L 36 130 L 68 175' stroke='%2306b6d4' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M 192 85 L 224 130 L 192 175' stroke='%2310b981' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='36' cy='130' r='12' fill='%2306b6d4'/%3E%3Ccircle cx='224' cy='130' r='12' fill='%2310b981'/%3E%3Ccircle cx='130' cy='42' r='12' fill='%238b5cf6'/%3E%3Ccircle cx='130' cy='218' r='12' fill='%2310b981'/%3E%3Crect x='45' y='102' width='170' height='56' rx='16' fill='%23090e1a' stroke='%238b5cf6' stroke-width='4'/%3E%3Ctext x='130' y='138' font-family='system-ui,sans-serif' font-weight='900' font-size='19' letter-spacing='2' fill='%23ffffff' text-anchor='middle'%3ESYNTRIVO%3C/text%3E%3C/svg%3E">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Three.js CDN -->
@@ -65,9 +65,6 @@
     .glow-text-cyan {
       text-shadow: 0 0 16px rgba(34, 211, 238, 0.6);
     }
-    .glow-text-purple {
-      text-shadow: 0 0 16px rgba(167, 139, 250, 0.6);
-    }
     .hud-corner {
       position: relative;
     }
@@ -95,7 +92,6 @@
 </head>
 <body class="bg-[#030508] text-slate-100 antialiased font-sans selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
-  <!-- 3D WebGL Anime Warp & Core Engine -->
   <div id="webgl-canvas"></div>
 
   <div class="relative z-10">
@@ -103,8 +99,7 @@
     <nav class="fixed top-0 left-0 right-0 z-40 bg-[#04060b]/90 border-b border-brand-500/20 backdrop-blur-md">
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
-        <!-- Logo -->
-        <a href="index.html" class="flex items-center gap-3 group" onmouseenter="playChime()">
+        <a href="index.html" class="flex items-center gap-3 group">
           <div class="relative flex items-center justify-center">
             <div class="absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-brand-500 via-cyanic-500 to-emerald-500 opacity-30 blur group-hover:opacity-75 transition duration-300"></div>
             <svg class="w-11 h-11 relative" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -123,52 +118,52 @@
               <circle cx="224" cy="130" r="8.5" fill="#10b981"/>
               <line x1="130" y1="42" x2="130" y2="92" stroke="#8b5cf6" stroke-width="4.5"/>
               <line x1="130" y1="168" x2="130" y2="218" stroke="#10b981" stroke-width="4.5"/>
-              <g transform="translate(60, 102)">
-                <rect width="140" height="56" rx="16" fill="#0a0f1d" stroke="url(#navAnimeGrad)" stroke-width="3" />
-                <text x="70" y="38" font-family="'JetBrains Mono', monospace" font-weight="900" font-size="21" letter-spacing="4" fill="#ffffff" text-anchor="middle">SOLVO</text>
+              <g transform="translate(45, 102)">
+                <rect width="170" height="56" rx="16" fill="#0a0f1d" stroke="url(#navAnimeGrad)" stroke-width="3" />
+                <text x="85" y="37" font-family="'JetBrains Mono', monospace" font-weight="900" font-size="19" letter-spacing="2" fill="#ffffff" text-anchor="middle">SYNTRIVO</text>
               </g>
             </svg>
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-black tracking-wider text-white leading-tight font-mono">SOLVO<span class="text-cyanic-400 animate-pulse">_</span></span>
-            <span class="text-[9px] font-mono tracking-[0.25em] text-brand-300 uppercase">SYS_AUTONOMOUS // AI &amp; WEB</span>
+            <span class="text-lg sm:text-xl font-black tracking-wider text-white leading-tight font-mono">SYNTRIVO<span class="text-cyanic-400 animate-pulse">_</span></span>
+            <span class="text-[9px] font-mono tracking-[0.22em] text-brand-300 uppercase">TECHNOLOGIES // AI &amp; WEB</span>
           </div>
         </a>
 
         <!-- Desktop Links -->
         <div class="hidden md:flex items-center space-x-8 text-xs font-mono tracking-wider text-slate-300">
-          <a href="index.html" class="text-white text-cyanic-400 flex items-center gap-1.5" onmouseenter="playChime()">
+          <a href="index.html" class="text-white text-cyanic-400 flex items-center gap-1.5">
             <span class="text-cyanic-400">01//</span> HOME
           </a>
-          <a href="services.html" class="hover:text-cyanic-400 transition flex items-center gap-1.5" onmouseenter="playChime()">
+          <a href="services.html" class="hover:text-cyanic-400 transition flex items-center gap-1.5">
             <span class="text-brand-400">02//</span> SERVICES
           </a>
-          <a href="#projects" class="hover:text-cyanic-400 transition flex items-center gap-1.5" onmouseenter="playChime()">
+          <a href="#projects" class="hover:text-cyanic-400 transition flex items-center gap-1.5">
             <span class="text-emerald-400">03//</span> CLIENTS
           </a>
-          <a href="contact.html" class="hover:text-cyanic-400 transition flex items-center gap-1.5" onmouseenter="playChime()">
+          <a href="contact.html" class="hover:text-cyanic-400 transition flex items-center gap-1.5">
             <span class="text-slate-500">04//</span> CONTACT
           </a>
         </div>
 
         <!-- Quick Action CTAs -->
         <div class="flex items-center gap-3">
-          <a href="https://wa.me/919344285549?text=Hi%20Solvo,%20I%20would%20like%20to%20discuss%20a%20project" target="_blank" onclick="playClickSound()" onmouseenter="playChime()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-semibold rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20 transition group">
+          <a href="https://wa.me/919344285549?text=Hi%20Syntrivo%20Technologies,%20I%20would%20like%20to%20discuss%20a%20project" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-semibold rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20 transition group">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
             <span>WHATSAPP</span>
           </a>
-          <a href="contact.html" onclick="playClickSound()" onmouseenter="playChime()" class="relative px-5 py-2.5 text-xs font-mono font-bold rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-cyanic-500 hover:opacity-90 text-white shadow-xl shadow-brand-500/30 transition transform hover:-translate-y-0.5">
+          <a href="contact.html" class="relative px-5 py-2.5 text-xs font-mono font-bold rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-cyanic-500 hover:opacity-90 text-white shadow-xl shadow-brand-500/30 transition transform hover:-translate-y-0.5">
             INIT_PROJECT →
           </a>
         </div>
       </div>
     </nav>
 
-    <!-- Hyper-Cinematic Hero Header -->
+    <!-- Hero Header -->
     <header class="relative pt-44 pb-28 px-6 max-w-7xl mx-auto text-center space-y-7">
       <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#0a0f1d] border border-cyanic-500/30 text-xs font-mono text-cyanic-400 shadow-2xl">
         <span class="w-2 h-2 rounded-full bg-cyanic-400 animate-pulse"></span>
-        <span>NEO_SYS ACTIVE // 3D HYPERSPACE ENGINE ON</span>
+        <span>SYNTRIVO CORE ACTIVE // 3D HYPERSPACE ENGINE ON</span>
       </div>
 
       <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] max-w-5xl mx-auto">
@@ -176,15 +171,15 @@
       </h1>
 
       <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
-        Solvo engineers high-throughput commercial web platforms, document-grounded RAG pipelines, and automated MLOps pipelines across India and Malaysia.
+        Syntrivo Technologies engineers high-throughput commercial web platforms, document-grounded RAG pipelines, and automated MLOps pipelines across India and Malaysia.
       </p>
 
       <div class="flex flex-wrap items-center justify-center gap-4 pt-4 font-mono text-xs">
-        <a href="services.html" onclick="playClickSound()" onmouseenter="playChime()" class="px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-cyanic-500 text-white font-bold tracking-wider shadow-2xl shadow-brand-600/50 hover:opacity-95 transition flex items-center gap-2 group">
+        <a href="services.html" class="px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-cyanic-500 text-white font-bold tracking-wider shadow-2xl shadow-brand-600/50 hover:opacity-95 transition flex items-center gap-2 group">
           <span>DEPLOY_CAPABILITIES</span>
           <span class="group-hover:translate-x-1 transition-transform">→</span>
         </a>
-        <a href="#projects" onclick="playClickSound()" onmouseenter="playChime()" class="px-8 py-4 rounded-xl bg-[#090e1b] hover:bg-[#11172a] border border-brand-500/30 text-slate-200 font-semibold tracking-wider transition">
+        <a href="#projects" class="px-8 py-4 rounded-xl bg-[#090e1b] hover:bg-[#11172a] border border-brand-500/30 text-slate-200 font-semibold tracking-wider transition">
           EXPLORE_CLIENT_WORK
         </a>
       </div>
@@ -270,7 +265,6 @@
     <!-- Core Engineering Capabilities -->
     <section class="py-16 px-6 max-w-7xl mx-auto border-t border-brand-500/20">
       <div class="grid md:grid-cols-3 gap-6">
-        
         <div class="cyber-panel p-8 rounded-3xl space-y-3">
           <div class="w-12 h-12 rounded-2xl bg-cyanic-500/10 border border-cyanic-500/30 flex items-center justify-center text-cyanic-400 mb-4">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -343,11 +337,11 @@
           </div>
 
           <div class="flex flex-col gap-3 justify-center lg:border-l lg:border-brand-500/20 lg:pl-8">
-            <a href="https://vpreartmovers.netlify.app" target="_blank" rel="noopener noreferrer" onclick="playClickSound()" onmouseenter="playChime()" class="w-full text-center py-4 rounded-xl bg-gradient-to-r from-brand-600 to-cyanic-500 hover:opacity-90 text-white text-xs font-mono font-bold shadow-xl shadow-brand-500/30 transition flex items-center justify-center gap-2 group">
+            <a href="https://vpreartmovers.netlify.app" target="_blank" rel="noopener noreferrer" class="w-full text-center py-4 rounded-xl bg-gradient-to-r from-brand-600 to-cyanic-500 hover:opacity-90 text-white text-xs font-mono font-bold shadow-xl shadow-brand-500/30 transition flex items-center justify-center gap-2 group">
               <span>VIEW LIVE WEBSITE</span>
               <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
-            <a href="contact.html" onclick="playClickSound()" onmouseenter="playChime()" class="w-full text-center py-3.5 rounded-xl bg-[#060a14] hover:bg-[#0c1222] text-slate-300 text-xs font-mono font-medium border border-brand-500/25 transition">
+            <a href="contact.html" class="w-full text-center py-3.5 rounded-xl bg-[#060a14] hover:bg-[#0c1222] text-slate-300 text-xs font-mono font-medium border border-brand-500/25 transition">
               REQUEST SIMILAR BUILD
             </a>
           </div>
@@ -405,7 +399,7 @@
     <!-- Footer -->
     <footer class="py-12 border-t border-brand-500/20 px-6 max-w-7xl mx-auto">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
-        <p>© 2026 SOLVO. ARCHITECTED FOR AUTONOMOUS SCALE.</p>
+        <p>© 2026 SYNTRIVO TECHNOLOGIES. ARCHITECTED FOR AUTONOMOUS SCALE.</p>
         <div class="flex items-center gap-6">
           <a href="tel:+919344285549" class="hover:text-cyanic-400 transition">+91 93442 85549</a>
           <a href="mailto:ragulrao2004@gmail.com" class="hover:text-cyanic-400 transition">ragulrao2004@gmail.com</a>
@@ -421,220 +415,167 @@
       <div class="bg-[#090e1d] px-4 py-3 border-b border-brand-500/20 flex items-center justify-between">
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></span>
-          <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">SOLVO NEURAL LINK</span>
+          <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">SYNTRIVO NEURAL LINK</span>
         </div>
-        <button onclick="toggleChat()" class="text-slate-400 hover:text-white text-lg leading-none">&times;</button>
+        <button id="chat-close" class="text-slate-400 hover:text-white text-lg leading-none">&times;</button>
       </div>
 
       <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
         <div class="bg-[#0d1428] text-slate-200 p-3.5 rounded-2xl rounded-tl-none border border-brand-500/20 font-sans leading-relaxed">
-          Hello! I am the Solvo assistant. How can we assist you with modern web development, RAG/AI solutions, or our client projects across India and Malaysia?
+          Hello! I am the Syntrivo Technologies assistant. How can we assist you with modern web development, RAG/AI solutions, or our client projects across India and Malaysia?
         </div>
       </div>
 
       <div class="px-3 py-2 bg-[#060a14] border-t border-brand-500/20 flex gap-2 overflow-x-auto text-[11px] font-mono whitespace-nowrap">
-        <button onclick="sendQuickPrompt('Tell me about your clients in India and Malaysia')" class="px-2.5 py-1 rounded-lg bg-[#0d1428] hover:bg-[#15203d] text-cyanic-300 border border-cyanic-500/30">India &amp; Malaysia</button>
-        <button onclick="sendQuickPrompt('Tell me about VPR Earth Movers')" class="px-2.5 py-1 rounded-lg bg-[#0d1428] hover:bg-[#15203d] text-cyanic-300 border border-cyanic-500/30">VPR Earth Movers</button>
-        <button onclick="sendQuickPrompt('Explain RAG architecture')" class="px-2.5 py-1 rounded-lg bg-[#0d1428] hover:bg-[#15203d] text-cyanic-300 border border-cyanic-500/30">RAG Pipeline</button>
+        <button type="button" class="quick-trigger px-2.5 py-1 rounded-lg bg-[#0d1428] hover:bg-[#15203d] text-cyanic-300 border border-cyanic-500/30">India &amp; Malaysia</button>
+        <button type="button" class="quick-trigger px-2.5 py-1 rounded-lg bg-[#0d1428] hover:bg-[#15203d] text-cyanic-300 border border-cyanic-500/30">VPR Earth Movers</button>
+        <button type="button" class="quick-trigger px-2.5 py-1 rounded-lg bg-[#0d1428] hover:bg-[#15203d] text-cyanic-300 border border-cyanic-500/30">RAG Pipeline</button>
       </div>
 
-      <form onsubmit="handleChatSubmit(event)" class="p-2.5 bg-[#030508] border-t border-brand-500/20 flex gap-2">
+      <form id="chat-form" class="p-2.5 bg-[#030508] border-t border-brand-500/20 flex gap-2">
         <input type="text" id="chat-input" placeholder="Ask anything about our builds..." class="flex-1 px-3.5 py-2.5 bg-[#090e1d] border border-white/[0.1] text-slate-100 text-xs rounded-xl focus:outline-none focus:border-cyanic-400 font-sans">
         <button type="submit" class="px-4 py-2.5 bg-gradient-to-r from-brand-600 to-cyanic-500 hover:opacity-90 text-white rounded-xl text-xs font-mono font-bold transition">SEND</button>
       </form>
     </div>
 
-    <button onclick="toggleChat(); playClickSound();" class="p-4 bg-gradient-to-r from-brand-600 via-indigo-600 to-cyanic-500 text-white rounded-full shadow-2xl shadow-brand-500/50 transition-transform transform hover:scale-105">
+    <button id="chat-toggle" class="p-4 bg-gradient-to-r from-brand-600 via-indigo-600 to-cyanic-500 text-white rounded-full shadow-2xl shadow-brand-500/50 transition-transform transform hover:scale-105">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
     </button>
   </div>
 
-  <!-- Three.js Anime Warp-Drive Core & Synthesized Sound Engine -->
+  <!-- Three.js Anime Engine & Clean Chatbot Logic -->
   <script>
-    // 1. Web Audio Synthesizer Engine (Zero external files needed)
-    let audioCtx = null;
-    function getAudioContext() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      return audioCtx;
-    }
+    // 1. Three.js Background Animation
+    const canvasContainer = document.getElementById('webgl-canvas');
+    if (canvasContainer) {
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x030508, 0.015);
 
-    function playChime() {
-      try {
-        const ctx = getAudioContext();
-        if (ctx.state === 'suspended') ctx.resume();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(880, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(1760, ctx.currentTime + 0.08);
-        gain.gain.setValueAtTime(0.015, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.08);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.08);
-      } catch (e) {}
-    }
+      const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(0, 3, 40);
 
-    function playClickSound() {
-      try {
-        const ctx = getAudioContext();
-        if (ctx.state === 'suspended') ctx.resume();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(220, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.12);
-        gain.gain.setValueAtTime(0.03, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.12);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.12);
-      } catch (e) {}
-    }
-
-    // 2. Three.js Anime Hyperspace Engine
-    const container = document.getElementById('webgl-canvas');
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x030508, 0.015);
-
-    const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 3, 40);
-
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    container.appendChild(renderer.domElement);
-
-    // Hyper-speed Warp Stream Lines (Anime light-speed lines)
-    const warpCount = 500;
-    const warpGeo = new THREE.BufferGeometry();
-    const warpPositions = new Float32Array(warpCount * 6);
-
-    for (let i = 0; i < warpCount; i++) {
-      const x = (Math.random() - 0.5) * 120;
-      const y = (Math.random() - 0.5) * 80;
-      const z = (Math.random() - 0.5) * 150;
-      const len = Math.random() * 8 + 4;
-
-      warpPositions[i * 6] = x;
-      warpPositions[i * 6 + 1] = y;
-      warpPositions[i * 6 + 2] = z;
-
-      warpPositions[i * 6 + 3] = x;
-      warpPositions[i * 6 + 4] = y;
-      warpPositions[i * 6 + 5] = z - len;
-    }
-    warpGeo.setAttribute('position', new THREE.BufferAttribute(warpPositions, 3));
-
-    const warpMat = new THREE.LineBasicMaterial({
-      color: 0x22d3ee,
-      transparent: true,
-      opacity: 0.35
-    });
-    const warpLines = new THREE.LineSegments(warpGeo, warpMat);
-    scene.add(warpLines);
-
-    // Center Anime Core Group
-    const coreGroup = new THREE.Group();
-    scene.add(coreGroup);
-
-    // Central Crystalline Polyhedron
-    const crystalGeo = new THREE.OctahedronGeometry(8.5, 0);
-    const crystalMat = new THREE.MeshBasicMaterial({
-      color: 0x8b5cf6,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.45
-    });
-    const crystalMesh = new THREE.Mesh(crystalGeo, crystalMat);
-    coreGroup.add(crystalMesh);
-
-    // Inner Radiant Pulsar
-    const innerGeo = new THREE.IcosahedronGeometry(4, 1);
-    const innerMat = new THREE.MeshBasicMaterial({
-      color: 0x22d3ee,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.6
-    });
-    const innerMesh = new THREE.Mesh(innerGeo, innerMat);
-    coreGroup.add(innerMesh);
-
-    // Outer Halo Gyro Rings
-    const halo1 = new THREE.Mesh(
-      new THREE.TorusGeometry(14.5, 0.12, 16, 120),
-      new THREE.MeshBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.5 })
-    );
-    halo1.rotation.x = Math.PI / 2.5;
-    coreGroup.add(halo1);
-
-    const halo2 = new THREE.Mesh(
-      new THREE.TorusGeometry(17, 0.08, 16, 120),
-      new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.4 })
-    );
-    halo2.rotation.x = -Math.PI / 3;
-    coreGroup.add(halo2);
-
-    // Mouse Tracking Parallax
-    let mouseX = 0, mouseY = 0;
-    let targetX = 0, targetY = 0;
-    const windowHalfX = window.innerWidth / 2;
-    const windowHalfY = window.innerHeight / 2;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX - windowHalfX) * 0.02;
-      mouseY = (e.clientY - windowHalfY) * 0.02;
-    });
-
-    // Continuous 60 FPS Render Loop
-    function renderAnimeScene() {
-      requestAnimationFrame(renderAnimeScene);
-
-      targetX += (mouseX - targetX) * 0.04;
-      targetY += (mouseY - targetY) * 0.04;
-
-      // Animate warp stream forward (light-speed streaming)
-      const positions = warpGeo.attributes.position.array;
-      for (let i = 0; i < warpCount; i++) {
-        positions[i * 6 + 2] += 1.4;
-        positions[i * 6 + 5] += 1.4;
-
-        if (positions[i * 6 + 2] > 50) {
-          positions[i * 6 + 2] = -90;
-          positions[i * 6 + 5] = -96;
-        }
-      }
-      warpGeo.attributes.position.needsUpdate = true;
-
-      // Rotate Crystalline Core & Halos
-      crystalMesh.rotation.x += 0.005;
-      crystalMesh.rotation.y += 0.007;
-      innerMesh.rotation.x -= 0.008;
-      innerMesh.rotation.y += 0.006;
-      halo1.rotation.z += 0.008;
-      halo2.rotation.z -= 0.006;
-
-      // Parallax Reaction
-      coreGroup.position.x = targetX * 0.5;
-      coreGroup.position.y = -targetY * 0.5;
-      camera.position.x = targetX * 0.15;
-      camera.position.y = 3 - (targetY * 0.15);
-
-      renderer.render(scene, camera);
-    }
-    renderAnimeScene();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      canvasContainer.appendChild(renderer.domElement);
 
-    // Real Estate Estimator
+      const warpCount = 500;
+      const warpGeo = new THREE.BufferGeometry();
+      const warpPositions = new Float32Array(warpCount * 6);
+
+      for (let i = 0; i < warpCount; i++) {
+        const x = (Math.random() - 0.5) * 120;
+        const y = (Math.random() - 0.5) * 80;
+        const z = (Math.random() - 0.5) * 150;
+        const len = Math.random() * 8 + 4;
+
+        warpPositions[i * 6] = x;
+        warpPositions[i * 6 + 1] = y;
+        warpPositions[i * 6 + 2] = z;
+
+        warpPositions[i * 6 + 3] = x;
+        warpPositions[i * 6 + 4] = y;
+        warpPositions[i * 6 + 5] = z - len;
+      }
+      warpGeo.setAttribute('position', new THREE.BufferAttribute(warpPositions, 3));
+
+      const warpMat = new THREE.LineBasicMaterial({
+        color: 0x22d3ee,
+        transparent: true,
+        opacity: 0.35
+      });
+      const warpLines = new THREE.LineSegments(warpGeo, warpMat);
+      scene.add(warpLines);
+
+      const coreGroup = new THREE.Group();
+      scene.add(coreGroup);
+
+      const crystalGeo = new THREE.OctahedronGeometry(8.5, 0);
+      const crystalMat = new THREE.MeshBasicMaterial({
+        color: 0x8b5cf6,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.45
+      });
+      const crystalMesh = new THREE.Mesh(crystalGeo, crystalMat);
+      coreGroup.add(crystalMesh);
+
+      const innerGeo = new THREE.IcosahedronGeometry(4, 1);
+      const innerMat = new THREE.MeshBasicMaterial({
+        color: 0x22d3ee,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.6
+      });
+      const innerMesh = new THREE.Mesh(innerGeo, innerMat);
+      coreGroup.add(innerMesh);
+
+      const halo1 = new THREE.Mesh(
+        new THREE.TorusGeometry(14.5, 0.12, 16, 120),
+        new THREE.MeshBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.5 })
+      );
+      halo1.rotation.x = Math.PI / 2.5;
+      coreGroup.add(halo1);
+
+      const halo2 = new THREE.Mesh(
+        new THREE.TorusGeometry(17, 0.08, 16, 120),
+        new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.4 })
+      );
+      halo2.rotation.x = -Math.PI / 3;
+      coreGroup.add(halo2);
+
+      let mouseX = 0, mouseY = 0;
+      let targetX = 0, targetY = 0;
+      const windowHalfX = window.innerWidth / 2;
+      const windowHalfY = window.innerHeight / 2;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - windowHalfX) * 0.02;
+        mouseY = (e.clientY - windowHalfY) * 0.02;
+      });
+
+      function renderAnimeScene() {
+        requestAnimationFrame(renderAnimeScene);
+
+        targetX += (mouseX - targetX) * 0.04;
+        targetY += (mouseY - targetY) * 0.04;
+
+        const positions = warpGeo.attributes.position.array;
+        for (let i = 0; i < warpCount; i++) {
+          positions[i * 6 + 2] += 1.4;
+          positions[i * 6 + 5] += 1.4;
+
+          if (positions[i * 6 + 2] > 50) {
+            positions[i * 6 + 2] = -90;
+            positions[i * 6 + 5] = -96;
+          }
+        }
+        warpGeo.attributes.position.needsUpdate = true;
+
+        crystalMesh.rotation.x += 0.005;
+        crystalMesh.rotation.y += 0.007;
+        innerMesh.rotation.x -= 0.008;
+        innerMesh.rotation.y += 0.006;
+        halo1.rotation.z += 0.008;
+        halo2.rotation.z -= 0.006;
+
+        coreGroup.position.x = targetX * 0.5;
+        coreGroup.position.y = -targetY * 0.5;
+        camera.position.x = targetX * 0.15;
+        camera.position.y = 3 - (targetY * 0.15);
+
+        renderer.render(scene, camera);
+      }
+      renderAnimeScene();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    // 2. Real Estate Estimator
     function calculateEstimate() {
       const sqft = document.getElementById('sqft').value;
       const beds = document.getElementById('beds').value;
@@ -644,41 +585,94 @@
       document.getElementById('output-price').innerText = '₹ ' + estimate.toFixed(1) + ' Lakhs';
     }
 
-    // Chatbot Engine
-    function toggleChat() {
-      const win = document.getElementById('chat-window');
-      win.classList.toggle('hidden');
-      if (!win.classList.contains('hidden')) document.getElementById('chat-input').focus();
-    }
-
-    function sendQuickPrompt(t) {
-      document.getElementById('chat-input').value = t;
-      processChatMessage(t);
-    }
-
-    function handleChatSubmit(e) {
-      e.preventDefault();
-      const inp = document.getElementById('chat-input');
-      const text = inp.value.trim();
-      if (!text) return;
-      processChatMessage(text);
-      inp.value = '';
-    }
-
-    function processChatMessage(userText) {
+    // 3. Guaranteed Chatbot Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatWin = document.getElementById('chat-window');
+      const toggleBtn = document.getElementById('chat-toggle');
+      const closeBtn = document.getElementById('chat-close');
+      const form = document.getElementById('chat-form');
+      const input = document.getElementById('chat-input');
       const box = document.getElementById('chat-messages');
-      const u = document.createElement('div');
-      u.className = 'flex justify-end';
-      u.innerHTML = `<div class="bg-gradient-to-r from-brand-600 to-cyanic-500 text-white p-3.5 rounded-2xl rounded-tr-none max-w-[85%] font-sans">${userText}</div>`;       box.appendChild(u);       box.scrollTop = box.scrollHeight;        setTimeout(() => {         const q = userText.toLowerCase().trim();         let reply = "";          if (q.includes('malaysia') \vert{}\vert{} q.includes('india') \vert{}\vert{} q.includes('country') \vert{}\vert{} q.includes('global')) {           reply = "Solvo operates across India 🇮🇳 and Malaysia 🇲🇾, engineering high-speed commercial web storefronts, lead-generation systems, and private RAG document intelligence.";         }         else if (q.includes('vpr') \vert{}\vert{} q.includes('earth mover') \vert{}\vert{} q.includes('earthmover')) {           reply = "VPR Earth Movers is a commercial client website built by Solvo using HTML, Tailwind CSS, and Netlify. You can inspect the live production website here: https://vpreartmovers.netlify.app";         }         else if (q.includes('rag') \vert{}\vert{} q.includes('llm') \vert{}\vert{} q.includes('retrieval') \vert{}\vert{} q.includes('vector') \vert{}\vert{} q.includes('document')) {           reply = "For LLMs, we engineer Retrieval-Augmented Generation (RAG) pipelines. We parse your private documents, generate vector embeddings, store them in ChromaDB or Pinecone, and apply reranking to deliver verifiable, hallucination-free answers.";         }         else if (q.includes('mlops') \vert{}\vert{} q.includes('pipeline') \vert{}\vert{} q.includes('docker') \vert{}\vert{} q.includes('deploy') \vert{}\vert{} q.includes('serving')) {           reply = "Our MLOps architecture wraps ML models into asynchronous FastAPI microservices, containerizes environments via Docker to prevent dependency drift, and implements experiment tracking for reliable production deployment.";         }         else if (q.includes('website') \vert{}\vert{} q.includes('web') \vert{}\vert{} q.includes('frontend') \vert{}\vert{} q.includes('landing page')) {           reply = "We design responsive, mobile-first commercial web platforms using HTML5, Tailwind CSS, and vanilla JavaScript. Everything is optimized for sub-second speeds, SEO visibility, and deployed on Netlify with automated CI/CD.";         }         else if (q.includes('real estate') \vert{}\vert{} q.includes('valuation') \vert{}\vert{} q.includes('calculator') \vert{}\vert{} q.includes('predict')) {           reply = "The Real Estate Valuation Engine is an interactive data app combining multi-variable regression with a client-side interface. You can test the dynamic slider sandbox on our home page!";         }         else if (q.includes('tech') \vert{}\vert{} q.includes('stack') \vert{}\vert{} q.includes('python') \vert{}\vert{} q.includes('fastapi')) {           reply = "Our core production stack includes: Frontend (HTML5, Tailwind CSS, JavaScript), Backend (Python, FastAPI, REST APIs), Data & AI (Scikit-Learn, Vector Stores, PyTorch), and DevOps (Git, GitHub, Docker, Netlify).";         }         else if (q.includes('contact') \vert{}\vert{} q.includes('phone') \vert{}\vert{} q.includes('whatsapp') \vert{}\vert{} q.includes('email') \vert{}\vert{} q.includes('reach')) {           reply = "You can connect with Solvo directly via Phone/WhatsApp at +91 93442 85549, or email ragulrao2004@gmail.com.";         }         else {           reply = `Regarding "${userText}": Solvo specializes in commercial web development, custom RAG document architectures, and production MLOps. Feel free to ask about our tech stack, past client work, or getting a project quote!`;
-        }
 
-        const b = document.createElement('div');
-        b.className = 'flex justify-start';
-        b.innerHTML = `<div class="bg-[#0c1326] text-slate-200 p-3.5 rounded-2xl rounded-tl-none border border-brand-500/20 max-w-[85%] font-sans">${reply}</div>`;
-        box.appendChild(b);
+      if (!chatWin || !toggleBtn || !form || !input || !box) {
+        return;
+      }
+
+      function toggleWindow() {
+        chatWin.classList.toggle('hidden');
+        if (!chatWin.classList.contains('hidden')) {
+          input.focus();
+        }
+      }
+
+      toggleBtn.addEventListener('click', toggleWindow);
+      if (closeBtn) {
+        closeBtn.addEventListener('click', toggleWindow);
+      }
+
+      const quickTriggers = document.querySelectorAll('.quick-trigger');
+      quickTriggers.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          handleChatSubmission(btn.innerText.trim());
+        });
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+        handleChatSubmission(text);
+        input.value = '';
+      });
+
+      function handleChatSubmission(userText) {
+        const userDiv = document.createElement('div');
+        userDiv.className = 'flex justify-end';
+        userDiv.innerHTML = `<div class="bg-gradient-to-r from-brand-600 to-cyanic-500 text-white p-3.5 rounded-2xl rounded-tr-none max-w-[85%] font-sans leading-relaxed">${userText}</div>`;
+        box.appendChild(userDiv);
         box.scrollTop = box.scrollHeight;
-      }, 280);
-    }
+
+        setTimeout(() => {
+          const q = userText.toLowerCase();
+          let reply = "";
+
+          if (q.includes('malaysia') || q.includes('india') || q.includes('country') || q.includes('global')) {
+            reply = "Syntrivo Technologies operates across India 🇮🇳 and Malaysia 🇲🇾, engineering high-speed commercial web platforms, lead-generation funnels, and private RAG document intelligence.";
+          }
+          else if (q.includes('vpr') || q.includes('earth mover') || q.includes('earthmover')) {
+            reply = "VPR Earth Movers is a commercial client engagement built and deployed by Syntrivo Technologies using HTML, Tailwind CSS, and Netlify. Inspect the live platform here: https://vpreartmovers.netlify.app";
+          }
+          else if (q.includes('rag') || q.includes('llm') || q.includes('retrieval') || q.includes('vector') || q.includes('document')) {
+            reply = "For LLMs, Syntrivo Technologies engineers Retrieval-Augmented Generation (RAG) pipelines. We parse your private enterprise documents, generate vector embeddings, store them in ChromaDB or Pinecone, and apply reranking to deliver verifiable answers without hallucinations.";
+          }
+          else if (q.includes('mlops') || q.includes('pipeline') || q.includes('docker') || q.includes('deploy') || q.includes('serving')) {
+            reply = "Our MLOps architecture wraps ML models into asynchronous FastAPI microservices, containerizes environments via Docker to prevent dependency drift, and implements experiment tracking for reliable production deployment.";
+          }
+          else if (q.includes('website') || q.includes('web') || q.includes('frontend') || q.includes('landing page')) {
+            reply = "We design responsive, mobile-first commercial web platforms using HTML5, Tailwind CSS, and clean JavaScript. Everything is optimized for sub-second speeds, SEO visibility, and deployed on Netlify with automated CI/CD.";
+          }
+          else if (q.includes('real estate') || q.includes('valuation') || q.includes('calculator') || q.includes('predict')) {
+            reply = "The Real Estate Valuation Engine is an interactive data application combining multi-variable regression with a client-side interface. You can test the dynamic slider sandbox on our home page!";
+          }
+          else if (q.includes('tech') || q.includes('stack') || q.includes('python') || q.includes('fastapi')) {
+            reply = "Our core production stack includes: Frontend (HTML5, Tailwind CSS, JavaScript), Backend (Python, FastAPI, REST APIs), Data & AI (Scikit-Learn, Vector Stores, PyTorch), and DevOps (Git, GitHub, Docker, Netlify).";
+          }
+          else if (q.includes('contact') || q.includes('phone') || q.includes('whatsapp') || q.includes('email') || q.includes('reach')) {
+            reply = "You can connect with Syntrivo Technologies directly via Phone/WhatsApp at +91 93442 85549, or email ragulrao2004@gmail.com.";
+          }
+          else {
+            reply = `Regarding "${userText}": Syntrivo Technologies specializes in commercial web development, custom RAG document architectures, and production MLOps. Feel free to ask about our tech stack, client deliveries, or starting a project!`;
+          }
+
+          const botDiv = document.createElement('div');
+          botDiv.className = 'flex justify-start';
+          botDiv.innerHTML = `<div class="bg-[#0c1326] text-slate-200 p-3.5 rounded-2xl rounded-tl-none border border-brand-500/20 max-w-[85%] font-sans leading-relaxed">${reply}</div>`;
+          box.appendChild(botDiv);
+          box.scrollTop = box.scrollHeight;
+        }, 250);
+      }
+    });
   </script>
 </body>
 </html>
