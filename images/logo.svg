@@ -1,60 +1,117 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" width="100%" height="100%">
-  <defs>
-    <!-- Core Gradients -->
-    <linearGradient id="aiWebGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#818cf8" />
-      <stop offset="50%" stop-color="#4f46e5" />
-      <stop offset="100%" stop-color="#10b981" />
-    </linearGradient>
-    
-    <linearGradient id="bracketGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#38bdf8" />
-      <stop offset="100%" stop-color="#6366f1" />
-    </linearGradient>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 760 150"
+    role="img"
+    aria-labelledby="title desc"
+>
 
-    <!-- Node Glow Filter -->
-    <filter id="nodeGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="3.5" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-  </defs>
+    <title id="title">
+        RRNOVA TECH
+    </title>
 
-  <!-- Dark Base Shield Container -->
-  <rect x="15" y="15" width="230" height="230" rx="44" fill="#07090e" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+    <desc id="desc">
+        RRNOVA TECH technology solutions logo
+    </desc>
 
-  <!-- AI Neural Pathways / Circuit Ring -->
-  <circle cx="130" cy="130" r="88" fill="none" stroke="url(#aiWebGrad)" stroke-width="2.5" stroke-dasharray="6 8" opacity="0.6"/>
 
-  <!-- Left Web Code Bracket '<' with Neural Nodes -->
-  <path d="M 68 85 L 36 130 L 68 175" fill="none" stroke="url(#bracketGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="36" cy="130" r="5" fill="#38bdf8" filter="url(#nodeGlow)"/>
+    <!-- ================= SYMBOL ================= -->
 
-  <!-- Right Web Code Bracket '>' with Neural Nodes -->
-  <path d="M 192 85 L 224 130 L 192 175" fill="none" stroke="#10b981" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="224" cy="130" r="5" fill="#10b981" filter="url(#nodeGlow)"/>
+    <g transform="translate(15 15)">
 
-  <!-- Neural Mesh Data Interconnects -->
-  <line x1="36" y1="130" x2="75" y2="130" stroke="#818cf8" stroke-width="2" stroke-dasharray="3 3"/>
-  <line x1="224" y1="130" x2="185" y2="130" stroke="#10b981" stroke-width="2" stroke-dasharray="3 3"/>
-  
-  <line x1="130" y1="42" x2="130" y2="92" stroke="#6366f1" stroke-width="2"/>
-  <line x1="130" y1="168" x2="130" y2="218" stroke="#10b981" stroke-width="2"/>
+        <circle
+            cx="60"
+            cy="60"
+            r="53"
+            fill="none"
+            stroke="#102C63"
+            stroke-width="7"
+            stroke-dasharray="250 80"
+            transform="rotate(-25 60 60)"
+        />
 
-  <!-- Apex Nodes -->
-  <circle cx="130" cy="42" r="5" fill="#818cf8" filter="url(#nodeGlow)"/>
-  <circle cx="130" cy="218" r="5" fill="#10b981" filter="url(#nodeGlow)"/>
+        <circle
+            cx="60"
+            cy="60"
+            r="42"
+            fill="none"
+            stroke="#315FE7"
+            stroke-width="5"
+            stroke-dasharray="100 45"
+            transform="rotate(35 60 60)"
+        />
 
-  <!-- Center Core Island with SOLVO Embedded Inside -->
-  <g transform="translate(65, 106)">
-    <rect width="130" height="48" rx="14" fill="#0c1017" stroke="url(#aiWebGrad)" stroke-width="2" />
-    <text x="65" y="32" 
-          font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" 
-          font-weight="900" 
-          font-size="20" 
-          letter-spacing="5" 
-          fill="#ffffff" 
-          text-anchor="middle">
-      SOLVO
+        <path
+            d="M38 91
+               V29
+               H63
+               C79 29 88 37 88 49
+               C88 59 82 66 72 69
+               L91 91
+               H73
+               L55 71
+               H53
+               V91
+               Z
+
+               M53 42
+               V59
+               H62
+               C69 59 73 55 73 50
+               C73 45 69 42 62 42
+               Z"
+
+            fill="#102C63"
+        />
+
+        <circle
+            cx="100"
+            cy="23"
+            r="7"
+            fill="#735BFF"
+        />
+
+    </g>
+
+
+    <!-- ================= WORDMARK ================= -->
+
+    <text
+        x="145"
+        y="68"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="50"
+        font-weight="800"
+        letter-spacing="3"
+        fill="#102C63"
+    >
+        RRNOVA
     </text>
-  </g>
+
+    <text
+        x="145"
+        y="110"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="29"
+        font-weight="700"
+        letter-spacing="7"
+        fill="#315FE7"
+    >
+        TECH
+    </text>
+
+
+    <!-- ================= TAGLINE ================= -->
+
+    <text
+        x="350"
+        y="108"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        font-weight="600"
+        letter-spacing="2.5"
+        fill="#6B7B96"
+    >
+        TECHNOLOGY SOLUTIONS
+    </text>
+
 </svg>
