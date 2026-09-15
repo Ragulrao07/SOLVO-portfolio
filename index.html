@@ -1,678 +1,2178 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Syntrivo Technologies // Autonomous Web Architecture & Applied AI Core</title>
+    <meta charset="UTF-8">
 
-  <!-- Browser Tab Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Crect x='15' y='15' width='230' height='230' rx='48' fill='%23050811' stroke='%238b5cf6' stroke-width='8'/%3E%3Cpath d='M 68 85 L 36 130 L 68 175' stroke='%2306b6d4' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M 192 85 L 224 130 L 192 175' stroke='%2310b981' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='36' cy='130' r='12' fill='%2306b6d4'/%3E%3Ccircle cx='224' cy='130' r='12' fill='%2310b981'/%3E%3Ccircle cx='130' cy='42' r='12' fill='%238b5cf6'/%3E%3Ccircle cx='130' cy='218' r='12' fill='%2310b981'/%3E%3Crect x='45' y='102' width='170' height='56' rx='16' fill='%23090e1a' stroke='%238b5cf6' stroke-width='4'/%3E%3Ctext x='130' y='138' font-family='system-ui,sans-serif' font-weight='900' font-size='19' letter-spacing='2' fill='%23ffffff' text-anchor='middle'%3ESYNTRIVO%3C/text%3E%3C/svg%3E">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Three.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <title>Syntrivo Technologies | AI & Software Engineering</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <meta
+        name="description"
+        content="Syntrivo Technologies builds AI systems, modern software platforms, LLM applications, automation and scalable digital products."
+    >
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          },
-          colors: {
-            brand: {
-              300: '#c4b5fd',
-              400: '#a78bfa',
-              500: '#8b5cf6',
-              600: '#7c3aed',
-              700: '#6d28d9'
-            },
-            cyanic: {
-              400: '#22d3ee',
-              500: '#06b6d4'
+    <meta
+        name="keywords"
+        content="AI development, software development, LLM, RAG, MLOps, AI automation, web development, India"
+    >
+
+    <meta name="author" content="Syntrivo Technologies">
+
+    <meta property="og:title" content="Syntrivo Technologies | AI & Software Engineering">
+
+    <meta
+        property="og:description"
+        content="AI systems and software built for real business problems."
+    >
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:url" content="https://solvoweb.netlify.app/">
+
+    <meta name="theme-color" content="#f7f8fc">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["DM Sans", "sans-serif"],
+                        heading: ["Manrope", "sans-serif"]
+                    },
+
+                    colors: {
+                        brand: {
+                            50: "#f4f3ff",
+                            100: "#ebe9ff",
+                            500: "#635bff",
+                            600: "#574fff",
+                            700: "#4a42dc"
+                        }
+                    }
+                }
             }
-          }
         }
-      }
-    }
-  </script>
-  <style>
-    #webgl-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .cyber-panel {
-      background: rgba(9, 13, 24, 0.88);
-      border: 1px solid rgba(139, 92, 246, 0.22);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .cyber-panel:hover {
-      border-color: rgba(34, 211, 238, 0.6);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px -10px rgba(139, 92, 246, 0.35);
-    }
-    .glow-text-cyan {
-      text-shadow: 0 0 16px rgba(34, 211, 238, 0.6);
-    }
-    .hud-corner {
-      position: relative;
-    }
-    .hud-corner::before {
-      content: '';
-      position: absolute;
-      top: -1px;
-      left: -1px;
-      width: 8px;
-      height: 8px;
-      border-top: 2px solid #22d3ee;
-      border-left: 2px solid #22d3ee;
-    }
-    .hud-corner::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      right: -1px;
-      width: 8px;
-      height: 8px;
-      border-bottom: 2px solid #8b5cf6;
-      border-right: 2px solid #8b5cf6;
-    }
-  </style>
+    </script>
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f7f8fc;
+            color: #111827;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .heading {
+            font-family: "Manrope", sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                100deg,
+                #111827 10%,
+                #635bff 75%,
+                #2563eb 100%
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-grid {
+            background-image:
+                linear-gradient(
+                    rgba(99, 91, 255, 0.045) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(99, 91, 255, 0.045) 1px,
+                    transparent 1px
+                );
+
+            background-size: 64px 64px;
+        }
+
+        .hero-glow {
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 999px;
+
+            background: rgba(99, 91, 255, 0.10);
+
+            filter: blur(100px);
+
+            pointer-events: none;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.78);
+
+            backdrop-filter: blur(18px);
+
+            -webkit-backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(17, 24, 39, 0.08);
+        }
+
+        .card {
+            background: #ffffff;
+
+            border: 1px solid #e7e9ef;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+
+            border-color: #d6d4ff;
+
+            box-shadow:
+                0 20px 45px rgba(17, 24, 39, 0.08);
+        }
+
+        .reveal {
+            opacity: 0;
+
+            transform: translateY(24px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+        .button-primary {
+            transition: all 0.25s ease;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 30px rgba(99, 91, 255, 0.22);
+        }
+
+        .floating {
+            animation: floating 5s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+    </style>
 </head>
-<body class="bg-[#030508] text-slate-100 antialiased font-sans selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
-  <div id="webgl-canvas"></div>
 
-  <div class="relative z-10">
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-40 bg-[#04060b]/90 border-b border-brand-500/20 backdrop-blur-md">
-      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        
-        <a href="index.html" class="flex items-center gap-3 group">
-          <div class="relative flex items-center justify-center">
-            <div class="absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-brand-500 via-cyanic-500 to-emerald-500 opacity-30 blur group-hover:opacity-75 transition duration-300"></div>
-            <svg class="w-11 h-11 relative" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="navAnimeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#22d3ee" />
-                  <stop offset="50%" stop-color="#8b5cf6" />
-                  <stop offset="100%" stop-color="#10b981" />
-                </linearGradient>
-              </defs>
-              <rect x="15" y="15" width="230" height="230" rx="48" fill="#060913" stroke="rgba(139,92,246,0.4)" stroke-width="4"/>
-              <circle cx="130" cy="130" r="86" stroke="url(#navAnimeGrad)" stroke-width="4" stroke-dasharray="6 8" opacity="0.8"/>
-              <path d="M 68 85 L 36 130 L 68 175" stroke="#22d3ee" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="36" cy="130" r="8.5" fill="#22d3ee"/>
-              <path d="M 192 85 L 224 130 L 192 175" stroke="#10b981" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="224" cy="130" r="8.5" fill="#10b981"/>
-              <line x1="130" y1="42" x2="130" y2="92" stroke="#8b5cf6" stroke-width="4.5"/>
-              <line x1="130" y1="168" x2="130" y2="218" stroke="#10b981" stroke-width="4.5"/>
-              <g transform="translate(45, 102)">
-                <rect width="170" height="56" rx="16" fill="#0a0f1d" stroke="url(#navAnimeGrad)" stroke-width="3" />
-                <text x="85" y="37" font-family="'JetBrains Mono', monospace" font-weight="900" font-size="19" letter-spacing="2" fill="#ffffff" text-anchor="middle">SYNTRIVO</text>
-              </g>
-            </svg>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-lg sm:text-xl font-black tracking-wider text-white leading-tight font-mono">SYNTRIVO<span class="text-cyanic-400 animate-pulse">_</span></span>
-            <span class="text-[9px] font-mono tracking-[0.22em] text-brand-300 uppercase">TECHNOLOGIES // AI &amp; WEB</span>
-          </div>
-        </a>
+<body class="antialiased">
 
-        <!-- Desktop Links -->
-        <div class="hidden md:flex items-center space-x-8 text-xs font-mono tracking-wider text-slate-300">
-          <a href="index.html" class="text-white text-cyanic-400 flex items-center gap-1.5">
-            <span class="text-cyanic-400">01//</span> HOME
-          </a>
-          <a href="services.html" class="hover:text-cyanic-400 transition flex items-center gap-1.5">
-            <span class="text-brand-400">02//</span> SERVICES
-          </a>
-          <a href="#projects" class="hover:text-cyanic-400 transition flex items-center gap-1.5">
-            <span class="text-emerald-400">03//</span> CLIENTS
-          </a>
-          <a href="contact.html" class="hover:text-cyanic-400 transition flex items-center gap-1.5">
-            <span class="text-slate-500">04//</span> CONTACT
-          </a>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header
+        class="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl"
+    >
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <nav class="h-[76px] flex items-center justify-between">
+
+                <!-- Logo -->
+
+                <a
+                    href="index.html"
+                    class="flex items-center gap-3"
+                    aria-label="Syntrivo Technologies home"
+                >
+
+                    <img
+                        src="images/logo.svg"
+                        alt="Syntrivo"
+                        class="w-9 h-9"
+                    >
+
+                    <div>
+
+                        <div
+                            class="heading font-extrabold tracking-tight text-slate-900 text-lg"
+                        >
+                            SYNTRIVO
+                        </div>
+
+                        <div
+                            class="text-[9px] tracking-[0.25em] text-slate-500 uppercase"
+                        >
+                            Technologies
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Desktop navigation -->
+
+                <div
+                    id="desktopNav"
+                    class="hidden md:flex items-center gap-8"
+                >
+
+                    <a
+                        href="index.html"
+                        class="text-sm font-medium text-slate-900"
+                    >
+                        Home
+                    </a>
+
+                    <a
+                        href="services.html"
+                        class="text-sm font-medium text-slate-500 hover:text-slate-900 transition"
+                    >
+                        Services
+                    </a>
+
+                    <a
+                        href="#work"
+                        class="text-sm font-medium text-slate-500 hover:text-slate-900 transition"
+                    >
+                        Work
+                    </a>
+
+                    <a
+                        href="#about"
+                        class="text-sm font-medium text-slate-500 hover:text-slate-900 transition"
+                    >
+                        About
+                    </a>
+
+                </div>
+
+
+                <!-- Desktop CTA -->
+
+                <a
+                    href="contact.html"
+                    class="hidden md:inline-flex items-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white button-primary"
+                >
+
+                    Start a project
+
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+
+                </a>
+
+
+                <!-- Mobile menu -->
+
+                <button
+                    id="menuButton"
+                    class="md:hidden p-2 text-slate-800"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                >
+
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+
+                </button>
+
+            </nav>
+
         </div>
 
-        <!-- Quick Action CTAs -->
-        <div class="flex items-center gap-3">
-          <a href="https://wa.me/919344285549?text=Hi%20Syntrivo%20Technologies,%20I%20would%20like%20to%20discuss%20a%20project" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-semibold rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20 transition group">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>WHATSAPP</span>
-          </a>
-          <a href="contact.html" class="relative px-5 py-2.5 text-xs font-mono font-bold rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-cyanic-500 hover:opacity-90 text-white shadow-xl shadow-brand-500/30 transition transform hover:-translate-y-0.5">
-            INIT_PROJECT →
-          </a>
+
+        <!-- Mobile navigation -->
+
+        <div
+            id="mobileNav"
+            class="hidden md:hidden border-t border-slate-200 bg-white"
+        >
+
+            <div class="px-5 py-5 space-y-1">
+
+                <a
+                    href="index.html"
+                    class="block rounded-lg px-4 py-3 font-medium text-slate-900 bg-slate-50"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="services.html"
+                    class="block rounded-lg px-4 py-3 font-medium text-slate-600 hover:bg-slate-50"
+                >
+                    Services
+                </a>
+
+                <a
+                    href="#work"
+                    class="block rounded-lg px-4 py-3 font-medium text-slate-600 hover:bg-slate-50"
+                >
+                    Work
+                </a>
+
+                <a
+                    href="#about"
+                    class="block rounded-lg px-4 py-3 font-medium text-slate-600 hover:bg-slate-50"
+                >
+                    About
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="block mt-3 rounded-lg bg-slate-950 px-4 py-3 text-center font-semibold text-white"
+                >
+                    Start a project
+                </a>
+
+            </div>
+
         </div>
-      </div>
-    </nav>
 
-    <!-- Hero Header -->
-    <header class="relative pt-44 pb-28 px-6 max-w-7xl mx-auto text-center space-y-7">
-      <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#0a0f1d] border border-cyanic-500/30 text-xs font-mono text-cyanic-400 shadow-2xl">
-        <span class="w-2 h-2 rounded-full bg-cyanic-400 animate-pulse"></span>
-        <span>SYNTRIVO CORE ACTIVE // 3D HYPERSPACE ENGINE ON</span>
-      </div>
-
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] max-w-5xl mx-auto">
-        Architecting lightning web engines &amp; <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyanic-400 via-brand-300 to-emerald-400 glow-text-cyan">autonomous AI neural cores.</span>
-      </h1>
-
-      <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
-        Syntrivo Technologies engineers high-throughput commercial web platforms, document-grounded RAG pipelines, and automated MLOps pipelines across India and Malaysia.
-      </p>
-
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-4 font-mono text-xs">
-        <a href="services.html" class="px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-cyanic-500 text-white font-bold tracking-wider shadow-2xl shadow-brand-600/50 hover:opacity-95 transition flex items-center gap-2 group">
-          <span>DEPLOY_CAPABILITIES</span>
-          <span class="group-hover:translate-x-1 transition-transform">→</span>
-        </a>
-        <a href="#projects" class="px-8 py-4 rounded-xl bg-[#090e1b] hover:bg-[#11172a] border border-brand-500/30 text-slate-200 font-semibold tracking-wider transition">
-          EXPLORE_CLIENT_WORK
-        </a>
-      </div>
     </header>
 
-    <!-- International Hub: India & Malaysia -->
-    <section class="py-16 px-6 max-w-7xl mx-auto border-t border-brand-500/20">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-        <div>
-          <span class="text-xs font-mono font-bold text-cyanic-400 tracking-widest uppercase">// INTERNATIONAL MATRIX</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Cross-Border Delivery Operations</h2>
-          <p class="text-slate-300 text-sm mt-2 max-w-2xl">
-            Engineering scalable web architectures and production AI pipelines for commercial enterprises across India and Malaysia.
-          </p>
-        </div>
-        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#080d19] border border-emerald-500/30 text-xs font-mono text-emerald-400 self-start md:self-auto">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          ACTIVE NODES: INDIA (IST) &amp; MALAYSIA (MYT)
-        </div>
-      </div>
 
-      <div class="grid md:grid-cols-2 gap-6">
-        <!-- India Node -->
-        <div class="cyber-panel hud-corner p-8 rounded-3xl space-y-4">
-          <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
-            <div class="flex items-center gap-3">
-              <span class="text-3xl">🇮🇳</span>
-              <div>
-                <h3 class="text-lg font-bold text-white font-mono">India Operations</h3>
-                <span class="text-xs text-brand-300 font-mono">Domestic High-Speed Builds</span>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">OPERATIONAL</span>
-          </div>
+    <main>
 
-          <p class="text-sm text-slate-300 leading-relaxed font-normal">
-            Delivering high-throughput web platforms, local SEO infrastructure, and automated customer inquiry channels for domestic enterprises and equipment rental fleets.
-          </p>
 
-          <div class="space-y-2 pt-2 text-xs font-mono">
-            <div class="flex items-center justify-between bg-[#060a14] p-3 rounded-xl border border-brand-500/20">
-              <span class="text-slate-400">Flagship Deployment:</span>
-              <a href="https://vpreartmovers.netlify.app" target="_blank" class="text-cyanic-400 font-bold hover:underline">VPR Earth Movers ↗</a>
-            </div>
-            <div class="flex items-center justify-between bg-[#060a14] p-3 rounded-xl border border-brand-500/20">
-              <span class="text-slate-400">Core Deliverables:</span>
-              <span class="text-white">Custom Web Platforms, Lead Funnels, REST APIs</span>
-            </div>
-          </div>
-        </div>
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
 
-        <!-- Malaysia Node -->
-        <div class="cyber-panel hud-corner p-8 rounded-3xl space-y-4">
-          <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
-            <div class="flex items-center gap-3">
-              <span class="text-3xl">🇲🇾</span>
-              <div>
-                <h3 class="text-lg font-bold text-white font-mono">Malaysia Operations</h3>
-                <span class="text-xs text-cyanic-400 font-mono">International ASEAN Node</span>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-full bg-cyanic-500/15 text-cyanic-400 border border-cyanic-500/30 text-xs font-mono font-bold">GLOBAL LINK</span>
-          </div>
+        <section
+            class="relative min-h-screen overflow-hidden pt-32 pb-20 flex items-center hero-grid"
+        >
 
-          <p class="text-sm text-slate-300 leading-relaxed font-normal">
-            Providing commercial web solutions, edge hosting, and applied AI document architectures for business clients in Malaysia with end-to-end remote coordination.
-          </p>
+            <div
+                class="hero-glow top-[-180px] right-[-150px]"
+            ></div>
 
-          <div class="space-y-2 pt-2 text-xs font-mono">
-            <div class="flex items-center justify-between bg-[#060a14] p-3 rounded-xl border border-brand-500/20">
-              <span class="text-slate-400">Delivery Vector:</span>
-              <span class="text-emerald-400 font-bold">Direct Remote Engineering</span>
-            </div>
-            <div class="flex items-center justify-between bg-[#060a14] p-3 rounded-xl border border-brand-500/20">
-              <span class="text-slate-400">Core Deliverables:</span>
-              <span class="text-white">Modern Web Platforms, RAG Search, Global CDN</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            <div
+                class="hero-glow bottom-[-250px] left-[-250px]"
+            ></div>
 
-    <!-- Core Engineering Capabilities -->
-    <section class="py-16 px-6 max-w-7xl mx-auto border-t border-brand-500/20">
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="cyber-panel p-8 rounded-3xl space-y-3">
-          <div class="w-12 h-12 rounded-2xl bg-cyanic-500/10 border border-cyanic-500/30 flex items-center justify-center text-cyanic-400 mb-4">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          </div>
-          <h3 class="text-xl font-bold text-white font-mono">Modern Web Systems</h3>
-          <p class="text-sm text-slate-300 leading-relaxed">Sub-second commercial websites, single-page reactive apps, and lead capture systems built with clean HTML5 &amp; Tailwind CSS.</p>
-          <a href="services.html#web" class="inline-flex items-center gap-1.5 text-xs text-cyanic-400 font-mono font-bold pt-2 hover:text-cyanic-300">SYSTEM_SPECS →</a>
-        </div>
 
-        <div class="cyber-panel p-8 rounded-3xl space-y-3">
-          <div class="w-12 h-12 rounded-2xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 mb-4">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          </div>
-          <h3 class="text-xl font-bold text-white font-mono">LLM &amp; RAG Pipelines</h3>
-          <p class="text-sm text-slate-300 leading-relaxed">Document ingestion, semantic vector retrieval, and hallucination-free conversational knowledge engines anchored into company data.</p>
-          <a href="services.html#llm" class="inline-flex items-center gap-1.5 text-xs text-brand-400 font-mono font-bold pt-2 hover:text-brand-300">PIPELINE_FLOW →</a>
-        </div>
+            <div
+                class="relative max-w-7xl mx-auto px-5 lg:px-8 w-full"
+            >
 
-        <div class="cyber-panel p-8 rounded-3xl space-y-3">
-          <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
-          </div>
-          <h3 class="text-xl font-bold text-white font-mono">MLOps &amp; Serving Core</h3>
-          <p class="text-sm text-slate-300 leading-relaxed">FastAPI microservices, Docker container orchestration, schema validation, and live production machine learning endpoints.</p>
-          <a href="services.html#mlops" class="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-mono font-bold pt-2 hover:text-emerald-300">SERVING_INFRA →</a>
-        </div>
-      </div>
-    </section>
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
 
-    <!-- Client Work Section -->
-    <section id="projects" class="py-24 px-6 max-w-7xl mx-auto border-t border-brand-500/20">
-      <div class="mb-14">
-        <span class="text-xs uppercase font-mono font-bold text-brand-400 tracking-widest">// VALIDATED DEPLOYMENTS</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Featured Client Systems</h2>
-      </div>
 
-      <div class="space-y-12">
-        <!-- VPR Earth Movers -->
-        <div class="cyber-panel hud-corner p-8 sm:p-10 rounded-3xl grid lg:grid-cols-3 gap-8 items-center">
-          <div class="lg:col-span-2 space-y-4">
-            <div class="flex items-center gap-2">
-              <span class="px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-semibold flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                COMMERCIAL CLIENT // LIVE
-              </span>
-              <span class="text-xs font-mono text-slate-400">HEAVY EQUIPMENT LOGISTICS</span>
-            </div>
+                    <!-- Hero content -->
 
-            <div>
-              <h3 class="text-2xl sm:text-3xl font-bold text-white font-mono">VPR Earth Movers</h3>
-              <p class="text-xs text-cyanic-400 font-mono mt-1">Commercial Earthmoving &amp; Machinery Hiring Platform</p>
-            </div>
+                    <div class="reveal">
 
-            <div class="flex flex-wrap gap-x-6 gap-y-1 text-xs font-mono text-slate-300 pt-1 border-y border-white/[0.08] py-2.5">
-              <div><span class="text-slate-500 font-medium">Client:</span> VPR Earth Movers</div>
-              <div><span class="text-slate-500 font-medium">Scope:</span> Fast Landing Page &amp; Inquiries</div>
-              <div><span class="text-slate-500 font-medium">Deployment:</span> Netlify Edge CDN</div>
-            </div>
+                        <div
+                            class="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-white px-4 py-2 text-xs font-semibold text-brand-700 shadow-sm mb-7"
+                        >
 
-            <p class="text-slate-300 text-sm leading-relaxed">
-              Engineered a high-performance commercial web portal for a regional equipment hiring enterprise. Built with a clean, mobile-first responsive layout utilizing Tailwind CSS, ensuring lightning-fast mobile rendering and direct client inquiry captures.
-            </p>
+                            <span
+                                class="w-2 h-2 rounded-full bg-brand-500"
+                            ></span>
 
-            <div class="flex flex-wrap gap-2 pt-2 text-xs font-mono">
-              <span class="px-3 py-1 rounded-md bg-[#050811] text-cyanic-400 border border-cyanic-500/30">HTML5</span>
-              <span class="px-3 py-1 rounded-md bg-[#050811] text-cyanic-400 border border-cyanic-500/30">Tailwind CSS</span>
-              <span class="px-3 py-1 rounded-md bg-[#050811] text-cyanic-400 border border-cyanic-500/30">Git Versioning</span>
-              <span class="px-3 py-1 rounded-md bg-[#050811] text-cyanic-400 border border-cyanic-500/30">Netlify CDN</span>
-            </div>
-          </div>
+                            AI & Software Engineering
 
-          <div class="flex flex-col gap-3 justify-center lg:border-l lg:border-brand-500/20 lg:pl-8">
-            <a href="https://vpreartmovers.netlify.app" target="_blank" rel="noopener noreferrer" class="w-full text-center py-4 rounded-xl bg-gradient-to-r from-brand-600 to-cyanic-500 hover:opacity-90 text-white text-xs font-mono font-bold shadow-xl shadow-brand-500/30 transition flex items-center justify-center gap-2 group">
-              <span>VIEW LIVE WEBSITE</span>
-              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            </a>
-            <a href="contact.html" class="w-full text-center py-3.5 rounded-xl bg-[#060a14] hover:bg-[#0c1222] text-slate-300 text-xs font-mono font-medium border border-brand-500/25 transition">
-              REQUEST SIMILAR BUILD
-            </a>
-          </div>
-        </div>
+                        </div>
 
-        <!-- Real Estate Valuation Engine -->
-        <div class="cyber-panel p-8 sm:p-10 rounded-3xl">
-          <div class="grid lg:grid-cols-2 gap-10 items-center">
-            <div class="space-y-4">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-brand-500/10 text-brand-400 border border-brand-500/30 text-xs font-mono font-semibold">
-                APPLIED AI / ML PROTOTYPE
-              </div>
-              <h3 class="text-2xl sm:text-3xl font-bold text-white font-mono">Real Estate Valuation Engine</h3>
-              <p class="text-slate-300 text-sm leading-relaxed">
-                An intelligent valuation service implementing multi-variable regression modeling to compute real-time property estimates. Preprocesses housing parameters and exposes predictions through lightweight inference endpoints.
-              </p>
-              <div class="flex flex-wrap gap-2 text-xs font-mono">
-                <span class="px-3 py-1 rounded-md bg-[#050811] text-brand-300 border border-brand-500/30">Python</span>
-                <span class="px-3 py-1 rounded-md bg-[#050811] text-brand-300 border border-brand-500/30">FastAPI</span>
-                <span class="px-3 py-1 rounded-md bg-[#050811] text-brand-300 border border-brand-500/30">Linear Regression</span>
-                <span class="px-3 py-1 rounded-md bg-[#050811] text-brand-300 border border-brand-500/30">REST API</span>
-              </div>
-            </div>
 
-            <!-- Dynamic Slider Sandbox -->
-            <div class="p-6 rounded-2xl bg-[#04060c] border border-cyanic-500/30 space-y-5 shadow-2xl">
-              <div class="flex justify-between items-center border-b border-white/[0.08] pb-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-cyanic-400 font-mono">INFERENCE_SANDBOX</span>
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-              </div>
-              <div>
-                <div class="flex justify-between text-xs text-slate-300 mb-2 font-mono">
-                  <span>BUILT-UP AREA</span>
-                  <span id="sqft-val" class="font-bold text-cyanic-400">1,450 sq.ft</span>
+                        <h1
+                            class="heading text-5xl sm:text-6xl lg:text-[72px] leading-[1.02] tracking-[-0.055em] font-extrabold text-slate-950"
+                        >
+
+                            Technology built around
+
+                            <span class="gradient-text">
+                                real business problems.
+                            </span>
+
+                        </h1>
+
+
+                        <p
+                            class="mt-7 max-w-xl text-lg leading-8 text-slate-600"
+                        >
+
+                            Syntrivo Technologies designs and builds
+                            modern software platforms, AI applications,
+                            intelligent automation and production-ready
+                            engineering systems.
+
+                        </p>
+
+
+                        <div
+                            class="mt-9 flex flex-wrap gap-3"
+                        >
+
+                            <a
+                                href="contact.html"
+                                class="button-primary inline-flex items-center gap-2 rounded-xl bg-slate-950 px-6 py-3.5 text-sm font-bold text-white"
+                            >
+
+                                Start a project
+
+                                <i
+                                    data-lucide="arrow-up-right"
+                                    class="w-4 h-4"
+                                ></i>
+
+                            </a>
+
+
+                            <a
+                                href="#work"
+                                class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-800 hover:border-slate-400 transition"
+                            >
+
+                                Explore our work
+
+                                <i
+                                    data-lucide="arrow-down"
+                                    class="w-4 h-4"
+                                ></i>
+
+                            </a>
+
+                        </div>
+
+
+                        <div
+                            class="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-slate-500"
+                        >
+
+                            <span class="flex items-center gap-2">
+
+                                <i
+                                    data-lucide="check"
+                                    class="w-4 h-4 text-brand-600"
+                                ></i>
+
+                                Business-first
+
+                            </span>
+
+                            <span class="flex items-center gap-2">
+
+                                <i
+                                    data-lucide="check"
+                                    class="w-4 h-4 text-brand-600"
+                                ></i>
+
+                                Production-minded
+
+                            </span>
+
+                            <span class="flex items-center gap-2">
+
+                                <i
+                                    data-lucide="check"
+                                    class="w-4 h-4 text-brand-600"
+                                ></i>
+
+                                AI-native
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Hero visual -->
+
+                    <div class="relative reveal">
+
+                        <div
+                            class="relative mx-auto max-w-[520px] aspect-square"
+                        >
+
+                            <div
+                                class="absolute inset-10 rounded-[40px] bg-gradient-to-br from-brand-100 via-white to-blue-50 border border-white shadow-2xl"
+                            ></div>
+
+
+                            <!-- Main architecture card -->
+
+                            <div
+                                class="glass floating absolute top-[12%] left-[7%] w-[78%] rounded-2xl p-5 shadow-xl"
+                            >
+
+                                <div
+                                    class="flex items-center justify-between mb-6"
+                                >
+
+                                    <div>
+
+                                        <p class="text-xs text-slate-400">
+                                            SYSTEM ARCHITECTURE
+                                        </p>
+
+                                        <p
+                                            class="heading font-bold text-slate-900 mt-1"
+                                        >
+                                            Intelligent Platform
+                                        </p>
+
+                                    </div>
+
+                                    <div
+                                        class="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center"
+                                    >
+
+                                        <i
+                                            data-lucide="layers-3"
+                                            class="w-4 h-4 text-brand-600"
+                                        ></i>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="space-y-3">
+
+                                    <div
+                                        class="flex items-center gap-3"
+                                    >
+
+                                        <div
+                                            class="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center"
+                                        >
+
+                                            <i
+                                                data-lucide="globe"
+                                                class="w-4 h-4 text-blue-600"
+                                            ></i>
+
+                                        </div>
+
+                                        <div class="flex-1">
+
+                                            <div
+                                                class="h-2 bg-slate-100 rounded-full"
+                                            >
+
+                                                <div
+                                                    class="h-2 rounded-full bg-brand-500 w-[82%]"
+                                                ></div>
+
+                                            </div>
+
+                                            <p class="text-[10px] text-slate-400 mt-1">
+                                                Application layer
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div
+                                        class="flex items-center gap-3"
+                                    >
+
+                                        <div
+                                            class="w-9 h-9 rounded-lg bg-violet-50 flex items-center justify-center"
+                                        >
+
+                                            <i
+                                                data-lucide="brain"
+                                                class="w-4 h-4 text-violet-600"
+                                            ></i>
+
+                                        </div>
+
+                                        <div class="flex-1">
+
+                                            <div
+                                                class="h-2 bg-slate-100 rounded-full"
+                                            >
+
+                                                <div
+                                                    class="h-2 rounded-full bg-violet-500 w-[67%]"
+                                                ></div>
+
+                                            </div>
+
+                                            <p class="text-[10px] text-slate-400 mt-1">
+                                                AI / intelligence layer
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div
+                                        class="flex items-center gap-3"
+                                    >
+
+                                        <div
+                                            class="w-9 h-9 rounded-lg bg-emerald-50 flex items-center justify-center"
+                                        >
+
+                                            <i
+                                                data-lucide="database"
+                                                class="w-4 h-4 text-emerald-600"
+                                            ></i>
+
+                                        </div>
+
+                                        <div class="flex-1">
+
+                                            <div
+                                                class="h-2 bg-slate-100 rounded-full"
+                                            >
+
+                                                <div
+                                                    class="h-2 rounded-full bg-emerald-500 w-[91%]"
+                                                ></div>
+
+                                            </div>
+
+                                            <p class="text-[10px] text-slate-400 mt-1">
+                                                Data infrastructure
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Floating AI card -->
+
+                            <div
+                                class="glass floating absolute bottom-[13%] right-[2%] w-[45%] rounded-2xl p-5 shadow-xl"
+                                style="animation-delay: -2s;"
+                            >
+
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center mb-4"
+                                >
+
+                                    <i
+                                        data-lucide="sparkles"
+                                        class="w-5 h-5 text-brand-600"
+                                    ></i>
+
+                                </div>
+
+                                <p
+                                    class="text-xs text-slate-400"
+                                >
+                                    AI SYSTEM
+                                </p>
+
+                                <p
+                                    class="heading font-bold text-slate-900 mt-1"
+                                >
+                                    LLM + RAG
+                                </p>
+
+                                <div
+                                    class="mt-4 flex items-center gap-2"
+                                >
+
+                                    <span
+                                        class="w-2 h-2 rounded-full bg-emerald-500"
+                                    ></span>
+
+                                    <span
+                                        class="text-[11px] text-slate-500"
+                                    >
+                                        Production ready
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Small cloud card -->
+
+                            <div
+                                class="absolute bottom-[4%] left-[4%] bg-slate-950 text-white rounded-2xl p-4 shadow-xl"
+                            >
+
+                                <div class="flex items-center gap-3">
+
+                                    <i
+                                        data-lucide="cloud"
+                                        class="w-5 h-5 text-blue-300"
+                                    ></i>
+
+                                    <div>
+
+                                        <p class="text-[10px] text-slate-400">
+                                            INFRASTRUCTURE
+                                        </p>
+
+                                        <p class="text-xs font-semibold">
+                                            Cloud & MLOps
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-                <input type="range" id="sqft" min="500" max="4000" step="50" value="1450" class="w-full accent-cyanic-500 bg-slate-800 cursor-pointer" oninput="calculateEstimate()">
-              </div>
-              <div>
-                <div class="flex justify-between text-xs text-slate-300 mb-2 font-mono">
-                  <span>CONFIGURATION</span>
-                  <span id="beds-val" class="font-bold text-cyanic-400">3 BHK</span>
-                </div>
-                <input type="range" id="beds" min="1" max="5" step="1" value="3" class="w-full accent-cyanic-500 bg-slate-800 cursor-pointer" oninput="calculateEstimate()">
-              </div>
-              <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between font-mono">
-                <span class="text-xs text-slate-400">COMPUTED ESTIMATE:</span>
-                <span id="output-price" class="text-2xl font-black text-emerald-400">₹ 57.5 Lakhs</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-brand-500/20 px-6 max-w-7xl mx-auto">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
-        <p>© 2026 SYNTRIVO TECHNOLOGIES. ARCHITECTED FOR AUTONOMOUS SCALE.</p>
-        <div class="flex items-center gap-6">
-          <a href="tel:+919344285549" class="hover:text-cyanic-400 transition">+91 93442 85549</a>
-          <a href="mailto:ragulrao2004@gmail.com" class="hover:text-cyanic-400 transition">ragulrao2004@gmail.com</a>
-          <a href="https://wa.me/919344285549" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition">WHATSAPP ↗</a>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TRUST / POSITIONING
+        ====================================================== -->
+
+        <section class="border-y border-slate-200 bg-white">
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8 py-8"
+            >
+
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 gap-6"
+                >
+
+                    <div class="flex items-center gap-3">
+
+                        <div
+                            class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center"
+                        >
+
+                            <i
+                                data-lucide="code-2"
+                                class="w-5 h-5 text-brand-600"
+                            ></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-sm font-bold text-slate-900">
+                                Software
+                            </p>
+
+                            <p class="text-xs text-slate-500">
+                                Engineering
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="flex items-center gap-3">
+
+                        <div
+                            class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center"
+                        >
+
+                            <i
+                                data-lucide="brain"
+                                class="w-5 h-5 text-blue-600"
+                            ></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-sm font-bold text-slate-900">
+                                Artificial Intelligence
+                            </p>
+
+                            <p class="text-xs text-slate-500">
+                                Applied AI
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="flex items-center gap-3">
+
+                        <div
+                            class="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center"
+                        >
+
+                            <i
+                                data-lucide="database"
+                                class="w-5 h-5 text-violet-600"
+                            ></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-sm font-bold text-slate-900">
+                                Data & MLOps
+                            </p>
+
+                            <p class="text-xs text-slate-500">
+                                Infrastructure
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="flex items-center gap-3">
+
+                        <div
+                            class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center"
+                        >
+
+                            <i
+                                data-lucide="workflow"
+                                class="w-5 h-5 text-emerald-600"
+                            ></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-sm font-bold text-slate-900">
+                                Automation
+                            </p>
+
+                            <p class="text-xs text-slate-500">
+                                Intelligent workflows
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SERVICES
+        ====================================================== -->
+
+        <section
+            id="services"
+            class="py-24 lg:py-32"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div
+                    class="max-w-2xl mb-14 reveal"
+                >
+
+                    <p
+                        class="text-xs font-bold tracking-[0.2em] uppercase text-brand-600 mb-4"
+                    >
+                        What we do
+                    </p>
+
+                    <h2
+                        class="heading text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-950"
+                    >
+                        From idea to production.
+                    </h2>
+
+                    <p
+                        class="mt-5 text-slate-600 leading-7"
+                    >
+                        We combine software engineering, AI and
+                        cloud infrastructure to build technology
+                        that solves practical business problems.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="grid md:grid-cols-2 gap-5"
+                >
+
+                    <!-- Service 01 -->
+
+                    <article class="card rounded-2xl p-8 reveal">
+
+                        <div
+                            class="flex items-center justify-between"
+                        >
+
+                            <span
+                                class="text-xs font-bold text-slate-400"
+                            >
+                                01
+                            </span>
+
+                            <div
+                                class="w-11 h-11 rounded-xl bg-brand-50 flex items-center justify-center"
+                            >
+
+                                <i
+                                    data-lucide="layout-dashboard"
+                                    class="w-5 h-5 text-brand-600"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                        <h3
+                            class="heading text-2xl font-bold mt-10 text-slate-950"
+                        >
+                            Web & Software Platforms
+                        </h3>
+
+                        <p
+                            class="mt-3 text-sm leading-7 text-slate-600"
+                        >
+                            Business websites, dashboards, portals,
+                            custom applications and digital platforms
+                            designed around real workflows.
+                        </p>
+
+                        <div class="mt-6 flex flex-wrap gap-2">
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                React
+                            </span>
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                Next.js
+                            </span>
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                APIs
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Service 02 -->
+
+                    <article class="card rounded-2xl p-8 reveal">
+
+                        <div
+                            class="flex items-center justify-between"
+                        >
+
+                            <span
+                                class="text-xs font-bold text-slate-400"
+                            >
+                                02
+                            </span>
+
+                            <div
+                                class="w-11 h-11 rounded-xl bg-violet-50 flex items-center justify-center"
+                            >
+
+                                <i
+                                    data-lucide="sparkles"
+                                    class="w-5 h-5 text-violet-600"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                        <h3
+                            class="heading text-2xl font-bold mt-10 text-slate-950"
+                        >
+                            AI & LLM Applications
+                        </h3>
+
+                        <p
+                            class="mt-3 text-sm leading-7 text-slate-600"
+                        >
+                            Intelligent applications using language
+                            models, RAG, document intelligence and
+                            AI-powered workflows.
+                        </p>
+
+                        <div class="mt-6 flex flex-wrap gap-2">
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                LLM
+                            </span>
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                RAG
+                            </span>
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                AI Agents
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Service 03 -->
+
+                    <article class="card rounded-2xl p-8 reveal">
+
+                        <div
+                            class="flex items-center justify-between"
+                        >
+
+                            <span
+                                class="text-xs font-bold text-slate-400"
+                            >
+                                03
+                            </span>
+
+                            <div
+                                class="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center"
+                            >
+
+                                <i
+                                    data-lucide="server-cog"
+                                    class="w-5 h-5 text-blue-600"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                        <h3
+                            class="heading text-2xl font-bold mt-10 text-slate-950"
+                        >
+                            MLOps & AI Infrastructure
+                        </h3>
+
+                        <p
+                            class="mt-3 text-sm leading-7 text-slate-600"
+                        >
+                            Model deployment, APIs, containers,
+                            CI/CD pipelines, monitoring and scalable
+                            machine-learning infrastructure.
+                        </p>
+
+                        <div class="mt-6 flex flex-wrap gap-2">
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                Docker
+                            </span>
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                FastAPI
+                            </span>
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                CI/CD
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Service 04 -->
+
+                    <article class="card rounded-2xl p-8 reveal">
+
+                        <div
+                            class="flex items-center justify-between"
+                        >
+
+                            <span
+                                class="text-xs font-bold text-slate-400"
+                            >
+                                04
+                            </span>
+
+                            <div
+                                class="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center"
+                            >
+
+                                <i
+                                    data-lucide="workflow"
+                                    class="w-5 h-5 text-emerald-600"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                        <h3
+                            class="heading text-2xl font-bold mt-10 text-slate-950"
+                        >
+                            Intelligent Automation
+                        </h3>
+
+                        <p
+                            class="mt-3 text-sm leading-7 text-slate-600"
+                        >
+                            Connect systems, automate repetitive
+                            operations and introduce AI into existing
+                            business workflows.
+                        </p>
+
+                        <div class="mt-6 flex flex-wrap gap-2">
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                APIs
+                            </span>
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                Workflows
+                            </span>
+
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs text-slate-600">
+                                Automation
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="mt-8">
+
+                    <a
+                        href="services.html"
+                        class="inline-flex items-center gap-2 text-sm font-bold text-brand-600 hover:text-brand-700"
+                    >
+
+                        Explore all services
+
+                        <i
+                            data-lucide="arrow-right"
+                            class="w-4 h-4"
+                        ></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WORK
+        ====================================================== -->
+
+        <section
+            id="work"
+            class="py-24 lg:py-32 bg-white border-y border-slate-200"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div
+                    class="max-w-2xl mb-14 reveal"
+                >
+
+                    <p
+                        class="text-xs font-bold tracking-[0.2em] uppercase text-brand-600 mb-4"
+                    >
+                        Selected work
+                    </p>
+
+                    <h2
+                        class="heading text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-950"
+                    >
+                        Practical technology.
+                    </h2>
+
+                    <p
+                        class="mt-5 text-slate-600 leading-7"
+                    >
+                        A selection of software and applied AI
+                        projects. As Syntrivo grows, this section can
+                        become a detailed case-study portfolio.
+                    </p>
+
+                </div>
+
+
+                <!-- Project 1 -->
+
+                <article
+                    class="grid lg:grid-cols-2 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 reveal"
+                >
+
+                    <div
+                        class="min-h-[360px] lg:min-h-[470px] p-8 flex items-center justify-center bg-gradient-to-br from-slate-100 via-white to-brand-50"
+                    >
+
+                        <div
+                            class="w-full max-w-md rounded-2xl bg-white border border-slate-200 shadow-2xl p-5"
+                        >
+
+                            <div class="flex items-center justify-between">
+
+                                <div>
+
+                                    <div class="h-2 w-20 bg-slate-200 rounded"></div>
+
+                                    <div class="h-2 w-32 bg-slate-100 rounded mt-2"></div>
+
+                                </div>
+
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-brand-50"
+                                ></div>
+
+                            </div>
+
+
+                            <div class="grid grid-cols-3 gap-3 mt-8">
+
+                                <div class="h-24 rounded-xl bg-slate-50"></div>
+
+                                <div class="h-24 rounded-xl bg-brand-50"></div>
+
+                                <div class="h-24 rounded-xl bg-blue-50"></div>
+
+                            </div>
+
+
+                            <div class="mt-5 space-y-3">
+
+                                <div class="h-3 bg-slate-100 rounded"></div>
+
+                                <div class="h-3 bg-slate-100 rounded w-4/5"></div>
+
+                                <div class="h-3 bg-brand-100 rounded w-2/3"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-8 lg:p-12 flex flex-col justify-center">
+
+                        <span
+                            class="text-xs font-bold tracking-[0.15em] uppercase text-brand-600"
+                        >
+                            Commercial web platform
+                        </span>
+
+                        <h3
+                            class="heading mt-4 text-3xl lg:text-4xl font-extrabold text-slate-950"
+                        >
+                            VPR Earth Movers
+                        </h3>
+
+                        <p
+                            class="mt-5 text-slate-600 leading-7"
+                        >
+                            A modern digital platform designed to
+                            improve online visibility, customer
+                            enquiries and service discovery for an
+                            earthmoving business.
+                        </p>
+
+
+                        <div
+                            class="mt-7 flex flex-wrap gap-2"
+                        >
+
+                            <span class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs text-slate-600">
+                                Responsive UI
+                            </span>
+
+                            <span class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs text-slate-600">
+                                SEO
+                            </span>
+
+                            <span class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs text-slate-600">
+                                Netlify
+                            </span>
+
+                        </div>
+
+
+                        <a
+                            href="https://vpreartmovers.netlify.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-8 inline-flex items-center gap-2 text-sm font-bold text-slate-950"
+                        >
+
+                            View project
+
+                            <i
+                                data-lucide="arrow-up-right"
+                                class="w-4 h-4"
+                            ></i>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Project 2 -->
+
+                <article
+                    class="mt-6 grid lg:grid-cols-2 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 reveal"
+                >
+
+                    <div
+                        class="order-2 lg:order-1 p-8 lg:p-12 flex flex-col justify-center"
+                    >
+
+                        <span
+                            class="text-xs font-bold tracking-[0.15em] uppercase text-violet-600"
+                        >
+                            Applied AI
+                        </span>
+
+                        <h3
+                            class="heading mt-4 text-3xl lg:text-4xl font-extrabold text-slate-950"
+                        >
+                            Real Estate AI
+                        </h3>
+
+                        <p
+                            class="mt-5 text-slate-600 leading-7"
+                        >
+                            A machine-learning based property valuation
+                            concept designed to estimate property values
+                            from multiple housing attributes.
+                        </p>
+
+
+                        <div
+                            class="mt-7 flex flex-wrap gap-2"
+                        >
+
+                            <span class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs text-slate-600">
+                                Python
+                            </span>
+
+                            <span class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs text-slate-600">
+                                Machine Learning
+                            </span>
+
+                            <span class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs text-slate-600">
+                                FastAPI
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="order-1 lg:order-2 min-h-[360px] lg:min-h-[430px] flex items-center justify-center bg-gradient-to-br from-violet-50 via-white to-blue-50 p-8"
+                    >
+
+                        <div
+                            class="w-full max-w-md rounded-2xl bg-white border border-slate-200 shadow-2xl p-6"
+                        >
+
+                            <div class="flex items-center gap-3">
+
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center"
+                                >
+
+                                    <i
+                                        data-lucide="brain"
+                                        class="w-5 h-5 text-violet-600"
+                                    ></i>
+
+                                </div>
+
+                                <div>
+
+                                    <p class="text-xs text-slate-400">
+                                        MODEL
+                                    </p>
+
+                                    <p class="font-bold text-slate-900">
+                                        Property Intelligence
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="mt-8 h-32 rounded-xl bg-slate-50 relative overflow-hidden"
+                            >
+
+                                <div
+                                    class="absolute bottom-0 left-5 right-5 h-20"
+                                >
+
+                                    <div class="flex items-end gap-2 h-full">
+
+                                        <div class="w-full h-[35%] bg-violet-100 rounded-t"></div>
+
+                                        <div class="w-full h-[50%] bg-violet-200 rounded-t"></div>
+
+                                        <div class="w-full h-[70%] bg-violet-300 rounded-t"></div>
+
+                                        <div class="w-full h-[58%] bg-violet-200 rounded-t"></div>
+
+                                        <div class="w-full h-[85%] bg-violet-400 rounded-t"></div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mt-5 grid grid-cols-2 gap-3">
+
+                                <div class="rounded-xl bg-slate-50 p-4">
+
+                                    <p class="text-[10px] text-slate-400">
+                                        MODEL
+                                    </p>
+
+                                    <p class="mt-1 font-bold text-sm">
+                                        Regression
+                                    </p>
+
+                                </div>
+
+                                <div class="rounded-xl bg-slate-50 p-4">
+
+                                    <p class="text-[10px] text-slate-400">
+                                        API
+                                    </p>
+
+                                    <p class="mt-1 font-bold text-sm">
+                                        FastAPI
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WHY SYNTRIVO
+        ====================================================== -->
+
+        <section
+            id="about"
+            class="py-24 lg:py-32"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+                    <div class="reveal">
+
+                        <p
+                            class="text-xs font-bold tracking-[0.2em] uppercase text-brand-600 mb-4"
+                        >
+                            Why Syntrivo
+                        </p>
+
+                        <h2
+                            class="heading text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-950"
+                        >
+                            Technology should serve the business.
+                        </h2>
+
+                        <p
+                            class="mt-6 text-slate-600 leading-8"
+                        >
+                            We don't start with a technology stack.
+                            We start by understanding the problem,
+                            the people using the system and the
+                            outcome the business needs.
+                        </p>
+
+                    </div>
+
+
+                    <div class="space-y-4">
+
+                        <div class="card rounded-2xl p-6 reveal">
+
+                            <div class="flex gap-4">
+
+                                <div
+                                    class="w-10 h-10 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center"
+                                >
+
+                                    <i
+                                        data-lucide="target"
+                                        class="w-5 h-5 text-brand-600"
+                                    ></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h3
+                                        class="font-bold text-slate-950"
+                                    >
+                                        Business-first engineering
+                                    </h3>
+
+                                    <p
+                                        class="mt-2 text-sm leading-6 text-slate-600"
+                                    >
+                                        Technology decisions are made
+                                        around business requirements,
+                                        not trends.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card rounded-2xl p-6 reveal">
+
+                            <div class="flex gap-4">
+
+                                <div
+                                    class="w-10 h-10 shrink-0 rounded-xl bg-blue-50 flex items-center justify-center"
+                                >
+
+                                    <i
+                                        data-lucide="layers-3"
+                                        class="w-5 h-5 text-blue-600"
+                                    ></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h3
+                                        class="font-bold text-slate-950"
+                                    >
+                                        Full system thinking
+                                    </h3>
+
+                                    <p
+                                        class="mt-2 text-sm leading-6 text-slate-600"
+                                    >
+                                        Application, data, AI and
+                                        infrastructure are considered
+                                        together.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card rounded-2xl p-6 reveal">
+
+                            <div class="flex gap-4">
+
+                                <div
+                                    class="w-10 h-10 shrink-0 rounded-xl bg-emerald-50 flex items-center justify-center"
+                                >
+
+                                    <i
+                                        data-lucide="rocket"
+                                        class="w-5 h-5 text-emerald-600"
+                                    ></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h3
+                                        class="font-bold text-slate-950"
+                                    >
+                                        Built for production
+                                    </h3>
+
+                                    <p
+                                        class="mt-2 text-sm leading-6 text-slate-600"
+                                    >
+                                        We think beyond the prototype:
+                                        deployment, reliability and
+                                        maintainability matter.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROCESS
+        ====================================================== -->
+
+        <section
+            class="py-24 lg:py-32 bg-slate-950 text-white"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div
+                    class="max-w-2xl mb-14 reveal"
+                >
+
+                    <p
+                        class="text-xs font-bold tracking-[0.2em] uppercase text-brand-300 mb-4"
+                    >
+                        How we work
+                    </p>
+
+                    <h2
+                        class="heading text-4xl lg:text-5xl font-extrabold tracking-tight"
+                    >
+                        Clear process. No unnecessary complexity.
+                    </h2>
+
+                </div>
+
+
+                <div
+                    class="grid md:grid-cols-4 gap-0 border-t border-white/10"
+                >
+
+                    <div
+                        class="py-8 md:pr-8 border-b md:border-b-0 md:border-r border-white/10 reveal"
+                    >
+
+                        <span class="text-sm text-brand-300 font-bold">
+                            01
+                        </span>
+
+                        <h3
+                            class="heading mt-8 text-xl font-bold"
+                        >
+                            Discover
+                        </h3>
+
+                        <p
+                            class="mt-3 text-sm leading-6 text-slate-400"
+                        >
+                            Understand the problem, users,
+                            constraints and desired outcome.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="py-8 md:px-8 border-b md:border-b-0 md:border-r border-white/10 reveal"
+                    >
+
+                        <span class="text-sm text-brand-300 font-bold">
+                            02
+                        </span>
+
+                        <h3
+                            class="heading mt-8 text-xl font-bold"
+                        >
+                            Architect
+                        </h3>
+
+                        <p
+                            class="mt-3 text-sm leading-6 text-slate-400"
+                        >
+                            Design the product, system architecture,
+                            data flow and technology choices.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="py-8 md:px-8 border-b md:border-b-0 md:border-r border-white/10 reveal"
+                    >
+
+                        <span class="text-sm text-brand-300 font-bold">
+                            03
+                        </span>
+
+                        <h3
+                            class="heading mt-8 text-xl font-bold"
+                        >
+                            Build
+                        </h3>
+
+                        <p
+                            class="mt-3 text-sm leading-6 text-slate-400"
+                        >
+                            Develop, integrate and test with
+                            production quality in mind.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="py-8 md:pl-8 reveal"
+                    >
+
+                        <span class="text-sm text-brand-300 font-bold">
+                            04
+                        </span>
+
+                        <h3
+                            class="heading mt-8 text-xl font-bold"
+                        >
+                            Launch
+                        </h3>
+
+                        <p
+                            class="mt-3 text-sm leading-6 text-slate-400"
+                        >
+                            Deploy, measure and establish a foundation
+                            for continuous improvement.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
+
+        <section class="py-24 lg:py-32">
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div
+                    class="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-brand-600 to-blue-600 px-7 py-16 lg:px-16 lg:py-20 text-white reveal"
+                >
+
+                    <div
+                        class="absolute -right-24 -top-24 w-72 h-72 rounded-full border border-white/20"
+                    ></div>
+
+                    <div
+                        class="absolute -right-10 -bottom-36 w-80 h-80 rounded-full border border-white/10"
+                    ></div>
+
+
+                    <div class="relative max-w-2xl">
+
+                        <p
+                            class="text-xs font-bold tracking-[0.2em] uppercase text-white/70"
+                        >
+                            Let's build something useful
+                        </p>
+
+                        <h2
+                            class="heading mt-5 text-4xl lg:text-6xl font-extrabold tracking-tight"
+                        >
+                            Have a problem worth solving?
+                        </h2>
+
+                        <p
+                            class="mt-5 text-white/75 leading-7 max-w-xl"
+                        >
+                            Tell us what you are trying to build,
+                            improve or automate. We can help turn
+                            the idea into a practical technology
+                            solution.
+                        </p>
+
+
+                        <a
+                            href="contact.html"
+                            class="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-slate-950 hover:bg-slate-100 transition"
+                        >
+
+                            Start a conversation
+
+                            <i
+                                data-lucide="arrow-up-right"
+                                class="w-4 h-4"
+                            ></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer
+        class="border-t border-slate-200 bg-white"
+    >
+
+        <div
+            class="max-w-7xl mx-auto px-5 lg:px-8"
+        >
+
+            <div
+                class="py-14 grid md:grid-cols-2 lg:grid-cols-4 gap-10"
+            >
+
+                <div class="lg:col-span-2">
+
+                    <a
+                        href="index.html"
+                        class="flex items-center gap-3"
+                    >
+
+                        <img
+                            src="images/logo.svg"
+                            alt="Syntrivo"
+                            class="w-9 h-9"
+                        >
+
+                        <div>
+
+                            <div
+                                class="heading font-extrabold text-slate-900"
+                            >
+                                SYNTRIVO
+                            </div>
+
+                            <div
+                                class="text-[9px] tracking-[0.25em] text-slate-500 uppercase"
+                            >
+                                Technologies
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <p
+                        class="mt-5 max-w-md text-sm leading-7 text-slate-500"
+                    >
+                        AI systems, software engineering and
+                        intelligent digital products built for
+                        real business problems.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h3
+                        class="text-xs font-bold uppercase tracking-wider text-slate-900"
+                    >
+                        Company
+                    </h3>
+
+                    <div class="mt-5 space-y-3">
+
+                        <a
+                            href="index.html"
+                            class="block text-sm text-slate-500 hover:text-slate-900"
+                        >
+                            Home
+                        </a>
+
+                        <a
+                            href="services.html"
+                            class="block text-sm text-slate-500 hover:text-slate-900"
+                        >
+                            Services
+                        </a>
+
+                        <a
+                            href="#work"
+                            class="block text-sm text-slate-500 hover:text-slate-900"
+                        >
+                            Work
+                        </a>
+
+                        <a
+                            href="#about"
+                            class="block text-sm text-slate-500 hover:text-slate-900"
+                        >
+                            About
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <h3
+                        class="text-xs font-bold uppercase tracking-wider text-slate-900"
+                    >
+                        Contact
+                    </h3>
+
+                    <div class="mt-5 space-y-3">
+
+                        <!-- CHANGE THESE -->
+
+                        <a
+                            href="contact.html"
+                            class="block text-sm text-slate-500 hover:text-slate-900"
+                        >
+                            Start a project
+                        </a>
+
+                        <p class="text-sm text-slate-500">
+                            India · Malaysia · Remote
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="py-6 border-t border-slate-200 flex flex-col md:flex-row justify-between gap-3 text-xs text-slate-400"
+            >
+
+                <p>
+                    © 2026 Syntrivo Technologies. All rights reserved.
+                </p>
+
+                <p>
+                    Built with modern open-source technologies.
+                </p>
+
+            </div>
+
         </div>
-      </div>
+
     </footer>
-  </div>
 
-  <!-- Chatbot Floating Widget -->
-  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-    <div id="chat-window" class="hidden w-80 sm:w-96 h-[470px] bg-[#050811] border border-cyanic-500/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-3">
-      <div class="bg-[#090e1d] px-4 py-3 border-b border-brand-500/20 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></span>
-          <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">SYNTRIVO NEURAL LINK</span>
-        </div>
-        <button id="chat-close" class="text-slate-400 hover:text-white text-lg leading-none">&times;</button>
-      </div>
 
-      <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
-        <div class="bg-[#0d1428] text-slate-200 p-3.5 rounded-2xl rounded-tl-none border border-brand-500/20 font-sans leading-relaxed">
-          Hello! I am the Syntrivo Technologies assistant. How can we assist you with modern web development, RAG/AI solutions, or our client projects across India and Malaysia?
-        </div>
-      </div>
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
-      <div class="px-3 py-2 bg-[#060a14] border-t border-brand-500/20 flex gap-2 overflow-x-auto text-[11px] font-mono whitespace-nowrap">
-        <button type="button" class="quick-trigger px-2.5 py-1 rounded-lg bg-[#0d1428] hover:bg-[#15203d] text-cyanic-300 border border-cyanic-500/30">India &amp; Malaysia</button>
-        <button type="button" class="quick-trigger px-2.5 py-1 rounded-lg bg-[#0d1428] hover:bg-[#15203d] text-cyanic-300 border border-cyanic-500/30">VPR Earth Movers</button>
-        <button type="button" class="quick-trigger px-2.5 py-1 rounded-lg bg-[#0d1428] hover:bg-[#15203d] text-cyanic-300 border border-cyanic-500/30">RAG Pipeline</button>
-      </div>
+    <script>
 
-      <form id="chat-form" class="p-2.5 bg-[#030508] border-t border-brand-500/20 flex gap-2">
-        <input type="text" id="chat-input" placeholder="Ask anything about our builds..." class="flex-1 px-3.5 py-2.5 bg-[#090e1d] border border-white/[0.1] text-slate-100 text-xs rounded-xl focus:outline-none focus:border-cyanic-400 font-sans">
-        <button type="submit" class="px-4 py-2.5 bg-gradient-to-r from-brand-600 to-cyanic-500 hover:opacity-90 text-white rounded-xl text-xs font-mono font-bold transition">SEND</button>
-      </form>
-    </div>
+        /* Lucide */
 
-    <button id="chat-toggle" class="p-4 bg-gradient-to-r from-brand-600 via-indigo-600 to-cyanic-500 text-white rounded-full shadow-2xl shadow-brand-500/50 transition-transform transform hover:scale-105">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-    </button>
-  </div>
+        lucide.createIcons();
 
-  <!-- Three.js Anime Engine & Clean Chatbot Logic -->
-  <script>
-    // 1. Three.js Background Animation
-    const canvasContainer = document.getElementById('webgl-canvas');
-    if (canvasContainer) {
-      const scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x030508, 0.015);
 
-      const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.set(0, 3, 40);
+        /* Mobile navigation */
 
-      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      canvasContainer.appendChild(renderer.domElement);
+        const menuButton =
+            document.getElementById("menuButton");
 
-      const warpCount = 500;
-      const warpGeo = new THREE.BufferGeometry();
-      const warpPositions = new Float32Array(warpCount * 6);
+        const mobileNav =
+            document.getElementById("mobileNav");
 
-      for (let i = 0; i < warpCount; i++) {
-        const x = (Math.random() - 0.5) * 120;
-        const y = (Math.random() - 0.5) * 80;
-        const z = (Math.random() - 0.5) * 150;
-        const len = Math.random() * 8 + 4;
 
-        warpPositions[i * 6] = x;
-        warpPositions[i * 6 + 1] = y;
-        warpPositions[i * 6 + 2] = z;
+        menuButton.addEventListener("click", () => {
 
-        warpPositions[i * 6 + 3] = x;
-        warpPositions[i * 6 + 4] = y;
-        warpPositions[i * 6 + 5] = z - len;
-      }
-      warpGeo.setAttribute('position', new THREE.BufferAttribute(warpPositions, 3));
+            const isOpen =
+                !mobileNav.classList.contains("hidden");
 
-      const warpMat = new THREE.LineBasicMaterial({
-        color: 0x22d3ee,
-        transparent: true,
-        opacity: 0.35
-      });
-      const warpLines = new THREE.LineSegments(warpGeo, warpMat);
-      scene.add(warpLines);
+            mobileNav.classList.toggle("hidden");
 
-      const coreGroup = new THREE.Group();
-      scene.add(coreGroup);
+            menuButton.setAttribute(
+                "aria-expanded",
+                String(!isOpen)
+            );
 
-      const crystalGeo = new THREE.OctahedronGeometry(8.5, 0);
-      const crystalMat = new THREE.MeshBasicMaterial({
-        color: 0x8b5cf6,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.45
-      });
-      const crystalMesh = new THREE.Mesh(crystalGeo, crystalMat);
-      coreGroup.add(crystalMesh);
-
-      const innerGeo = new THREE.IcosahedronGeometry(4, 1);
-      const innerMat = new THREE.MeshBasicMaterial({
-        color: 0x22d3ee,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.6
-      });
-      const innerMesh = new THREE.Mesh(innerGeo, innerMat);
-      coreGroup.add(innerMesh);
-
-      const halo1 = new THREE.Mesh(
-        new THREE.TorusGeometry(14.5, 0.12, 16, 120),
-        new THREE.MeshBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.5 })
-      );
-      halo1.rotation.x = Math.PI / 2.5;
-      coreGroup.add(halo1);
-
-      const halo2 = new THREE.Mesh(
-        new THREE.TorusGeometry(17, 0.08, 16, 120),
-        new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.4 })
-      );
-      halo2.rotation.x = -Math.PI / 3;
-      coreGroup.add(halo2);
-
-      let mouseX = 0, mouseY = 0;
-      let targetX = 0, targetY = 0;
-      const windowHalfX = window.innerWidth / 2;
-      const windowHalfY = window.innerHeight / 2;
-
-      document.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX - windowHalfX) * 0.02;
-        mouseY = (e.clientY - windowHalfY) * 0.02;
-      });
-
-      function renderAnimeScene() {
-        requestAnimationFrame(renderAnimeScene);
-
-        targetX += (mouseX - targetX) * 0.04;
-        targetY += (mouseY - targetY) * 0.04;
-
-        const positions = warpGeo.attributes.position.array;
-        for (let i = 0; i < warpCount; i++) {
-          positions[i * 6 + 2] += 1.4;
-          positions[i * 6 + 5] += 1.4;
-
-          if (positions[i * 6 + 2] > 50) {
-            positions[i * 6 + 2] = -90;
-            positions[i * 6 + 5] = -96;
-          }
-        }
-        warpGeo.attributes.position.needsUpdate = true;
-
-        crystalMesh.rotation.x += 0.005;
-        crystalMesh.rotation.y += 0.007;
-        innerMesh.rotation.x -= 0.008;
-        innerMesh.rotation.y += 0.006;
-        halo1.rotation.z += 0.008;
-        halo2.rotation.z -= 0.006;
-
-        coreGroup.position.x = targetX * 0.5;
-        coreGroup.position.y = -targetY * 0.5;
-        camera.position.x = targetX * 0.15;
-        camera.position.y = 3 - (targetY * 0.15);
-
-        renderer.render(scene, camera);
-      }
-      renderAnimeScene();
-
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    }
-
-    // 2. Real Estate Estimator
-    function calculateEstimate() {
-      const sqft = document.getElementById('sqft').value;
-      const beds = document.getElementById('beds').value;
-      document.getElementById('sqft-val').innerText = Number(sqft).toLocaleString() + ' sq.ft';
-      document.getElementById('beds-val').innerText = beds + ' BHK';
-      const estimate = 8 + (sqft * 0.03) + (beds * 2);
-      document.getElementById('output-price').innerText = '₹ ' + estimate.toFixed(1) + ' Lakhs';
-    }
-
-    // 3. Guaranteed Chatbot Functionality
-    document.addEventListener('DOMContentLoaded', () => {
-      const chatWin = document.getElementById('chat-window');
-      const toggleBtn = document.getElementById('chat-toggle');
-      const closeBtn = document.getElementById('chat-close');
-      const form = document.getElementById('chat-form');
-      const input = document.getElementById('chat-input');
-      const box = document.getElementById('chat-messages');
-
-      if (!chatWin || !toggleBtn || !form || !input || !box) {
-        return;
-      }
-
-      function toggleWindow() {
-        chatWin.classList.toggle('hidden');
-        if (!chatWin.classList.contains('hidden')) {
-          input.focus();
-        }
-      }
-
-      toggleBtn.addEventListener('click', toggleWindow);
-      if (closeBtn) {
-        closeBtn.addEventListener('click', toggleWindow);
-      }
-
-      const quickTriggers = document.querySelectorAll('.quick-trigger');
-      quickTriggers.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          handleChatSubmission(btn.innerText.trim());
         });
-      });
 
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const text = input.value.trim();
-        if (!text) return;
-        handleChatSubmission(text);
-        input.value = '';
-      });
 
-      function handleChatSubmission(userText) {
-        const userDiv = document.createElement('div');
-        userDiv.className = 'flex justify-end';
-        userDiv.innerHTML = `<div class="bg-gradient-to-r from-brand-600 to-cyanic-500 text-white p-3.5 rounded-2xl rounded-tr-none max-w-[85%] font-sans leading-relaxed">${userText}</div>`;
-        box.appendChild(userDiv);
-        box.scrollTop = box.scrollHeight;
+        /* Close mobile navigation */
 
-        setTimeout(() => {
-          const q = userText.toLowerCase();
-          let reply = "";
+        mobileNav
+            .querySelectorAll("a")
+            .forEach(link => {
 
-          if (q.includes('malaysia') || q.includes('india') || q.includes('country') || q.includes('global')) {
-            reply = "Syntrivo Technologies operates across India 🇮🇳 and Malaysia 🇲🇾, engineering high-speed commercial web platforms, lead-generation funnels, and private RAG document intelligence.";
-          }
-          else if (q.includes('vpr') || q.includes('earth mover') || q.includes('earthmover')) {
-            reply = "VPR Earth Movers is a commercial client engagement built and deployed by Syntrivo Technologies using HTML, Tailwind CSS, and Netlify. Inspect the live platform here: https://vpreartmovers.netlify.app";
-          }
-          else if (q.includes('rag') || q.includes('llm') || q.includes('retrieval') || q.includes('vector') || q.includes('document')) {
-            reply = "For LLMs, Syntrivo Technologies engineers Retrieval-Augmented Generation (RAG) pipelines. We parse your private enterprise documents, generate vector embeddings, store them in ChromaDB or Pinecone, and apply reranking to deliver verifiable answers without hallucinations.";
-          }
-          else if (q.includes('mlops') || q.includes('pipeline') || q.includes('docker') || q.includes('deploy') || q.includes('serving')) {
-            reply = "Our MLOps architecture wraps ML models into asynchronous FastAPI microservices, containerizes environments via Docker to prevent dependency drift, and implements experiment tracking for reliable production deployment.";
-          }
-          else if (q.includes('website') || q.includes('web') || q.includes('frontend') || q.includes('landing page')) {
-            reply = "We design responsive, mobile-first commercial web platforms using HTML5, Tailwind CSS, and clean JavaScript. Everything is optimized for sub-second speeds, SEO visibility, and deployed on Netlify with automated CI/CD.";
-          }
-          else if (q.includes('real estate') || q.includes('valuation') || q.includes('calculator') || q.includes('predict')) {
-            reply = "The Real Estate Valuation Engine is an interactive data application combining multi-variable regression with a client-side interface. You can test the dynamic slider sandbox on our home page!";
-          }
-          else if (q.includes('tech') || q.includes('stack') || q.includes('python') || q.includes('fastapi')) {
-            reply = "Our core production stack includes: Frontend (HTML5, Tailwind CSS, JavaScript), Backend (Python, FastAPI, REST APIs), Data & AI (Scikit-Learn, Vector Stores, PyTorch), and DevOps (Git, GitHub, Docker, Netlify).";
-          }
-          else if (q.includes('contact') || q.includes('phone') || q.includes('whatsapp') || q.includes('email') || q.includes('reach')) {
-            reply = "You can connect with Syntrivo Technologies directly via Phone/WhatsApp at +91 93442 85549, or email ragulrao2004@gmail.com.";
-          }
-          else {
-            reply = `Regarding "${userText}": Syntrivo Technologies specializes in commercial web development, custom RAG document architectures, and production MLOps. Feel free to ask about our tech stack, client deliveries, or starting a project!`;
-          }
+                link.addEventListener("click", () => {
 
-          const botDiv = document.createElement('div');
-          botDiv.className = 'flex justify-start';
-          botDiv.innerHTML = `<div class="bg-[#0c1326] text-slate-200 p-3.5 rounded-2xl rounded-tl-none border border-brand-500/20 max-w-[85%] font-sans leading-relaxed">${reply}</div>`;
-          box.appendChild(botDiv);
-          box.scrollTop = box.scrollHeight;
-        }, 250);
-      }
-    });
-  </script>
+                    mobileNav.classList.add("hidden");
+
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                });
+
+            });
+
+
+        /* Scroll reveal */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("show");
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+    </script>
+
 </body>
+
 </html>

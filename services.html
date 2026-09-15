@@ -1,231 +1,864 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CAPABILITIES // Syntrivo Technologies</title>
 
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Crect x='15' y='15' width='230' height='230' rx='48' fill='%23050811' stroke='%238b5cf6' stroke-width='8'/%3E%3Cpath d='M 68 85 L 36 130 L 68 175' stroke='%2306b6d4' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M 192 85 L 224 130 L 192 175' stroke='%2310b981' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='36' cy='130' r='12' fill='%2306b6d4'/%3E%3Ccircle cx='224' cy='130' r='12' fill='%2310b981'/%3E%3Ccircle cx='130' cy='42' r='12' fill='%238b5cf6'/%3E%3Ccircle cx='130' cy='218' r='12' fill='%2310b981'/%3E%3Crect x='45' y='102' width='170' height='56' rx='16' fill='%23090e1a' stroke='%238b5cf6' stroke-width='4'/%3E%3Ctext x='130' y='138' font-family='system-ui,sans-serif' font-weight='900' font-size='19' letter-spacing='2' fill='%23ffffff' text-anchor='middle'%3ESYNTRIVO%3C/text%3E%3C/svg%3E">
+    <meta charset="UTF-8">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          },
-          colors: { brand: { 400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed' }, cyanic: { 400: '#22d3ee', 500: '#06b6d4' } }
+    <title>Services | Syntrivo Technologies</title>
+
+    <meta
+        name="description"
+        content="Explore Syntrivo Technologies services including AI development, LLM applications, RAG, MLOps, software engineering and intelligent automation."
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+    <script>
+
+        tailwind.config = {
+
+            theme: {
+
+                extend: {
+
+                    fontFamily: {
+
+                        sans: [
+                            "DM Sans",
+                            "sans-serif"
+                        ],
+
+                        heading: [
+                            "Manrope",
+                            "sans-serif"
+                        ]
+
+                    },
+
+                    colors: {
+
+                        brand: {
+
+                            50: "#f4f3ff",
+
+                            100: "#ebe9ff",
+
+                            500: "#635bff",
+
+                            600: "#574fff",
+
+                            700: "#4a42dc"
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        };
+
+    </script>
+
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
         }
-      }
-    }
-  </script>
-  <style>
-    #webgl-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .cyber-panel {
-      background: rgba(9, 13, 24, 0.88);
-      border: 1px solid rgba(139, 92, 246, 0.22);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .cyber-panel:hover {
-      border-color: rgba(34, 211, 238, 0.6);
-      transform: translateY(-3px);
-    }
-  </style>
+
+        body {
+            background: #f7f8fc;
+            color: #111827;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .heading {
+            font-family: "Manrope", sans-serif;
+        }
+
+        .hero-grid {
+
+            background-image:
+                linear-gradient(
+                    rgba(99,91,255,.05) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(99,91,255,.05) 1px,
+                    transparent 1px
+                );
+
+            background-size: 64px 64px;
+
+        }
+
+        .card {
+
+            background: white;
+
+            border: 1px solid #e7e9ef;
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease,
+                border-color .3s ease;
+
+        }
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: #d5d2ff;
+
+            box-shadow:
+                0 20px 45px rgba(17,24,39,.08);
+
+        }
+
+        .reveal {
+
+            opacity: 0;
+
+            transform: translateY(22px);
+
+            transition:
+                opacity .7s ease,
+                transform .7s ease;
+
+        }
+
+        .reveal.show {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+    </style>
+
 </head>
-<body class="bg-[#030508] text-slate-100 antialiased font-sans selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
-  <div id="webgl-canvas"></div>
 
-  <div class="relative z-10">
-    <nav class="fixed top-0 left-0 right-0 z-40 bg-[#04060b]/90 border-b border-brand-500/20 backdrop-blur-md">
-      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        
-        <a href="index.html" class="flex items-center gap-3 group">
-          <div class="relative flex items-center justify-center">
-            <div class="absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-brand-500 via-cyanic-500 to-emerald-500 opacity-30 blur group-hover:opacity-75 transition duration-300"></div>
-            <svg class="w-11 h-11 relative" viewBox="0 0 260 260" fill="none">
-              <rect x="15" y="15" width="230" height="230" rx="48" fill="#060913" stroke="rgba(139,92,246,0.4)" stroke-width="4"/>
-              <path d="M 68 85 L 36 130 L 68 175" stroke="#22d3ee" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M 192 85 L 224 130 L 192 175" stroke="#10b981" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-              <g transform="translate(45, 102)">
-                <rect width="170" height="56" rx="16" fill="#0a0f1d" stroke="#8b5cf6" stroke-width="3" />
-                <text x="85" y="37" font-family="'JetBrains Mono', monospace" font-weight="900" font-size="19" letter-spacing="2" fill="#ffffff" text-anchor="middle">SYNTRIVO</text>
-              </g>
-            </svg>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-xl font-black tracking-wider text-white leading-tight font-mono">SYNTRIVO<span class="text-cyanic-400">_</span></span>
-            <span class="text-[9px] font-mono tracking-[0.22em] text-brand-300 uppercase">TECHNOLOGIES</span>
-          </div>
-        </a>
+<body>
 
-        <div class="hidden md:flex items-center space-x-8 text-xs font-mono tracking-wider text-slate-300">
-          <a href="index.html" class="hover:text-cyanic-400 transition">01// HOME</a>
-          <a href="services.html" class="text-cyanic-400 font-bold">02// SERVICES</a>
-          <a href="index.html#projects" class="hover:text-cyanic-400 transition">03// CLIENTS</a>
-          <a href="contact.html" class="hover:text-cyanic-400 transition">04// CONTACT</a>
+
+    <!-- NAVIGATION -->
+
+    <header
+        class="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-xl"
+    >
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <nav
+                class="h-[76px] flex items-center justify-between"
+            >
+
+                <a
+                    href="index.html"
+                    class="flex items-center gap-3"
+                >
+
+                    <img
+                        src="images/logo.svg"
+                        alt="Syntrivo"
+                        class="w-9 h-9"
+                    >
+
+                    <div>
+
+                        <div
+                            class="heading font-extrabold text-lg text-slate-900"
+                        >
+                            SYNTRIVO
+                        </div>
+
+                        <div
+                            class="text-[9px] tracking-[0.25em] text-slate-500 uppercase"
+                        >
+                            Technologies
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <div class="hidden md:flex items-center gap-8">
+
+                    <a
+                        href="index.html"
+                        class="text-sm text-slate-500 hover:text-slate-900"
+                    >
+                        Home
+                    </a>
+
+                    <a
+                        href="services.html"
+                        class="text-sm font-semibold text-slate-900"
+                    >
+                        Services
+                    </a>
+
+                    <a
+                        href="index.html#work"
+                        class="text-sm text-slate-500 hover:text-slate-900"
+                    >
+                        Work
+                    </a>
+
+                    <a
+                        href="index.html#about"
+                        class="text-sm text-slate-500 hover:text-slate-900"
+                    >
+                        About
+                    </a>
+
+                </div>
+
+
+                <a
+                    href="contact.html"
+                    class="hidden md:inline-flex items-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-bold text-white"
+                >
+
+                    Start a project
+
+                    <i
+                        data-lucide="arrow-up-right"
+                        class="w-4 h-4"
+                    ></i>
+
+                </a>
+
+
+                <button
+                    id="menuButton"
+                    class="md:hidden p-2"
+                    aria-label="Open menu"
+                >
+
+                    <i
+                        data-lucide="menu"
+                        class="w-6 h-6"
+                    ></i>
+
+                </button>
+
+            </nav>
+
         </div>
 
-        <a href="contact.html" class="px-5 py-2.5 text-xs font-mono font-bold rounded-xl bg-gradient-to-r from-brand-600 to-cyanic-500 text-white shadow-xl shadow-brand-500/30 transition">
-          INIT_PROJECT →
-        </a>
-      </div>
-    </nav>
 
-    <main class="pt-36 pb-24 px-6 max-w-7xl mx-auto space-y-20">
-      <div class="text-center max-w-3xl mx-auto space-y-4">
-        <span class="text-xs uppercase font-semibold text-cyanic-400 tracking-wider font-mono">// CORE DISCIPLINES</span>
-        <h1 class="text-4xl sm:text-5xl font-black text-white font-mono">System Architecture</h1>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-          From high-performance digital storefronts to state-of-the-art vector retrieval pipelines and automated machine learning infrastructure.
-        </p>
-      </div>
+        <div
+            id="mobileNav"
+            class="hidden md:hidden border-t border-slate-200 bg-white"
+        >
 
-      <!-- Web Engineering -->
-      <section id="web" class="cyber-panel p-8 sm:p-12 rounded-3xl space-y-8">
-        <div class="space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="p-3 rounded-2xl bg-cyanic-500/10 text-cyanic-400 border border-cyanic-500/30 font-bold font-mono">01</div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono">Commercial Web Engineering &amp; Frontend</h2>
-          </div>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-4xl">
-            We architect web assets focused on sub-second load times, mobile rendering perfection, and intuitive user experiences that turn visitors into clients.
-          </p>
-          <div class="grid md:grid-cols-3 gap-6 pt-2 font-mono text-xs">
-            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
-              <h4 class="text-base font-bold text-white">High-Speed Landing Pages</h4>
-              <p class="text-slate-400 font-sans leading-relaxed">Tailwind CSS &amp; clean JavaScript architectures for businesses needing instant loading without heavy runtime frameworks.</p>
-            </div>
-            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
-              <h4 class="text-base font-bold text-white">Custom Web Applications</h4>
-              <p class="text-slate-400 font-sans leading-relaxed">Dynamic dashboards, client data portals, and internal calculators engineered with responsive layouts.</p>
-            </div>
-            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
-              <h4 class="text-base font-bold text-white">Deployments &amp; CI/CD</h4>
-              <p class="text-slate-400 font-sans leading-relaxed">Continuous deployment workflows via Git, GitHub, and Netlify with automatic branch previews and zero downtime.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+            <div class="p-5 space-y-1">
 
-      <!-- LLM & RAG Systems -->
-      <section id="llm" class="cyber-panel p-8 sm:p-12 rounded-3xl space-y-8">
-        <div class="space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="p-3 rounded-2xl bg-brand-500/10 text-brand-400 border border-brand-500/30 font-bold font-mono">02</div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono">Large Language Models (LLM) &amp; RAG Pipelines</h2>
-          </div>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-4xl">
-            Generic chatbots hallucinate. Syntrivo Technologies builds Retrieval-Augmented Generation (RAG) pipelines that anchor language models into your private documents, APIs, and company knowledge base.
-          </p>
-          <div class="grid md:grid-cols-3 gap-6 pt-2 font-mono text-xs">
-            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
-              <h4 class="text-base font-bold text-white">Document Ingestion &amp; Chunking</h4>
-              <p class="text-slate-400 font-sans leading-relaxed">Semantic parsing of PDFs, manuals, and databases with token-aware chunking and metadata enrichment.</p>
-            </div>
-            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
-              <h4 class="text-base font-bold text-white">Vector Storage &amp; Embeddings</h4>
-              <p class="text-slate-400 font-sans leading-relaxed">Embedding generation stored in vector databases (ChromaDB, Pinecone, pgvector) for millisecond cosine retrieval.</p>
-            </div>
-            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
-              <h4 class="text-base font-bold text-white">Context Grounding &amp; Guardrails</h4>
-              <p class="text-slate-400 font-sans leading-relaxed">Prompt engineering, reranking, and safety guardrails to ensure exact factual accuracy without fabrication.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+                <a
+                    href="index.html"
+                    class="block px-4 py-3 text-slate-600"
+                >
+                    Home
+                </a>
 
-      <!-- MLOps -->
-      <section id="mlops" class="cyber-panel p-8 sm:p-12 rounded-3xl space-y-8">
-        <div class="space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold font-mono">03</div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono">MLOps &amp; Operational AI Infrastructure</h2>
-          </div>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-4xl">
-            Bridging machine learning experimentation with enterprise production stability. We structure end-to-end ML lifecycles with continuous monitoring and automated serving.
-          </p>
-          <div class="grid md:grid-cols-3 gap-6 pt-2 font-mono text-xs">
-            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
-              <h4 class="text-base font-bold text-white">FastAPI Serving Microservices</h4>
-              <p class="text-slate-400 font-sans leading-relaxed">Wrapping ML regression, classification, and neural models into asynchronous REST endpoints with schema validation.</p>
-            </div>
-            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
-              <h4 class="text-base font-bold text-white">Containerization &amp; Orchestration</h4>
-              <p class="text-slate-400 font-sans leading-relaxed">Docker containerization for reproducible development and cloud runtimes, eliminating environment drift.</p>
-            </div>
-            <div class="p-6 rounded-2xl bg-[#050811] border border-brand-500/20 space-y-2">
-              <h4 class="text-base font-bold text-white">Model Experiment Tracking</h4>
-              <p class="text-slate-400 font-sans leading-relaxed">Version control for datasets, hyperparameters, and model weights to guarantee reproducible deployments.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+                <a
+                    href="services.html"
+                    class="block px-4 py-3 rounded-lg bg-slate-50 font-semibold"
+                >
+                    Services
+                </a>
 
-      <!-- Bottom Banner -->
-      <div class="cyber-panel p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <h3 class="text-2xl font-bold text-white font-mono">Need a customized AI or Web solution?</h3>
-          <p class="text-sm text-slate-300 mt-1">Connect directly with the Syntrivo engineering desk.</p>
+                <a
+                    href="index.html#work"
+                    class="block px-4 py-3 text-slate-600"
+                >
+                    Work
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="block mt-3 px-4 py-3 text-center rounded-lg bg-slate-950 text-white font-bold"
+                >
+                    Start a project
+                </a>
+
+            </div>
+
         </div>
-        <div class="flex items-center gap-4 font-mono text-xs">
-          <a href="https://wa.me/919344285549" target="_blank" class="px-5 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold transition">WHATSAPP DIRECT</a>
-          <a href="contact.html" class="px-5 py-3.5 rounded-xl bg-white text-slate-950 font-bold hover:bg-slate-200 transition">CONTACT DESK</a>
-        </div>
-      </div>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- HERO -->
+
+        <section
+            class="hero-grid pt-36 pb-24 lg:pt-48 lg:pb-32"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div class="max-w-3xl reveal">
+
+                    <p
+                        class="text-xs font-bold uppercase tracking-[0.2em] text-brand-600"
+                    >
+                        Our capabilities
+                    </p>
+
+                    <h1
+                        class="heading mt-5 text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-950"
+                    >
+                        Technology for the
+                        <span class="text-brand-600">
+                            next stage of your business.
+                        </span>
+                    </h1>
+
+                    <p
+                        class="mt-7 text-lg leading-8 text-slate-600 max-w-2xl"
+                    >
+                        From modern software platforms to production
+                        AI systems, we build technology around the
+                        problem you actually need to solve.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SERVICES -->
+
+        <section class="py-24">
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div
+                    class="grid lg:grid-cols-2 gap-5"
+                >
+
+
+                    <!-- AI -->
+
+                    <article
+                        class="card rounded-3xl p-8 lg:p-10 reveal"
+                    >
+
+                        <div
+                            class="w-12 h-12 rounded-xl bg-violet-50 flex items-center justify-center"
+                        >
+
+                            <i
+                                data-lucide="brain"
+                                class="w-6 h-6 text-violet-600"
+                            ></i>
+
+                        </div>
+
+                        <p
+                            class="mt-8 text-xs font-bold text-slate-400"
+                        >
+                            01 / ARTIFICIAL INTELLIGENCE
+                        </p>
+
+                        <h2
+                            class="heading mt-3 text-3xl font-extrabold text-slate-950"
+                        >
+                            AI & LLM Applications
+                        </h2>
+
+                        <p
+                            class="mt-4 text-slate-600 leading-7"
+                        >
+                            Build intelligent products using modern
+                            language models and AI workflows.
+                        </p>
+
+                        <ul
+                            class="mt-7 space-y-3 text-sm text-slate-600"
+                        >
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i>
+                                LLM-powered applications
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i>
+                                Retrieval-Augmented Generation
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i>
+                                Document intelligence
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i>
+                                AI agents and workflows
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+
+                    <!-- SOFTWARE -->
+
+                    <article
+                        class="card rounded-3xl p-8 lg:p-10 reveal"
+                    >
+
+                        <div
+                            class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center"
+                        >
+
+                            <i
+                                data-lucide="code-2"
+                                class="w-6 h-6 text-blue-600"
+                            ></i>
+
+                        </div>
+
+                        <p
+                            class="mt-8 text-xs font-bold text-slate-400"
+                        >
+                            02 / SOFTWARE ENGINEERING
+                        </p>
+
+                        <h2
+                            class="heading mt-3 text-3xl font-extrabold text-slate-950"
+                        >
+                            Web & Business Platforms
+                        </h2>
+
+                        <p
+                            class="mt-4 text-slate-600 leading-7"
+                        >
+                            Modern digital products that are fast,
+                            responsive and designed around business
+                            workflows.
+                        </p>
+
+                        <ul class="mt-7 space-y-3 text-sm text-slate-600">
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i>
+                                Business websites
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i>
+                                Web applications
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i>
+                                Dashboards and portals
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i>
+                                API development
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+
+                    <!-- MLOPS -->
+
+                    <article
+                        class="card rounded-3xl p-8 lg:p-10 reveal"
+                    >
+
+                        <div
+                            class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center"
+                        >
+
+                            <i
+                                data-lucide="server-cog"
+                                class="w-6 h-6 text-brand-600"
+                            ></i>
+
+                        </div>
+
+                        <p
+                            class="mt-8 text-xs font-bold text-slate-400"
+                        >
+                            03 / INFRASTRUCTURE
+                        </p>
+
+                        <h2
+                            class="heading mt-3 text-3xl font-extrabold text-slate-950"
+                        >
+                            MLOps & AI Infrastructure
+                        </h2>
+
+                        <p
+                            class="mt-4 text-slate-600 leading-7"
+                        >
+                            Move machine learning systems from
+                            experiments into reliable production
+                            environments.
+                        </p>
+
+                        <ul class="mt-7 space-y-3 text-sm text-slate-600">
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                                Model deployment
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                                Docker & containers
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                                CI/CD pipelines
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                                Monitoring & APIs
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+
+                    <!-- AUTOMATION -->
+
+                    <article
+                        class="card rounded-3xl p-8 lg:p-10 reveal"
+                    >
+
+                        <div
+                            class="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center"
+                        >
+
+                            <i
+                                data-lucide="workflow"
+                                class="w-6 h-6 text-emerald-600"
+                            ></i>
+
+                        </div>
+
+                        <p
+                            class="mt-8 text-xs font-bold text-slate-400"
+                        >
+                            04 / AUTOMATION
+                        </p>
+
+                        <h2
+                            class="heading mt-3 text-3xl font-extrabold text-slate-950"
+                        >
+                            Intelligent Business Automation
+                        </h2>
+
+                        <p
+                            class="mt-4 text-slate-600 leading-7"
+                        >
+                            Connect your existing tools and automate
+                            repetitive processes using APIs and AI.
+                        </p>
+
+                        <ul class="mt-7 space-y-3 text-sm text-slate-600">
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                                Workflow automation
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                                API integrations
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                                AI-assisted operations
+                            </li>
+
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                                Internal productivity systems
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TECHNOLOGY -->
+
+        <section
+            class="py-24 bg-white border-y border-slate-200"
+        >
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div class="max-w-2xl reveal">
+
+                    <p
+                        class="text-xs font-bold uppercase tracking-[0.2em] text-brand-600"
+                    >
+                        Technology
+                    </p>
+
+                    <h2
+                        class="heading mt-4 text-4xl font-extrabold text-slate-950"
+                    >
+                        Modern tools. Practical choices.
+                    </h2>
+
+                    <p
+                        class="mt-4 text-slate-600 leading-7"
+                    >
+                        We choose technologies according to the
+                        requirements of the project instead of
+                        forcing every project into the same stack.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
+                >
+
+                    <div class="rounded-xl border border-slate-200 p-5">
+                        <strong>Python</strong>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 p-5">
+                        <strong>JavaScript</strong>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 p-5">
+                        <strong>React</strong>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 p-5">
+                        <strong>Next.js</strong>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 p-5">
+                        <strong>FastAPI</strong>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 p-5">
+                        <strong>PostgreSQL</strong>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 p-5">
+                        <strong>Docker</strong>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 p-5">
+                        <strong>GitHub</strong>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 p-5">
+                        <strong>Cloud</strong>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 p-5">
+                        <strong>LLM APIs</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+
+        <section class="py-24">
+
+            <div
+                class="max-w-7xl mx-auto px-5 lg:px-8"
+            >
+
+                <div
+                    class="rounded-3xl bg-slate-950 text-white p-8 lg:p-14"
+                >
+
+                    <h2
+                        class="heading text-4xl lg:text-5xl font-extrabold"
+                    >
+                        Have a project in mind?
+                    </h2>
+
+                    <p
+                        class="mt-4 max-w-xl text-slate-400 leading-7"
+                    >
+                        Let's discuss the problem and find the
+                        simplest technology solution that makes sense.
+                    </p>
+
+                    <a
+                        href="contact.html"
+                        class="mt-7 inline-flex items-center gap-2 rounded-xl bg-white text-slate-950 px-6 py-3.5 font-bold text-sm"
+                    >
+
+                        Start a conversation
+
+                        <i
+                            data-lucide="arrow-up-right"
+                            class="w-4 h-4"
+                        ></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
-    <footer class="py-8 border-t border-brand-500/20 text-center text-xs font-mono text-slate-400">
-      <p>© 2026 SYNTRIVO TECHNOLOGIES. ALL SYSTEMS FUNCTIONAL.</p>
+
+    <!-- FOOTER -->
+
+    <footer
+        class="border-t border-slate-200 bg-white"
+    >
+
+        <div
+            class="max-w-7xl mx-auto px-5 lg:px-8 py-8 flex flex-col md:flex-row justify-between gap-4 text-sm text-slate-500"
+        >
+
+            <p>
+                © 2026 Syntrivo Technologies.
+            </p>
+
+            <div class="flex gap-5">
+
+                <a
+                    href="index.html"
+                    class="hover:text-slate-900"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="services.html"
+                    class="hover:text-slate-900"
+                >
+                    Services
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="hover:text-slate-900"
+                >
+                    Contact
+                </a>
+
+            </div>
+
+        </div>
+
     </footer>
-  </div>
 
-  <script>
-    const container = document.getElementById('webgl-canvas');
-    if (container) {
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.z = 40;
 
-      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      container.appendChild(renderer.domElement);
+    <script>
 
-      const geo = new THREE.TorusKnotGeometry(12, 2.2, 100, 16);
-      const mat = new THREE.MeshBasicMaterial({ color: 0x8b5cf6, wireframe: true, transparent: true, opacity: 0.25 });
-      const mesh = new THREE.Mesh(geo, mat);
-      scene.add(mesh);
+        lucide.createIcons();
 
-      function animate() {
-        requestAnimationFrame(animate);
-        mesh.rotation.x += 0.003;
-        mesh.rotation.y += 0.004;
-        renderer.render(scene, camera);
-      }
-      animate();
 
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    }
-  </script>
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const mobileNav =
+            document.getElementById("mobileNav");
+
+
+        menuButton.addEventListener("click", () => {
+
+            mobileNav.classList.toggle("hidden");
+
+        });
+
+
+        const elements =
+            document.querySelectorAll(".reveal");
+
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("show");
+
+                            observer.unobserve(entry.target);
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.1
+                }
+            );
+
+
+        elements.forEach(el => observer.observe(el));
+
+    </script>
+
 </body>
+
 </html>
