@@ -190,7 +190,7 @@ WhatsApp:
     ) {
 
         return `
-RRNOVA TECH is based in Chennai,
+RRNOVA TECH is based in Ranipet,
 Tamil Nadu, India.
         `.trim();
 
